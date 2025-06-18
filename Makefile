@@ -1,7 +1,7 @@
 dev:
 	nodemon --exec go run cmd/main.go --signal SIGTERM
 
-goose_create:
+goose-create:
 	goose create $(name) sql
 
 create-seeder:
