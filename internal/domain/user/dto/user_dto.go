@@ -2,7 +2,6 @@ package userdto
 
 import (
 	internalmodel "github.com/car-journal/internal/model"
-	"github.com/car-journal/lib/uuid"
 )
 
 type UserWithUserProfile struct {
@@ -23,10 +22,4 @@ func (u UserWithUserProfile) ToModel() *internalmodel.User {
 		Email:    u.Email,
 		Password: u.Password,
 	}
-}
-
-type ContactNumbersAndAddresses struct {
-	UserID         uuid.UUID
-	ContactNumbers []internalmodel.ContactNumber `gorm:"->;foreignKey:user_id" json:"contact_numbers"`
-	Addresses      []internalmodel.Address       `gorm:"->;foreignKey:user_id" json:"addresses"`
 }
