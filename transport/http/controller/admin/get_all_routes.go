@@ -43,6 +43,6 @@ func GetAllRoutes(route *mux.Router) http.HandlerFunc {
 			return
 		}
 
-		parser.Json(writer, response, nil)
+		parser.JSON(writer, response, nil)
 	}
 }

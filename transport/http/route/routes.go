@@ -18,7 +18,7 @@ func Route(app container.AppContainer) *mux.Router {
 
 	r.HandleFunc("/ping", func(writer http.ResponseWriter, request *http.Request) {
 		log.Println("ping")
-		parser.Json(writer, nil, nil)
+		parser.JSON(writer, nil, nil)
 	}).Methods(http.MethodGet)
 
 	v1 := r.PathPrefix("/v1").Subrouter()

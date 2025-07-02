@@ -19,30 +19,6 @@ type responseError struct {
 	Raw     interface{}     `json:"raw"`
 }
 
-func Json(w http.ResponseWriter, data interface{}, err error) {
-	w.Header().Set("Content-Type", "application/json")
-	var response response
-	if nil != err {
-		errInstance := httperror.GetInstance(err)
-		w.WriteHeader(errInstance.GetCode())
-		response.Success = false
-		response.Error = &responseError{
-			Type:    errInstance.GetType(),
-			Message: errInstance.GetMessage(),
-			Raw:     errInstance.GetRaw(),
-		}
-		_ = json.NewEncoder(w).Encode(response)
-		return
-	}
-	w.WriteHeader(200)
-	if data != nil {
-		_ = json.NewEncoder(w).Encode(data)
-		return
-	}
-	response.Success = true
-	_ = json.NewEncoder(w).Encode(response)
-}
-
 func JSON(w http.ResponseWriter, data interface{}, err error) {
 	w.Header().Set("Content-Type", "application/json")
 	var response response
@@ -61,7 +37,7 @@ func JSON(w http.ResponseWriter, data interface{}, err error) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
+	w.WriteHeader(code)
 	if data != nil {
 		_ = json.NewEncoder(w).Encode(data)
 		return

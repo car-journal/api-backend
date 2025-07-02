@@ -21,9 +21,9 @@ func Me(authService authservice.Interface) http.HandlerFunc {
 			}
 			return nil
 		}); errTrans != nil {
-			parser.Json(writer, nil, errTrans)
+			parser.JSON(writer, nil, errTrans)
 			return
 		}
-		parser.Json(writer, response, nil)
+		parser.JSON(writer, response, nil)
 	}
 }

@@ -29,9 +29,9 @@ func Create(carService carservice.Interface) http.HandlerFunc {
 			}
 			return nil
 		}); errTrans != nil {
-			parser.Json(writer, nil, errTrans)
+			parser.JSON(writer, nil, errTrans)
 			return
 		}
-		parser.Json(writer, nil, nil)
+		parser.JSON(writer, nil, nil)
 	}
 }
