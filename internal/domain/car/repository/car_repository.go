@@ -73,5 +73,6 @@ func (r repository) FindByID(ctx context.Context, id string, userID string) (*in
 
 func (r repository) Delete(ctx context.Context, id string) error {
 	db := database.Get(ctx)
-	return db.Delete(internalmodel.Car{}, id).Error
+	db = database.EqualsTo(db, "id", id)
+	return db.Debug().Delete(&internalmodel.Car{}).Error
 }
