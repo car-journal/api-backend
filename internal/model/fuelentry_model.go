@@ -1,10 +1,10 @@
 package internalmodel
 
-import "github.com/car-journal/lib/uuid"
+import "github.com/car-journal/api-backend/lib/uuid"
 
-const FuelEntriesTableName = "fuel_entries"
+const FuelEntryTableName = "fuel_entries"
 
-type FuelEntries struct {
+type FuelEntry struct {
 	BaseModel
 
 	CarID            uuid.UUID `json:"car_id"`

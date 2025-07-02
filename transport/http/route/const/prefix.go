@@ -1,14 +1,15 @@
+// Package routeconst handles const for routes
 package routeconst
 
 const (
-	ADMIN_PREFIX    = "/admin"
-	INTERNAL_PREFIX = "/internal"
-	EXTERNAL_PREFIX = "/external"
+	AdminPrefix    = "/admin"
+	InternalPrefix = "/internal"
+	ExternalPrefix = "/external"
 )
 
 const (
-	AUTH_PREFIX           = "/auth"
-	CONTACT_NUMBER_PREFIX = "/contact-numbers"
-	USER_PROFILES_PREFIX  = "/user-profiles"
-	USERS_PREFIX          = "/users"
+	AuthPrefix        = "/auth"
+	UserProfilePrefix = "/user-profiles"
+	UserPrefix        = "/users"
+	CarPrefix         = "/cars"
 )

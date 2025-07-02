@@ -4,8 +4,8 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/car-journal/lib/httperror/const/errortype"
-	"github.com/car-journal/lib/httperror/const/message"
+	"github.com/car-journal/api-backend/lib/httperror/const/errortype"
+	"github.com/car-journal/api-backend/lib/httperror/const/message"
 	"gorm.io/gorm"
 )
 

@@ -1,14 +1,15 @@
+// Package route handles all routes
 package route
 
 import (
 	"log"
 	"net/http"
 
-	"github.com/car-journal/lib/parser"
-	"github.com/car-journal/transport/container"
-	adminroute "github.com/car-journal/transport/http/route/admin"
-	externalroute "github.com/car-journal/transport/http/route/external"
-	internalroute "github.com/car-journal/transport/http/route/internals"
+	"github.com/car-journal/api-backend/lib/parser"
+	"github.com/car-journal/api-backend/transport/container"
+	adminroute "github.com/car-journal/api-backend/transport/http/route/admin"
+	externalroute "github.com/car-journal/api-backend/transport/http/route/external"
+	internalroute "github.com/car-journal/api-backend/transport/http/route/internals"
 	"github.com/gorilla/mux"
 )
 

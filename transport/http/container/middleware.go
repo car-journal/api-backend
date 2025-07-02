@@ -1,10 +1,10 @@
 package container
 
 import (
-	authservice "github.com/car-journal/internal/domain/auth/service"
-	userservice "github.com/car-journal/internal/domain/user/service"
-	dbmiddleware "github.com/car-journal/transport/http/middleware/db"
-	securitymiddleware "github.com/car-journal/transport/http/middleware/security"
+	authservice "github.com/car-journal/api-backend/internal/domain/auth/service"
+	userservice "github.com/car-journal/api-backend/internal/domain/user/service"
+	dbmiddleware "github.com/car-journal/api-backend/transport/http/middleware/db"
+	securitymiddleware "github.com/car-journal/api-backend/transport/http/middleware/security"
 	"github.com/gorilla/mux"
 )
 

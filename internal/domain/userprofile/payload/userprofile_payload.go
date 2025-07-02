@@ -3,11 +3,10 @@ package userprofilepayload
 import (
 	"time"
 
-	"github.com/car-journal/lib/nullable"
+	"github.com/car-journal/api-backend/lib/nullable"
 )
 
 type CreatePayload struct {
-	UserID      string
 	Gender      *string
 	FirstName   string
 	LastName    *string

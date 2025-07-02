@@ -1,3 +1,4 @@
+// Package uuid helps to have a single file to handle all uuid values
 package uuid
 
 import (

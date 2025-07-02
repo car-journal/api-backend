@@ -1,4 +1,4 @@
-module github.com/car-journal
+module github.com/car-journal/api-backend
 
 go 1.24.1
 

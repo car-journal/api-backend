@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 
-	internalmodel "github.com/car-journal/internal/model"
-	"github.com/car-journal/lib/database"
+	internalmodel "github.com/car-journal/api-backend/internal/model"
+	"github.com/car-journal/api-backend/lib/database"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )

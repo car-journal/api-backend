@@ -4,12 +4,12 @@ import (
 	"context"
 	"net/http"
 
-	userprofilepayload "github.com/car-journal/internal/domain/userprofile/payload"
-	userprofileservice "github.com/car-journal/internal/domain/userprofile/service"
-	"github.com/car-journal/lib/authz"
-	"github.com/car-journal/lib/database"
-	"github.com/car-journal/lib/parser"
-	bodyparser "github.com/car-journal/lib/parser/body"
+	userprofilepayload "github.com/car-journal/api-backend/internal/domain/userprofile/payload"
+	userprofileservice "github.com/car-journal/api-backend/internal/domain/userprofile/service"
+	"github.com/car-journal/api-backend/lib/authz"
+	"github.com/car-journal/api-backend/lib/database"
+	"github.com/car-journal/api-backend/lib/parser"
+	bodyparser "github.com/car-journal/api-backend/lib/parser/body"
 )
 
 func Update(userProfileService userprofileservice.Interface) http.HandlerFunc {

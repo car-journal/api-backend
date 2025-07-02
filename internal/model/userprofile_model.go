@@ -3,7 +3,7 @@ package internalmodel
 import (
 	"time"
 
-	"github.com/car-journal/lib/uuid"
+	"github.com/car-journal/api-backend/lib/uuid"
 )
 
 const UserProfileTableName = "user_profiles"

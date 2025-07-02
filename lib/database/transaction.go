@@ -3,7 +3,7 @@ package database
 import (
 	"context"
 
-	"github.com/car-journal/config"
+	"github.com/car-journal/api-backend/config"
 )
 
 func Run(ctx context.Context, fn func(ctx context.Context) error) error {

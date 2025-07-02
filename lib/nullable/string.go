@@ -1,3 +1,4 @@
+// Package nullable handles all nullable datatypes (add new file for new datatypes)
 package nullable
 
 import (

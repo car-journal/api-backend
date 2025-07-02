@@ -1,0 +1,84 @@
+// Package fuelentriesservice handles user authentication and profile management.
+package fuelentriesservice
+
+import (
+	"context"
+	"time"
+
+	fuelentriespayload "github.com/car-journal/api-backend/internal/domain/fuelentries/payload"
+	userprofileconst "github.com/car-journal/api-backend/internal/domain/userprofile/const"
+	userprofilepayload "github.com/car-journal/api-backend/internal/domain/userprofile/payload"
+	userprofilerepository "github.com/car-journal/api-backend/internal/domain/userprofile/repository"
+	internalmodel "github.com/car-journal/api-backend/internal/model"
+	"github.com/car-journal/api-backend/lib/uuid"
+)
+
+type Interface interface {
+	Create(ctx context.Context, payload fuelentriespayload.CreatePayload) error
+	Update(ctx context.Context, payload userprofilepayload.UpdatePayload) error
+}
+
+type service struct {
+	userProfileRepository userprofilerepository.Interface
+	uuidLib               uuid.UUIDInterface
+}
+
+func Service(
+	userProfileRepository userprofilerepository.Interface,
+	uuidLib uuid.UUIDInterface,
+) Interface {
+	return &service{
+		userProfileRepository: userProfileRepository,
+		uuidLib:               uuidLib,
+	}
+}
+
+func (s service) Create(ctx context.Context, payload fuelentriespayload.CreatePayload) error {
+	return nil
+}
+
+func (s service) Update(ctx context.Context, payload userprofilepayload.UpdatePayload) error {
+	userProfile, err := s.userProfileRepository.FindByUserID(ctx, payload.UserID)
+	if err != nil {
+		return err
+	}
+
+	// Create user profile it's not exist yet
+	if userProfile == nil {
+		userID, err := uuid.StringToUUID(payload.UserID)
+		if err != nil {
+			return err
+		}
+		userProfile = &internalmodel.UserProfile{
+			UserID: userID,
+		}
+	}
+
+	if payload.Gender.Valid {
+		userProfile.Gender = userprofileconst.GetGenderDB(payload.Gender.Value)
+	}
+	if payload.FirstName != nil {
+		userProfile.FirstName = *payload.FirstName
+	}
+	if payload.LastName.Valid {
+		userProfile.LastName = payload.LastName.Value
+	}
+
+	if payload.DateOfBirth.Valid {
+		var dateOfBirth *time.Time
+		if payload.DateOfBirth.Value != nil {
+			parsedDateOfBirth, err := time.Parse(time.RFC3339, *payload.DateOfBirth.Value)
+			if err != nil {
+				return err
+			}
+			dateOfBirth = &parsedDateOfBirth
+		}
+		userProfile.DateOfBirth = dateOfBirth
+	}
+
+	if payload.PictureURL.Valid {
+		userProfile.PictureURL = payload.PictureURL.Value
+	}
+
+	return s.userProfileRepository.Save(ctx, *userProfile)
+}

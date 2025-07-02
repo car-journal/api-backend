@@ -1,13 +1,14 @@
+// Package internalauthcontroller handles controller for auth domain
 package internalauthcontroller
 
 import (
 	"context"
 	"net/http"
 
-	authdto "github.com/car-journal/internal/domain/auth/dto"
-	authservice "github.com/car-journal/internal/domain/auth/service"
-	"github.com/car-journal/lib/database"
-	"github.com/car-journal/lib/parser"
+	authdto "github.com/car-journal/api-backend/internal/domain/auth/dto"
+	authservice "github.com/car-journal/api-backend/internal/domain/auth/service"
+	"github.com/car-journal/api-backend/lib/database"
+	"github.com/car-journal/api-backend/lib/parser"
 )
 
 func Me(authService authservice.Interface) http.HandlerFunc {

@@ -3,7 +3,7 @@ package internalmodel
 import (
 	"time"
 
-	"github.com/car-journal/lib/uuid"
+	"github.com/car-journal/api-backend/lib/uuid"
 )
 
 const OauthAccessTokenTableName = "oauth_access_tokens"

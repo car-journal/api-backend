@@ -1,11 +1,11 @@
 package container
 
 import (
-	"github.com/car-journal/config"
-	"github.com/car-journal/lib/clock"
-	"github.com/car-journal/lib/crypt"
-	"github.com/car-journal/lib/hash"
-	"github.com/car-journal/lib/uuid"
+	"github.com/car-journal/api-backend/config"
+	"github.com/car-journal/api-backend/lib/clock"
+	"github.com/car-journal/api-backend/lib/crypt"
+	"github.com/car-journal/api-backend/lib/hash"
+	"github.com/car-journal/api-backend/lib/uuid"
 )
 
 type ClientContainer struct {

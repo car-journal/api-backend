@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/car-journal/lib/httperror"
-	"github.com/car-journal/lib/httperror/const/errortype"
+	"github.com/car-journal/api-backend/lib/httperror"
+	"github.com/car-journal/api-backend/lib/httperror/const/errortype"
 	"github.com/go-playground/locales/en"
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"

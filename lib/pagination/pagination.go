@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/car-journal/lib/httperror"
-	"github.com/car-journal/lib/httperror/const/errortype"
+	"github.com/car-journal/api-backend/lib/httperror"
+	"github.com/car-journal/api-backend/lib/httperror/const/errortype"
 )
 
 type Page struct {

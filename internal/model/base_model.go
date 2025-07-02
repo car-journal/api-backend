@@ -1,9 +1,10 @@
+// Package internalmodel handles all models for this application.
 package internalmodel
 
 import (
 	"time"
 
-	"github.com/car-journal/lib/uuid"
+	"github.com/car-journal/api-backend/lib/uuid"
 	"gorm.io/gorm"
 )
 

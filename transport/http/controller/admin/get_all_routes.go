@@ -3,7 +3,7 @@ package admincontroller
 import (
 	"net/http"
 
-	"github.com/car-journal/lib/parser"
+	"github.com/car-journal/api-backend/lib/parser"
 	"github.com/gorilla/mux"
 )
 
@@ -29,9 +29,13 @@ func GetAllRoutes(route *mux.Router) http.HandlerFunc {
 			if len(methods) > 0 {
 				method = methods[0]
 			}
+
+			name := route.GetName()
+
 			response = append(response, responseStruct{
-				Path:   path,
-				Method: method,
+				Path:    path,
+				Method:  method,
+				Handler: name,
 			})
 			return nil
 		}); err != nil {

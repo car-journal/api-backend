@@ -4,17 +4,17 @@ import (
 	"context"
 	"fmt"
 
-	userdto "github.com/car-journal/internal/domain/user/dto"
-	userpayload "github.com/car-journal/internal/domain/user/payload"
-	userrepository "github.com/car-journal/internal/domain/user/repository"
-	userprofileconst "github.com/car-journal/internal/domain/userprofile/const"
-	userprofilepayload "github.com/car-journal/internal/domain/userprofile/payload"
-	userprofilerepository "github.com/car-journal/internal/domain/userprofile/repository"
-	internalmodel "github.com/car-journal/internal/model"
-	"github.com/car-journal/lib/hash"
-	"github.com/car-journal/lib/httperror"
-	"github.com/car-journal/lib/httperror/const/errortype"
-	"github.com/car-journal/lib/uuid"
+	userdto "github.com/car-journal/api-backend/internal/domain/user/dto"
+	userpayload "github.com/car-journal/api-backend/internal/domain/user/payload"
+	userrepository "github.com/car-journal/api-backend/internal/domain/user/repository"
+	userprofileconst "github.com/car-journal/api-backend/internal/domain/userprofile/const"
+	userprofilepayload "github.com/car-journal/api-backend/internal/domain/userprofile/payload"
+	userprofilerepository "github.com/car-journal/api-backend/internal/domain/userprofile/repository"
+	internalmodel "github.com/car-journal/api-backend/internal/model"
+	"github.com/car-journal/api-backend/lib/hash"
+	"github.com/car-journal/api-backend/lib/httperror"
+	"github.com/car-journal/api-backend/lib/httperror/const/errortype"
+	"github.com/car-journal/api-backend/lib/uuid"
 )
 
 type Interface interface {

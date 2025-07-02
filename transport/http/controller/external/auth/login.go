@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"net/http"
 
-	authdto "github.com/car-journal/internal/domain/auth/dto"
-	authpayload "github.com/car-journal/internal/domain/auth/payload"
-	authservice "github.com/car-journal/internal/domain/auth/service"
-	"github.com/car-journal/lib/database"
-	"github.com/car-journal/lib/parser"
-	bodyparser "github.com/car-journal/lib/parser/body"
+	authdto "github.com/car-journal/api-backend/internal/domain/auth/dto"
+	authpayload "github.com/car-journal/api-backend/internal/domain/auth/payload"
+	authservice "github.com/car-journal/api-backend/internal/domain/auth/service"
+	"github.com/car-journal/api-backend/lib/database"
+	"github.com/car-journal/api-backend/lib/parser"
+	bodyparser "github.com/car-journal/api-backend/lib/parser/body"
 )
 
 func Login(authService authservice.Interface) http.HandlerFunc {

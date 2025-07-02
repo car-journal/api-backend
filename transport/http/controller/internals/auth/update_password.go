@@ -4,12 +4,12 @@ import (
 	"context"
 	"net/http"
 
-	authpayload "github.com/car-journal/internal/domain/auth/payload"
-	authservice "github.com/car-journal/internal/domain/auth/service"
-	"github.com/car-journal/lib/authz"
-	"github.com/car-journal/lib/database"
-	"github.com/car-journal/lib/parser"
-	bodyparser "github.com/car-journal/lib/parser/body"
+	authpayload "github.com/car-journal/api-backend/internal/domain/auth/payload"
+	authservice "github.com/car-journal/api-backend/internal/domain/auth/service"
+	"github.com/car-journal/api-backend/lib/authz"
+	"github.com/car-journal/api-backend/lib/database"
+	"github.com/car-journal/api-backend/lib/parser"
+	bodyparser "github.com/car-journal/api-backend/lib/parser/body"
 )
 
 func UpdatePassword(authService authservice.Interface) http.HandlerFunc {

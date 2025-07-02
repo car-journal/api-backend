@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/car-journal/config"
-	cardvaultstrings "github.com/car-journal/lib/strings"
+	"github.com/car-journal/api-backend/config"
+	cardvaultstrings "github.com/car-journal/api-backend/lib/strings"
 	"gorm.io/gorm"
 )
 

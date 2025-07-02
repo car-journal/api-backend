@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	cardvaultstrings "github.com/car-journal/lib/strings"
+	cardvaultstrings "github.com/car-journal/api-backend/lib/strings"
 	"github.com/go-playground/form/v4"
 )
 

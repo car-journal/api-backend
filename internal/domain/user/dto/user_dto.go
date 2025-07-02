@@ -1,7 +1,7 @@
 package userdto
 
 import (
-	internalmodel "github.com/car-journal/internal/model"
+	internalmodel "github.com/car-journal/api-backend/internal/model"
 )
 
 type UserWithUserProfile struct {

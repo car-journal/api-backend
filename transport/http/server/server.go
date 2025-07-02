@@ -1,3 +1,4 @@
+// Package server handles server creation and configurations
 package server
 
 import (
@@ -8,10 +9,10 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/car-journal/config"
-	"github.com/car-journal/transport"
-	"github.com/car-journal/transport/container"
-	"github.com/car-journal/transport/http/route"
+	"github.com/car-journal/api-backend/config"
+	"github.com/car-journal/api-backend/transport"
+	"github.com/car-journal/api-backend/transport/container"
+	"github.com/car-journal/api-backend/transport/http/route"
 	"github.com/rs/cors"
 )
 
@@ -66,7 +67,7 @@ func (hs *httpServer) Serve() {
 	}
 }
 
-func CreateHttpServer(app container.AppContainer) transport.ServerInterface {
+func CreateHTTPServer(app container.AppContainer) transport.ServerInterface {
 	return &httpServer{
 		app: app,
 	}

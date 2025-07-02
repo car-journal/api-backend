@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/car-journal/lib/httperror"
-	"github.com/car-journal/lib/httperror/const/message"
+	"github.com/car-journal/api-backend/lib/httperror"
+	"github.com/car-journal/api-backend/lib/httperror/const/message"
 )
 
 type response struct {

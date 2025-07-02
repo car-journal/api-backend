@@ -3,8 +3,8 @@ package authrepository
 import (
 	"context"
 
-	internalmodel "github.com/car-journal/internal/model"
-	"github.com/car-journal/lib/database"
+	internalmodel "github.com/car-journal/api-backend/internal/model"
+	"github.com/car-journal/api-backend/lib/database"
 )
 
 type Interface interface {

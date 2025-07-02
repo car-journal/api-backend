@@ -3,8 +3,8 @@ package dbmiddleware
 import (
 	"net/http"
 
-	"github.com/car-journal/config"
-	"github.com/car-journal/lib/database"
+	"github.com/car-journal/api-backend/config"
+	"github.com/car-journal/api-backend/lib/database"
 	"github.com/gorilla/mux"
 )
 

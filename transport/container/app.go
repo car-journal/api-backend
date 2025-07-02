@@ -1,6 +1,7 @@
+// Package container handles middleware, client, repository and service containers
 package container
 
-import "github.com/car-journal/transport/http/container"
+import "github.com/car-journal/api-backend/transport/http/container"
 
 // AppContainer handle all requirement for app to run properly
 type AppContainer struct {
