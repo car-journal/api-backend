@@ -1,0 +1,987 @@
+{
+	"info": {
+		"_postman_id": "17289212-589119bf-740b-4476-8a30-7d38f1bab43a",
+		"name": "Car Journal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Internal",
+			"item": [
+				{
+					"name": "User Profile",
+					"item": [
+						{
+							"name": "Update",
+							"id": "17289212-984ff813-8396-4236-b47e-7aef283b2a9c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"gender\": \"male\", // male || female\n    \"first_name\": \"Rayendra\", // required\n    \"last_name\": \"Sabandar\", // nullable\n    \"date_of_birth\": null, // nullable\n    \"picture_url\": \"test\" // nullable\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{go_url}}/v1/internal/user-profiles",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"user-profiles"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17289212-ff4c6d2d-0878-4b41-a545-a4670498a8eb",
+									"name": "200",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"gender\": \"male\", // male || female\n    \"first_name\": \"Rayendra\", // required\n    \"last_name\": \"Sabandar\", // nullable\n    \"date_of_birth\": null, // nullable\n    \"picture_url\": \"test\" // nullable\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/internal/user-profiles",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"user-profiles"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 19 Oct 2023 19:15:18 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "17"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": true\n}"
+								}
+							]
+						}
+					],
+					"id": "17289212-5f6ce334-9c99-4d81-8f9b-ebd00066b8aa"
+				},
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Update Password",
+							"id": "17289212-c15c1692-5a09-494f-b278-18fac76b7c2c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"old_password\": \"password\", // required\n    \"new_password\": \"new_password\", // required, min=6,max=25\n    \"new_password_confirmation\": \"new_password\" // required, must be same as new_password\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{go_url}}/v1/internal/auth/update-password",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"auth",
+										"update-password"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "17289212-5d08aab4-3f29-4e24-bd9c-aee20d729645"
+				},
+				{
+					"name": "Car",
+					"item": [
+						{
+							"name": "Create",
+							"id": "17289212-2588b53a-a1bc-43d0-82b2-08d490d60085",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{go_url}}/v1/internal/cars",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"cars"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17289212-fbff1382-9bdb-4e1d-ab8b-4133f2ec7abf",
+									"name": "200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars/",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 05:18:27 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "17"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "List",
+							"id": "17289212-9d4f5b4e-7954-4136-bce3-2278333eba6b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{go_url}}/v1/internal/cars",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"cars"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17289212-7dca67a8-feb1-4769-be3d-d91d25c0736d",
+									"name": "200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 05:18:38 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "442"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "[\n    {\n        \"id\": \"3a673c5d-3dbc-4828-86f2-4cc0d5649392\",\n        \"created_at\": \"2025-07-02T12:18:27.75466+07:00\",\n        \"updated_at\": \"2025-07-02T12:18:27.75466+07:00\",\n        \"deleted_at\": null,\n        \"user_id\": \"48f43073-0016-44ee-acd4-549ec499fc1b\",\n        \"brand\": \"Ford\",\n        \"model\": \"Everest\",\n        \"manufacture_year\": 2012,\n        \"cylinder_capacity\": 1499,\n        \"vehicle_identity_number\": null,\n        \"engine_number\": null,\n        \"color\": null,\n        \"fuel_type\": \"solar\",\n        \"registration_year\": null,\n        \"vehicle_ownership_document_number\": null\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Find By ID",
+							"id": "17289212-ec3f869d-fe6b-40f8-8009-ba6846d562d6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{go_url}}/v1/internal/cars/:car_id",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"cars",
+										":car_id"
+									],
+									"variable": [
+										{
+											"key": "car_id",
+											"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17289212-0bb2178c-2aa7-49b0-82e9-9d1ec2c879a2",
+									"name": "200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars/:car_id",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars",
+												":car_id"
+											],
+											"variable": [
+												{
+													"key": "car_id",
+													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 13:58:11 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "440"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"id\": \"3a673c5d-3dbc-4828-86f2-4cc0d5649392\",\n    \"created_at\": \"2025-07-02T12:18:27.75466+07:00\",\n    \"updated_at\": \"2025-07-02T12:18:27.75466+07:00\",\n    \"deleted_at\": null,\n    \"user_id\": \"48f43073-0016-44ee-acd4-549ec499fc1b\",\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}"
+								},
+								{
+									"id": "17289212-dc898734-641d-48c0-af66-431c00ce1904",
+									"name": "404",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars/:car_id",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars",
+												":car_id"
+											],
+											"variable": [
+												{
+													"key": "car_id",
+													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649391"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 14:02:35 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "186"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"record_not_found\",\n        \"message\": \"enter another param or recheck the param you've sent\",\n        \"raw\": \"car id 3a673c5d-3dbc-4828-86f2-4cc0d5649391 doesn't exists\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Update",
+							"id": "17289212-f453e7ff-9018-4709-ac64-e943f8b3d6a8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{go_url}}/v1/internal/cars/:car_id",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"cars",
+										":car_id"
+									],
+									"variable": [
+										{
+											"key": "car_id",
+											"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17289212-77ea7605-465b-4976-9577-47b0db0978e3",
+									"name": "200",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars/:car_id",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars",
+												":car_id"
+											],
+											"variable": [
+												{
+													"key": "car_id",
+													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 14:04:17 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "17"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete",
+							"id": "17289212-1e2811b6-cf78-408a-8e0a-133e8050f06e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{go_url}}/v1/internal/cars/:car_id",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"cars",
+										":car_id"
+									],
+									"variable": [
+										{
+											"key": "car_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "17289212-d485b07c-940c-40b0-ae06-406d15f36c91"
+				}
+			],
+			"id": "17289212-96e5ee07-0ec5-4a64-9c18-8ad1b1030cda",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "968b713a-4659-4c8b-9d5a-8497a3c87ab0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "fb176926-5f5d-4870-8ed4-d22b0e469d42",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "External",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "aabd1122-9bf9-4a49-918d-dc3d8546c4cf",
+										"exec": [
+											"var resBody = pm.response.text()",
+											"if (resBody != \"\") {",
+											"    var res = JSON.parse()",
+											"    pm.environment.set(\"access_token\", res.access_token)   ",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "17289212-35e80941-1b76-4cc5-9e04-15db46987bcb",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"client_secret\": \"local_secret\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{go_url}}/v1/external/auth/login",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"external",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17289212-10c90ece-6e66-43be-8fef-122f871bfaef",
+									"name": "200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"client_secret\": \"HTZI0XiFdkIeMwhWNPL28Ivq3sw3L39KA1PCZ8JS\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/external/auth/login",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"external",
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 19 Oct 2023 11:57:26 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "871"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"access_token\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTgzMjE0NDYsImp0aSI6IjRhZDU5ZGUzLTRhYzAtNDljYy04YzM3LWIwMTI1ZDdmNjg0NiJ9.dvrgLjqILedZAr3BDdZyLQpXDrzu6-HILyYS3MWub4s0c6j2_jplUCPyBV4sq32t62-J2nj2bkD_GwQ7Fcdiu4x5EMCM1nRxPoQ5Gjutv91ocTygDssU1W9gHOc9C2hsaNunAXz1A58HUo-SnIEj0HsjlW-rpdRvurqdGizyXuWYAHbDxoMLclMHYKfpPJUHHoW3wX0if4P3hLQ0S9aRq-PNyvT5QgF_-rhBsoE36Jh-DpxP94LHGqIY7MxY2Ec3PcTsxMf6Tgr8LOGS0-SKiYcGvkzWOXW7vZisUSxz-Ao-NBQKovJ302Nvdn3LAR-Srxb7C7Gxez-I9BpYcKhj1to15hOTjh0yJwV4vUlOePi7HB7cYGS5b7BjOTra7D0CVLdHr0AYlz_GFpqXZm5yG1UImhdX9acLA-y-IZTAbndtzSd9rSrbYfz213ncHIoBWNCVLLBTsYrxaIpYAyU5zHCP8jV1NCezsLFsGClgNQDbxZcu_6EjCP580Ma4hHyKHliSD7Ehl6YTOQP6BPUbx7S6kWiygTyruVr80I8R721A1evjHLaaWz0bsBNBXSYGgflagLiRrlmXfW9piRHqsg0bSYFYsxes-62tSmPgsb7a3bgq10JZPg7nd4eSfBdTfV4eDS3OL7yyTSBoHYlAPwkT3wWUjqbxT-QefKTnJO8\",\n    \"expires_in\": 1698321446,\n    \"token_type\": \"Bearer\"\n}"
+								},
+								{
+									"id": "17289212-691119d8-c109-4893-b8a8-366605b5ebc7",
+									"name": "403 (password not created)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"grant_type\": \"password\",\n    \"client_id\": 2,\n    \"client_secret\": \"HTZI0XiFdkIeMwhWNPL28Ivq3sw3L39KA1PCZ8JS\",\n    \"scope\": \"*\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/external/auth/login",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"external",
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 17 Oct 2023 11:08:50 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "107"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"forbidden\",\n        \"message\": \"forbidden\",\n        \"raw\": \"you have to create a password\"\n    }\n}"
+								},
+								{
+									"id": "17289212-8fdf4628-7e62-4937-817a-a5109141362a",
+									"name": "400 (no password)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/external/auth/login",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"external",
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 19 Oct 2023 12:00:10 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "184"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"invalid_input\",\n        \"message\": \"please re-check your input; make sure the validations are met\",\n        \"raw\": [\n            \"client_secret is required\",\n            \"password is required\"\n        ]\n    }\n}"
+								},
+								{
+									"id": "17289212-bb4266ba-037d-4bfa-93ab-76a460d44772",
+									"name": "400 (password_confirmation not equals password)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/external/auth/login",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"external",
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 19 Oct 2023 12:00:27 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "214"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"invalid_input\",\n        \"message\": \"please re-check your input; make sure the validations are met\",\n        \"raw\": [\n            \"client_secret is required\",\n            \"password_confirmation must be the same as password\"\n        ]\n    }\n}"
+								},
+								{
+									"id": "17289212-8d5074f6-40c0-49a7-903f-ef857808cc15",
+									"name": "403 (secret not validate)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"client_secret\": \"{{client_secret}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/external/auth/login",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"external",
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 19 Oct 2023 12:06:20 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "98"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"forbidden\",\n        \"message\": \"forbidden\",\n        \"raw\": \"secret not validated\"\n    }\n}"
+								}
+							]
+						}
+					],
+					"id": "17289212-b9506b01-d034-4ca4-9bc0-127a2a31648b"
+				}
+			],
+			"id": "17289212-26138b6c-cc2b-42c9-aaad-1c5b5b30ee49"
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get All Routes",
+					"id": "17289212-27c6ee03-b5b2-4efb-8f90-df91394b8e42",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_url}}/v1/admin/get-all-routes",
+							"host": [
+								"{{go_url}}"
+							],
+							"path": [
+								"v1",
+								"admin",
+								"get-all-routes"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "17289212-7a0a8278-0804-4d1a-a662-beb6c77c05e2",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b6424f01-fb6f-464d-92eb-163255c336b8",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "29e48f47-913c-4fd9-88c0-4938c9689666",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
