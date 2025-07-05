@@ -1219,8 +1219,8 @@
 											"var resBody = pm.response.text()",
 											"console.log(\"resBody:\", resBody, \"end\")",
 											"if (resBody != \"\") {",
-											"    var resBody = JSON.parse()",
-											"    pm.environment.set(\"access_token\", res.access_token)   ",
+											"    var resBodyJson = JSON.parse()",
+											"    pm.environment.set(\"access_token\", resBodyJson.access_token)   ",
 											"}"
 										],
 										"type": "text/javascript",
