@@ -1217,9 +1217,9 @@
 										"id": "aabd1122-9bf9-4a49-918d-dc3d8546c4cf",
 										"exec": [
 											"var resBody = pm.response.text()",
-											"console.log(\"resBody:\", resBody, \"end\")",
 											"if (resBody != \"\") {",
 											"    var resBodyJson = JSON.parse()",
+											"    console.log(\"resBodyJson:\", resBodyJson)",
 											"    pm.environment.set(\"access_token\", resBodyJson.access_token)   ",
 											"}"
 										],
