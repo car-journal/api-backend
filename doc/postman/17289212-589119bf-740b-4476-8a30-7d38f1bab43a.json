@@ -650,6 +650,522 @@
 						}
 					],
 					"id": "17289212-d485b07c-940c-40b0-ae06-406d15f36c91"
+				},
+				{
+					"name": "Car Copy",
+					"item": [
+						{
+							"name": "Create",
+							"id": "17289212-3e51cb08-1426-4722-bf24-1935356f4afd",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{go_url}}/v1/internal/cars",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"cars"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17289212-578a4eba-3af7-4ebe-ba22-707a56539803",
+									"name": "200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars/",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 05:18:27 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "17"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "List",
+							"id": "17289212-68c26a7a-8be7-48b1-81cc-0b94434538b5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{go_url}}/v1/internal/cars",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"cars"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17289212-d8f31f5a-3b4b-4928-a48e-90b86f0d83b4",
+									"name": "200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 05:18:38 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "442"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "[\n    {\n        \"id\": \"3a673c5d-3dbc-4828-86f2-4cc0d5649392\",\n        \"created_at\": \"2025-07-02T12:18:27.75466+07:00\",\n        \"updated_at\": \"2025-07-02T12:18:27.75466+07:00\",\n        \"deleted_at\": null,\n        \"user_id\": \"48f43073-0016-44ee-acd4-549ec499fc1b\",\n        \"brand\": \"Ford\",\n        \"model\": \"Everest\",\n        \"manufacture_year\": 2012,\n        \"cylinder_capacity\": 1499,\n        \"vehicle_identity_number\": null,\n        \"engine_number\": null,\n        \"color\": null,\n        \"fuel_type\": \"solar\",\n        \"registration_year\": null,\n        \"vehicle_ownership_document_number\": null\n    }\n]"
+								},
+								{
+									"id": "17289212-9cb52f88-5ae8-4dac-9062-203c1158d5d3",
+									"name": "200 (no data)",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 14:49:43 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "3"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "[]"
+								}
+							]
+						},
+						{
+							"name": "Find By ID",
+							"id": "17289212-09cefa85-5a35-416e-9b89-af3854377253",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{go_url}}/v1/internal/cars/:car_id",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"cars",
+										":car_id"
+									],
+									"variable": [
+										{
+											"id": "234ba84a-e860-40e5-8915-a191a1b1440e",
+											"key": "car_id",
+											"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17289212-7c5e0d43-963b-4020-892d-e522541b31f2",
+									"name": "200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars/:car_id",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars",
+												":car_id"
+											],
+											"variable": [
+												{
+													"key": "car_id",
+													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 13:58:11 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "440"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"id\": \"3a673c5d-3dbc-4828-86f2-4cc0d5649392\",\n    \"created_at\": \"2025-07-02T12:18:27.75466+07:00\",\n    \"updated_at\": \"2025-07-02T12:18:27.75466+07:00\",\n    \"deleted_at\": null,\n    \"user_id\": \"48f43073-0016-44ee-acd4-549ec499fc1b\",\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}"
+								},
+								{
+									"id": "17289212-17c363b9-43c1-4cfa-82a3-42e62854b1ed",
+									"name": "404",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars/:car_id",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars",
+												":car_id"
+											],
+											"variable": [
+												{
+													"key": "car_id",
+													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649391"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 14:02:35 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "186"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"record_not_found\",\n        \"message\": \"enter another param or recheck the param you've sent\",\n        \"raw\": \"car id 3a673c5d-3dbc-4828-86f2-4cc0d5649391 doesn't exists\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Update",
+							"id": "17289212-8a6d9c5c-28fd-43c5-9bd5-797414534638",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Fiesta\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{go_url}}/v1/internal/cars/:car_id",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"cars",
+										":car_id"
+									],
+									"variable": [
+										{
+											"id": "7e06ac11-cb2b-486d-8673-d7181eaf247c",
+											"key": "car_id",
+											"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17289212-ddd7e5eb-75bd-4579-ac22-f3a0bcc17b3a",
+									"name": "200",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars/:car_id",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars",
+												":car_id"
+											],
+											"variable": [
+												{
+													"key": "car_id",
+													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 14:04:17 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "17"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete",
+							"id": "17289212-4b55453e-0665-4a7c-add0-720870daab6c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{go_url}}/v1/internal/cars/:car_id",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"cars",
+										":car_id"
+									],
+									"variable": [
+										{
+											"id": "acc484e1-640b-4a55-9968-500f2626d2ab",
+											"key": "car_id",
+											"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17289212-720e4683-64d6-4546-a08b-68679a08e00e",
+									"name": "200",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars/:car_id",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars",
+												":car_id"
+											],
+											"variable": [
+												{
+													"key": "car_id",
+													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649391"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 14:40:01 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "17"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": true\n}"
+								}
+							]
+						}
+					],
+					"id": "17289212-1d9d33c3-43d4-4b5e-8abd-083ef04372db"
 				}
 			],
 			"id": "17289212-96e5ee07-0ec5-4a64-9c18-8ad1b1030cda",
