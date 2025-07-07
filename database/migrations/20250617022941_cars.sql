@@ -2,7 +2,7 @@
 -- +goose StatementBegin
 CREATE TABLE IF NOT EXISTS cars (
     id UUID PRIMARY KEY NOT NULL UNIQUE,
-    user_id UUID NOT NULL UNIQUE,
+    user_id UUID NOT NULL,
     brand varchar(255) NOT NULL,
     model varchar(255) NOT NULL,
     manufacture_year SMALLINT,

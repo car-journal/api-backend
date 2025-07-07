@@ -2,7 +2,7 @@
 -- +goose StatementBegin
 CREATE TABLE IF NOT EXISTS fuel_entries (
     id UUID PRIMARY KEY NOT NULL UNIQUE,
-    car_id UUID NOT NULL UNIQUE,
+    car_id UUID NOT NULL,
     fuel_type VARCHAR(255) NOT NULL,
     fuel_brand VARCHAR(255) NOT NULL,
     fuel_name VARCHAR(255) NOT NULL,
