@@ -10,6 +10,10 @@ CREATE TABLE IF NOT EXISTS users (
 );
 -- +goose StatementEnd
 
+-- +goose StatementBegin
+CREATE INDEX idx_users_password ON users(password);
+-- +goose StatementEnd
+
 -- +goose Down
 -- +goose StatementBegin
 DROP TABLE IF EXISTS users;
