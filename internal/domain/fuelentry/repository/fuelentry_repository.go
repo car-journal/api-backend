@@ -13,6 +13,7 @@ import (
 
 type Interface interface {
 	Save(ctx context.Context, model internalmodel.FuelEntry) error
+	ListByIDs(ctx context.Context, ids []string) ([]*internalmodel.FuelEntry, error)
 	ListByCarID(ctx context.Context, carID string) ([]*internalmodel.FuelEntry, error)
 	FindByID(ctx context.Context, id string) (*internalmodel.FuelEntry, error)
 	Delete(ctx context.Context, id string) error
@@ -44,6 +45,17 @@ func (r repository) Save(ctx context.Context, model internalmodel.FuelEntry) err
 	})
 	db = db.Where("car_id = ?", model.CarID)
 	return db.Create(&model).Error
+}
+
+func (r repository) ListByIDs(ctx context.Context, ids []string) ([]*internalmodel.FuelEntry, error) {
+	var models []*internalmodel.FuelEntry
+	db := database.Get(ctx)
+	db = database.EqualsTo(db, "id", ids)
+	if err := db.Find(&models).Error; err != nil {
+		return nil, err
+	}
+	return models, nil
+
 }
 
 func (r repository) ListByCarID(ctx context.Context, carID string) ([]*internalmodel.FuelEntry, error) {

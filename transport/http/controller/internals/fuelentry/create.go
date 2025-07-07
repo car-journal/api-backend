@@ -1,4 +1,4 @@
-// Package internalfuelentrycontroller handles controller for car domain
+// Package internalfuelentrycontroller handles controller for fuel entry domain
 package internalfuelentrycontroller
 
 import (

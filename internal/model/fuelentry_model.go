@@ -8,6 +8,7 @@ type FuelEntry struct {
 	BaseModel
 
 	CarID               uuid.UUID `json:"car_id"`
+	OdometerEntryID     uuid.UUID `json:"odometer_entry_id"`
 	FuelType            string    `json:"fuel_type"`
 	FuelBrand           string    `json:"fuel_brand"`
 	FuelName            string    `json:"fuel_name"`

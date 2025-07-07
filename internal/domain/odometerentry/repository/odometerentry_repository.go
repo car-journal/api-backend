@@ -1,5 +1,5 @@
-// Package fuelentryrepository handles db queries for fuel entry domain
-package fuelentryrepository
+// Package odometerentryrepository handles db queries for odometer entry domain
+package odometerentryrepository
 
 import (
 	"context"
@@ -12,9 +12,9 @@ import (
 )
 
 type Interface interface {
-	Save(ctx context.Context, model internalmodel.FuelEntry) error
-	ListByCarID(ctx context.Context, carID string) ([]*internalmodel.FuelEntry, error)
-	FindByID(ctx context.Context, id string) (*internalmodel.FuelEntry, error)
+	Save(ctx context.Context, model internalmodel.OdometerEntry) error
+	ListByCarID(ctx context.Context, carID string) ([]*internalmodel.OdometerEntry, error)
+	FindByID(ctx context.Context, id string) (*internalmodel.OdometerEntry, error)
 	Delete(ctx context.Context, id string) error
 }
 
@@ -24,21 +24,14 @@ func Repository() Interface {
 	return &repository{}
 }
 
-func (r repository) Save(ctx context.Context, model internalmodel.FuelEntry) error {
+func (r repository) Save(ctx context.Context, model internalmodel.OdometerEntry) error {
 	db := database.Get(ctx)
 	db = db.Clauses(clause.OnConflict{
 		Columns: []clause.Column{{Name: "id"}},
 		DoUpdates: clause.AssignmentColumns([]string{
-			"fuel_type",
-			"fuel_brand",
-			"fuel_name",
-			"fuel_price",
-			"fuel_unit",
-			"distance_traveled",
-			"volume_filled",
-			"total_price",
-			"fuel_consumption_rate",
-			"notes",
+			"car_id",
+			"odometer_reading",
+			"reading_unit",
 			"updated_at",
 		}),
 	})
@@ -46,18 +39,19 @@ func (r repository) Save(ctx context.Context, model internalmodel.FuelEntry) err
 	return db.Create(&model).Error
 }
 
-func (r repository) ListByCarID(ctx context.Context, carID string) ([]*internalmodel.FuelEntry, error) {
-	var models []*internalmodel.FuelEntry
+func (r repository) ListByCarID(ctx context.Context, carID string) ([]*internalmodel.OdometerEntry, error) {
+	var models []*internalmodel.OdometerEntry
 	db := database.Get(ctx)
 	db = database.EqualsTo(db, "car_id", carID)
+	db = db.Order("odometer_reading DESC")
 	if err := db.Find(&models).Error; err != nil {
 		return nil, err
 	}
 	return models, nil
 }
 
-func (r repository) FindByID(ctx context.Context, id string) (*internalmodel.FuelEntry, error) {
-	var model *internalmodel.FuelEntry
+func (r repository) FindByID(ctx context.Context, id string) (*internalmodel.OdometerEntry, error) {
+	var model *internalmodel.OdometerEntry
 	db := database.Get(ctx)
 	db = database.EqualsTo(db, "id", id)
 	err := db.First(&model).Error
@@ -73,5 +67,5 @@ func (r repository) FindByID(ctx context.Context, id string) (*internalmodel.Fue
 func (r repository) Delete(ctx context.Context, id string) error {
 	db := database.Get(ctx)
 	db = database.EqualsTo(db, "id", id)
-	return db.Delete(&internalmodel.FuelEntry{}).Error
+	return db.Delete(&internalmodel.OdometerEntry{}).Error
 }

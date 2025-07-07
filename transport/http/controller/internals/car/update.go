@@ -2,6 +2,7 @@ package internalcarcontroller
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	carpayload "github.com/car-journal/api-backend/internal/domain/car/payload"
@@ -17,6 +18,7 @@ func Update(carService carservice.Interface) http.HandlerFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
 		var body carpayload.UpdatePayload
 		if err := bodyparser.Parse(request, &body); nil != err {
+			fmt.Println("err", err)
 			parser.JSON(writer, nil, err)
 			return
 		}

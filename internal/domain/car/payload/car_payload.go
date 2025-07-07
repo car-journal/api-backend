@@ -7,14 +7,14 @@ import (
 
 type CreatePayload struct {
 	UserID                         string
-	Brand                          string  `json:"brand"`
-	Model                          string  `json:"model"`
+	Brand                          string  `json:"brand" validate:"required"`
+	Model                          string  `json:"model" validate:"required"`
 	ManufactureYear                *int16  `json:"manufacture_year"`
 	CylinderCapacity               *int16  `json:"cylinder_capacity"`
 	VehicleIdentityNumber          *string `json:"vehicle_identity_number"`
 	EngineNumber                   *string `json:"engine_number"`
 	Color                          *string `json:"color"`
-	FuelType                       string  `json:"fuel_type"`
+	FuelType                       string  `json:"fuel_type" validate:"required"`
 	RegistrationYear               *int16  `json:"registration_year"`
 	VehicleOwnershipDocumentNumber *string `json:"vehicle_ownership_document_number"`
 }

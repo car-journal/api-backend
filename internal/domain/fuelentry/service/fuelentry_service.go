@@ -8,6 +8,7 @@ import (
 	carrepository "github.com/car-journal/api-backend/internal/domain/car/repository"
 	fuelentrypayload "github.com/car-journal/api-backend/internal/domain/fuelentry/payload"
 	fuelentryrepository "github.com/car-journal/api-backend/internal/domain/fuelentry/repository"
+	odometerentryrepository "github.com/car-journal/api-backend/internal/domain/odometerentry/repository"
 	userrepository "github.com/car-journal/api-backend/internal/domain/user/repository"
 	internalmodel "github.com/car-journal/api-backend/internal/model"
 	"github.com/car-journal/api-backend/lib/fuel"
@@ -25,23 +26,26 @@ type Interface interface {
 }
 
 type service struct {
-	carRepository       carrepository.Interface
-	fuelEntryRepository fuelentryrepository.Interface
-	userRepository      userrepository.Interface
-	uuidLib             uuid.UUIDInterface
+	carRepository           carrepository.Interface
+	fuelEntryRepository     fuelentryrepository.Interface
+	odometerEntryRepository odometerentryrepository.Interface
+	userRepository          userrepository.Interface
+	uuidLib                 uuid.UUIDInterface
 }
 
 func Service(
 	carRepository carrepository.Interface,
 	fuelEntryRepository fuelentryrepository.Interface,
+	odometerEntryRepository odometerentryrepository.Interface,
 	userRepository userrepository.Interface,
 	uuidLib uuid.UUIDInterface,
 ) Interface {
 	return &service{
-		carRepository:       carRepository,
-		fuelEntryRepository: fuelEntryRepository,
-		userRepository:      userRepository,
-		uuidLib:             uuidLib,
+		carRepository:           carRepository,
+		fuelEntryRepository:     fuelEntryRepository,
+		odometerEntryRepository: odometerEntryRepository,
+		userRepository:          userRepository,
+		uuidLib:                 uuidLib,
 	}
 }
 
@@ -50,7 +54,8 @@ func (s service) Create(ctx context.Context, payload fuelentrypayload.CreatePayl
 		return httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("id %s doesn't exists", payload.UserID))
 	}
 
-	id := s.uuidLib.GenerateNewUUID()
+	fuelEntryID := s.uuidLib.GenerateNewUUID()
+	odometerEntryID := s.uuidLib.GenerateNewUUID()
 
 	carID, err := uuid.StringToUUID(payload.CarID)
 	if err != nil {
@@ -60,11 +65,23 @@ func (s service) Create(ctx context.Context, payload fuelentrypayload.CreatePayl
 	fuelConsumptionRate := fuel.CalculateFuelConsumptionRate(payload.DistanceTraveled, payload.VolumeFilled)
 	totalPrice := fuel.CalculateTotalPrice(payload.FuelPrice, payload.VolumeFilled)
 
+	if err := s.odometerEntryRepository.Save(ctx, internalmodel.OdometerEntry{
+		BaseModel: internalmodel.BaseModel{
+			ID: odometerEntryID,
+		},
+		CarID:           carID,
+		OdometerReading: payload.OdometerReading,
+		ReadingUnit:     payload.ReadingUnit,
+	}); err != nil {
+		return err
+	}
+
 	return s.fuelEntryRepository.Save(ctx, internalmodel.FuelEntry{
 		BaseModel: internalmodel.BaseModel{
-			ID: id,
+			ID: fuelEntryID,
 		},
 		CarID:               carID,
+		OdometerEntryID:     odometerEntryID,
 		FuelType:            payload.FuelType,
 		FuelBrand:           payload.FuelBrand,
 		FuelName:            payload.FuelName,
@@ -101,13 +118,9 @@ func (s service) FindByID(ctx context.Context, id string) (*internalmodel.FuelEn
 }
 
 func (s service) Update(ctx context.Context, payload fuelentrypayload.UpdatePayload) error {
-	car, err := s.carRepository.FindByID(ctx, payload.CarID, payload.UserID)
+	_, err := s.findCarByID(ctx, payload.CarID, payload.UserID)
 	if err != nil {
 		return err
-	}
-
-	if car == nil {
-		return httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("car id %s doesn't exists", payload.CarID))
 	}
 
 	fuelEntry, err := s.fuelEntryRepository.FindByID(ctx, payload.ID)
@@ -117,6 +130,24 @@ func (s service) Update(ctx context.Context, payload fuelentrypayload.UpdatePayl
 
 	if fuelEntry == nil {
 		return httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("fuel entry id %s doesn't exists", payload.ID))
+	}
+
+	odometerEntry, err := s.odometerEntryRepository.FindByID(ctx, fuelEntry.OdometerEntryID.String())
+	if err != nil {
+		return err
+	}
+
+	if odometerEntry == nil {
+		return httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("odometer entry id %s doesn't exists", fuelEntry.OdometerEntryID))
+	}
+
+	if payload.OdometerReading != nil {
+		odometerEntry.OdometerReading = *payload.OdometerReading
+		odometerEntry.ReadingUnit = *payload.ReadingUnit
+	}
+
+	if err := s.odometerEntryRepository.Save(ctx, *odometerEntry); err != nil {
+		return err
 	}
 
 	if payload.FuelType != nil {
