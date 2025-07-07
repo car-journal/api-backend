@@ -828,6 +828,18 @@
 									"body": "{\n    \"success\": true\n}"
 								}
 							]
+						},
+						{
+							"name": "New Request",
+							"id": "17289212-97a1cd01-cfa0-4df4-858c-1d6095817ee7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
 						}
 					],
 					"id": "17289212-d485b07c-940c-40b0-ae06-406d15f36c91"
