@@ -6,6 +6,69 @@
 	},
 	"item": [
 		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get All Routes",
+					"id": "17289212-27c6ee03-b5b2-4efb-8f90-df91394b8e42",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_url}}/v1/admin/get-all-routes",
+							"host": [
+								"{{go_url}}"
+							],
+							"path": [
+								"v1",
+								"admin",
+								"get-all-routes"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "17289212-7a0a8278-0804-4d1a-a662-beb6c77c05e2",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b6424f01-fb6f-464d-92eb-163255c336b8",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "29e48f47-913c-4fd9-88c0-4938c9689666",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
 			"name": "Internal",
 			"item": [
 				{
@@ -1545,69 +1608,6 @@
 				}
 			],
 			"id": "17289212-26138b6c-cc2b-42c9-aaad-1c5b5b30ee49"
-		},
-		{
-			"name": "Admin",
-			"item": [
-				{
-					"name": "Get All Routes",
-					"id": "17289212-27c6ee03-b5b2-4efb-8f90-df91394b8e42",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{go_url}}/v1/admin/get-all-routes",
-							"host": [
-								"{{go_url}}"
-							],
-							"path": [
-								"v1",
-								"admin",
-								"get-all-routes"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"id": "17289212-7a0a8278-0804-4d1a-a662-beb6c77c05e2",
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "{{access_token}}",
-						"type": "string"
-					}
-				]
-			},
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "b6424f01-fb6f-464d-92eb-163255c336b8",
-						"type": "text/javascript",
-						"packages": {},
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "29e48f47-913c-4fd9-88c0-4938c9689666",
-						"type": "text/javascript",
-						"packages": {},
-						"exec": [
-							""
-						]
-					}
-				}
-			]
 		}
 	]
 }
