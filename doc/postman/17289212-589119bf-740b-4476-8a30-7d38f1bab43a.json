@@ -775,7 +775,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+									"raw": "{\n    \"car_id\": \"aeb0e399-a394-471c-a6ae-ad03d500c56a\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 46.5\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -783,14 +783,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{go_url}}/v1/internal/cars",
+									"raw": "{{go_url}}/v1/internal/fuel-entries",
 									"host": [
 										"{{go_url}}"
 									],
 									"path": [
 										"v1",
 										"internal",
-										"cars"
+										"fuel-entries"
 									]
 								}
 							},
