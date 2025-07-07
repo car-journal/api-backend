@@ -938,26 +938,26 @@
 									"body": "{\n    \"id\": \"e84f2628-8b32-414c-902c-93bb08bdbca4\",\n    \"created_at\": \"2025-07-07T09:47:53.163762+07:00\",\n    \"updated_at\": \"2025-07-07T09:47:53.163762+07:00\",\n    \"deleted_at\": null,\n    \"car_id\": \"aeb0e399-a394-471c-a6ae-ad03d500c56a\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 47.5,\n    \"total_price\": 323000,\n    \"fuel_consumption\": 7.778947368421052,\n    \"notes\": null\n}"
 								},
 								{
-									"id": "17289212-17c363b9-43c1-4cfa-82a3-42e62854b1ed",
+									"id": "17289212-c093af55-75b5-4e1a-9cd9-ab3ae7927bb3",
 									"name": "404",
 									"originalRequest": {
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{go_url}}/v1/internal/cars/:car_id",
+											"raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
 											"host": [
 												"{{go_url}}"
 											],
 											"path": [
 												"v1",
 												"internal",
-												"cars",
-												":car_id"
+												"fuel-entries",
+												":fuel_entry_id"
 											],
 											"variable": [
 												{
-													"key": "car_id",
-													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649391"
+													"key": "fuel_entry_id",
+													"value": "e84f2628-8b32-414c-902c-93bb08bdbca5"
 												}
 											]
 										}
@@ -976,16 +976,16 @@
 										},
 										{
 											"key": "Date",
-											"value": "Wed, 02 Jul 2025 14:02:35 GMT"
+											"value": "Mon, 07 Jul 2025 03:26:11 GMT"
 										},
 										{
 											"key": "Content-Length",
-											"value": "186"
+											"value": "193"
 										}
 									],
 									"cookie": [],
 									"responseTime": null,
-									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"record_not_found\",\n        \"message\": \"enter another param or recheck the param you've sent\",\n        \"raw\": \"car id 3a673c5d-3dbc-4828-86f2-4cc0d5649391 doesn't exists\"\n    }\n}"
+									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"record_not_found\",\n        \"message\": \"enter another param or recheck the param you've sent\",\n        \"raw\": \"fuel entry id e84f2628-8b32-414c-902c-93bb08bdbca5 doesn't exists\"\n    }\n}"
 								}
 							]
 						},
