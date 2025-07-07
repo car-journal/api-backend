@@ -649,7 +649,7 @@
 							]
 						},
 						{
-							"name": "List by Car ID",
+							"name": "Fuel Entries",
 							"id": "17289212-68c26a7a-8be7-48b1-81cc-0b94434538b5",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
