@@ -918,6 +918,58 @@
 									"cookie": [],
 									"responseTime": null,
 									"body": "{\n    \"success\": true\n}"
+								},
+								{
+									"id": "17289212-dfd5740c-6804-4143-9346-d1a997e24d8e",
+									"name": "Create",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"odometer_reading\": 27500,\n    \"reading_unit\": \"km\",\n    \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 46.5\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/internal/fuel-entries",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"fuel-entries"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 07 Jul 2025 15:13:56 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "17"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": true\n}"
 								}
 							]
 						},
