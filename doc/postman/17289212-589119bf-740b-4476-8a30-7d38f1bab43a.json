@@ -681,7 +681,7 @@
 							"response": [
 								{
 									"id": "17289212-de34b1ef-d4ea-4971-b30d-2b635f217937",
-									"name": "New Request",
+									"name": "200",
 									"originalRequest": {
 										"method": "GET",
 										"header": [],
