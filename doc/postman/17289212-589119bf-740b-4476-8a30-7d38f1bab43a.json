@@ -469,6 +469,116 @@
 							]
 						},
 						{
+							"name": "List of Fuel Entries",
+							"id": "17289212-68c26a7a-8be7-48b1-81cc-0b94434538b5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{go_url}}/v1/internal/cars",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"cars"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17289212-d8f31f5a-3b4b-4928-a48e-90b86f0d83b4",
+									"name": "200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 05:18:38 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "442"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "[\n    {\n        \"id\": \"3a673c5d-3dbc-4828-86f2-4cc0d5649392\",\n        \"created_at\": \"2025-07-02T12:18:27.75466+07:00\",\n        \"updated_at\": \"2025-07-02T12:18:27.75466+07:00\",\n        \"deleted_at\": null,\n        \"user_id\": \"48f43073-0016-44ee-acd4-549ec499fc1b\",\n        \"brand\": \"Ford\",\n        \"model\": \"Everest\",\n        \"manufacture_year\": 2012,\n        \"cylinder_capacity\": 1499,\n        \"vehicle_identity_number\": null,\n        \"engine_number\": null,\n        \"color\": null,\n        \"fuel_type\": \"solar\",\n        \"registration_year\": null,\n        \"vehicle_ownership_document_number\": null\n    }\n]"
+								},
+								{
+									"id": "17289212-9cb52f88-5ae8-4dac-9062-203c1158d5d3",
+									"name": "200 (no data)",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 14:49:43 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "3"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "[]"
+								}
+							]
+						},
+						{
 							"name": "Update",
 							"id": "17289212-f453e7ff-9018-4709-ac64-e943f8b3d6a8",
 							"protocolProfileBehavior": {
@@ -645,116 +755,6 @@
 									"cookie": [],
 									"responseTime": null,
 									"body": "{\n    \"success\": true\n}"
-								}
-							]
-						},
-						{
-							"name": "Fuel Entries",
-							"id": "17289212-68c26a7a-8be7-48b1-81cc-0b94434538b5",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{go_url}}/v1/internal/cars",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"cars"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "17289212-d8f31f5a-3b4b-4928-a48e-90b86f0d83b4",
-									"name": "200",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 02 Jul 2025 05:18:38 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "442"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "[\n    {\n        \"id\": \"3a673c5d-3dbc-4828-86f2-4cc0d5649392\",\n        \"created_at\": \"2025-07-02T12:18:27.75466+07:00\",\n        \"updated_at\": \"2025-07-02T12:18:27.75466+07:00\",\n        \"deleted_at\": null,\n        \"user_id\": \"48f43073-0016-44ee-acd4-549ec499fc1b\",\n        \"brand\": \"Ford\",\n        \"model\": \"Everest\",\n        \"manufacture_year\": 2012,\n        \"cylinder_capacity\": 1499,\n        \"vehicle_identity_number\": null,\n        \"engine_number\": null,\n        \"color\": null,\n        \"fuel_type\": \"solar\",\n        \"registration_year\": null,\n        \"vehicle_ownership_document_number\": null\n    }\n]"
-								},
-								{
-									"id": "17289212-9cb52f88-5ae8-4dac-9062-203c1158d5d3",
-									"name": "200 (no data)",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 02 Jul 2025 14:49:43 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "3"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "[]"
 								}
 							]
 						}
