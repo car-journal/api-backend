@@ -215,7 +215,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"brand\": \"Daihatsu\",\n    \"model\": \"Granmax\",\n    \"manufacture_year\": 2024,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+									"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 2499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -846,7 +846,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"car_id\": \"aeb0e399-a394-471c-a6ae-ad03d500c56a\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 46.5\n}",
+									"raw": "{\n    \"odometer_reading\": 27500,\n    \"reading_unit\": \"km\",\n    \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 46.5\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1062,7 +1062,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"car_id\": \"aeb0e399-a394-471c-a6ae-ad03d500c56a\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 47.5\n}",
+									"raw": "{\n    \"odometer_reading\": 260000,\n    \"reading_unit\": \"km\",\n    \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 47.5\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1083,7 +1083,7 @@
 									"variable": [
 										{
 											"key": "fuel_entry_id",
-											"value": "e84f2628-8b32-414c-902c-93bb08bdbca4"
+											"value": "9c00ba1f-b7f2-44e6-a3a3-04c5f3b2422f"
 										}
 									]
 								}
