@@ -657,9 +657,80 @@
 							},
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{go_url}}/v1/internal/cars/:car_id/odometer-entries",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"cars",
+										":car_id",
+										"odometer-entries"
+									],
+									"variable": [
+										{
+											"key": "car_id",
+											"value": "d06116d4-dd8e-4eef-b65e-7c55a935e02f"
+										}
+									]
+								}
 							},
-							"response": []
+							"response": [
+								{
+									"id": "17289212-de34b1ef-d4ea-4971-b30d-2b635f217937",
+									"name": "New Request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars/:car_id/odometer-entries",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars",
+												":car_id",
+												"odometer-entries"
+											],
+											"variable": [
+												{
+													"key": "car_id",
+													"value": "d06116d4-dd8e-4eef-b65e-7c55a935e02f"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 07 Jul 2025 17:43:29 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "465"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "[\n    {\n        \"id\": \"6e32aad9-ed87-4e60-b9af-6169198709df\",\n        \"created_at\": \"2025-07-07T22:13:56.601005+07:00\",\n        \"updated_at\": \"2025-07-07T22:13:56.601005+07:00\",\n        \"deleted_at\": null,\n        \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n        \"odometer_reading\": 260000,\n        \"reading_unit\": \"km\",\n        \"fuel_entries\": {\n            \"id\": \"9c00ba1f-b7f2-44e6-a3a3-04c5f3b2422f\",\n            \"fuel_type\": \"pertamina\",\n            \"fuel_name\": \"solar\",\n            \"fuel_unit\": \"liter\",\n            \"volume_filled\": 47.5,\n            \"total_price\": 323000,\n            \"fuel_consumption_rate\": 7.778947368421052\n        }\n    }\n]"
+								}
+							]
 						},
 						{
 							"name": "Update",
