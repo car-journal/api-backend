@@ -888,26 +888,26 @@
 							},
 							"response": [
 								{
-									"id": "17289212-7c5e0d43-963b-4020-892d-e522541b31f2",
+									"id": "17289212-10a842c2-0422-47ee-bda3-7e706ba15391",
 									"name": "200",
 									"originalRequest": {
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{go_url}}/v1/internal/cars/:car_id",
+											"raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
 											"host": [
 												"{{go_url}}"
 											],
 											"path": [
 												"v1",
 												"internal",
-												"cars",
-												":car_id"
+												"fuel-entries",
+												":fuel_entry_id"
 											],
 											"variable": [
 												{
-													"key": "car_id",
-													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
+													"key": "fuel_entry_id",
+													"value": "e84f2628-8b32-414c-902c-93bb08bdbca4"
 												}
 											]
 										}
@@ -926,16 +926,16 @@
 										},
 										{
 											"key": "Date",
-											"value": "Wed, 02 Jul 2025 13:58:11 GMT"
+											"value": "Mon, 07 Jul 2025 03:25:56 GMT"
 										},
 										{
 											"key": "Content-Length",
-											"value": "440"
+											"value": "430"
 										}
 									],
 									"cookie": [],
 									"responseTime": null,
-									"body": "{\n    \"id\": \"3a673c5d-3dbc-4828-86f2-4cc0d5649392\",\n    \"created_at\": \"2025-07-02T12:18:27.75466+07:00\",\n    \"updated_at\": \"2025-07-02T12:18:27.75466+07:00\",\n    \"deleted_at\": null,\n    \"user_id\": \"48f43073-0016-44ee-acd4-549ec499fc1b\",\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}"
+									"body": "{\n    \"id\": \"e84f2628-8b32-414c-902c-93bb08bdbca4\",\n    \"created_at\": \"2025-07-07T09:47:53.163762+07:00\",\n    \"updated_at\": \"2025-07-07T09:47:53.163762+07:00\",\n    \"deleted_at\": null,\n    \"car_id\": \"aeb0e399-a394-471c-a6ae-ad03d500c56a\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 47.5,\n    \"total_price\": 323000,\n    \"fuel_consumption\": 7.778947368421052,\n    \"notes\": null\n}"
 								},
 								{
 									"id": "17289212-17c363b9-43c1-4cfa-82a3-42e62854b1ed",
@@ -986,56 +986,6 @@
 									"cookie": [],
 									"responseTime": null,
 									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"record_not_found\",\n        \"message\": \"enter another param or recheck the param you've sent\",\n        \"raw\": \"car id 3a673c5d-3dbc-4828-86f2-4cc0d5649391 doesn't exists\"\n    }\n}"
-								},
-								{
-									"id": "17289212-10a842c2-0422-47ee-bda3-7e706ba15391",
-									"name": "200",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"fuel-entries",
-												":fuel_entry_id"
-											],
-											"variable": [
-												{
-													"key": "fuel_entry_id",
-													"value": "e84f2628-8b32-414c-902c-93bb08bdbca4"
-												}
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Mon, 07 Jul 2025 03:25:56 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "430"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "{\n    \"id\": \"e84f2628-8b32-414c-902c-93bb08bdbca4\",\n    \"created_at\": \"2025-07-07T09:47:53.163762+07:00\",\n    \"updated_at\": \"2025-07-07T09:47:53.163762+07:00\",\n    \"deleted_at\": null,\n    \"car_id\": \"aeb0e399-a394-471c-a6ae-ad03d500c56a\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 47.5,\n    \"total_price\": 323000,\n    \"fuel_consumption\": 7.778947368421052,\n    \"notes\": null\n}"
 								}
 							]
 						},
