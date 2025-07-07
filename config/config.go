@@ -1,3 +1,4 @@
+// Package config hanldes of config to run the app
 package config
 
 const (
