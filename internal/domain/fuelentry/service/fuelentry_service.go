@@ -6,8 +6,8 @@ import (
 	"fmt"
 
 	carrepository "github.com/car-journal/api-backend/internal/domain/car/repository"
-	fuelentriespayload "github.com/car-journal/api-backend/internal/domain/fuelentries/payload"
-	fuelentryrepository "github.com/car-journal/api-backend/internal/domain/fuelentries/repository"
+	fuelentrypayload "github.com/car-journal/api-backend/internal/domain/fuelentry/payload"
+	fuelentryrepository "github.com/car-journal/api-backend/internal/domain/fuelentry/repository"
 	userrepository "github.com/car-journal/api-backend/internal/domain/user/repository"
 	internalmodel "github.com/car-journal/api-backend/internal/model"
 	"github.com/car-journal/api-backend/lib/fuel"
@@ -17,10 +17,10 @@ import (
 )
 
 type Interface interface {
-	Create(ctx context.Context, payload fuelentriespayload.CreatePayload) error
+	Create(ctx context.Context, payload fuelentrypayload.CreatePayload) error
 	ListByCarID(ctx context.Context, carID string, userID string) ([]*internalmodel.FuelEntry, error)
 	FindByID(ctx context.Context, id string) (*internalmodel.FuelEntry, error)
-	Update(ctx context.Context, payload fuelentriespayload.UpdatePayload) error
+	Update(ctx context.Context, payload fuelentrypayload.UpdatePayload) error
 	Delete(ctx context.Context, id string) error
 }
 
@@ -45,7 +45,7 @@ func Service(
 	}
 }
 
-func (s service) Create(ctx context.Context, payload fuelentriespayload.CreatePayload) error {
+func (s service) Create(ctx context.Context, payload fuelentrypayload.CreatePayload) error {
 	if isExist := s.userRepository.IsIDExists(ctx, payload.UserID); !isExist {
 		return httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("id %s doesn't exists", payload.UserID))
 	}
@@ -100,7 +100,7 @@ func (s service) FindByID(ctx context.Context, id string) (*internalmodel.FuelEn
 	return fuelEntry, nil
 }
 
-func (s service) Update(ctx context.Context, payload fuelentriespayload.UpdatePayload) error {
+func (s service) Update(ctx context.Context, payload fuelentrypayload.UpdatePayload) error {
 	car, err := s.carRepository.FindByID(ctx, payload.CarID, payload.UserID)
 	if err != nil {
 		return err

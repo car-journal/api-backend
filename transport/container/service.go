@@ -3,7 +3,7 @@ package container
 import (
 	authservice "github.com/car-journal/api-backend/internal/domain/auth/service"
 	carservice "github.com/car-journal/api-backend/internal/domain/car/service"
-	fuelentryservice "github.com/car-journal/api-backend/internal/domain/fuelentries/service"
+	fuelentryservice "github.com/car-journal/api-backend/internal/domain/fuelentry/service"
 	userservice "github.com/car-journal/api-backend/internal/domain/user/service"
 	userprofileservice "github.com/car-journal/api-backend/internal/domain/userprofile/service"
 )

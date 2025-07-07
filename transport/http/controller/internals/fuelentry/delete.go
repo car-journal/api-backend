@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	fuelentryservice "github.com/car-journal/api-backend/internal/domain/fuelentries/service"
+	fuelentryservice "github.com/car-journal/api-backend/internal/domain/fuelentry/service"
 	"github.com/car-journal/api-backend/lib/database"
 	"github.com/car-journal/api-backend/lib/parser"
 	"github.com/gorilla/mux"

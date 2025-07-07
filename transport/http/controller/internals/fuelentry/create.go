@@ -5,8 +5,8 @@ import (
 	"context"
 	"net/http"
 
-	fuelentrypayload "github.com/car-journal/api-backend/internal/domain/fuelentries/payload"
-	fuelentryservice "github.com/car-journal/api-backend/internal/domain/fuelentries/service"
+	fuelentrypayload "github.com/car-journal/api-backend/internal/domain/fuelentry/payload"
+	fuelentryservice "github.com/car-journal/api-backend/internal/domain/fuelentry/service"
 	"github.com/car-journal/api-backend/lib/authz"
 	"github.com/car-journal/api-backend/lib/database"
 	"github.com/car-journal/api-backend/lib/parser"
