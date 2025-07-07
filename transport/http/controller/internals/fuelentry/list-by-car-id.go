@@ -1,0 +1,30 @@
+package internalfuelentrycontroller
+
+import (
+	"context"
+	"net/http"
+
+	fuelentryservice "github.com/car-journal/api-backend/internal/domain/fuelentries/service"
+	internalmodel "github.com/car-journal/api-backend/internal/model"
+	"github.com/car-journal/api-backend/lib/authz"
+	"github.com/car-journal/api-backend/lib/database"
+	"github.com/car-journal/api-backend/lib/parser"
+	"github.com/gorilla/mux"
+)
+
+func FuelEntryListByCarID(fuelEntryService fuelentryservice.Interface) http.HandlerFunc {
+	return func(writer http.ResponseWriter, request *http.Request) {
+		var fuelEntries []*internalmodel.FuelEntry
+		carID := mux.Vars(request)["car_id"]
+
+		if errTrans := database.Run(request.Context(), func(ctx context.Context) (err error) {
+			me := authz.GetAuthUser(ctx)
+			fuelEntries, err = fuelEntryService.ListByCarID(ctx, carID, me.ID)
+			return err
+		}); nil != errTrans {
+			parser.JSON(writer, nil, errTrans)
+			return
+		}
+		parser.JSON(writer, fuelEntries, nil)
+	}
+}

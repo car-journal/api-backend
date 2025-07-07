@@ -88,6 +88,10 @@ func (s service) FindByID(ctx context.Context, id string, userID string) (*inter
 func (s service) Update(ctx context.Context, payload carpayload.UpdatePayload) error {
 	car, err := s.carRepository.FindByID(ctx, payload.ID, payload.UserID)
 	if err != nil {
+		return err
+	}
+
+	if car == nil {
 		return httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("car id %s doesn't exists", payload.ID))
 	}
 

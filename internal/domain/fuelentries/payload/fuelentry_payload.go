@@ -1,25 +1,33 @@
-package fuelentriespayload
+// Package fuelentrypayload handles payload for fuel entry domain
+package fuelentrypayload
 
 import (
-	"time"
-
 	"github.com/car-journal/api-backend/lib/nullable"
 )
 
 type CreatePayload struct {
-	UserID      string
-	Gender      *string
-	FirstName   string
-	LastName    *string
-	DateOfBirth *time.Time
-	PictureURL  *string
+	UserID           string  `json:"user_id"`
+	CarID            string  `json:"car_id"`
+	FuelType         string  `json:"fuel_type"`
+	FuelBrand        string  `json:"fuel_brand"`
+	FuelName         string  `json:"fuel_name"`
+	FuelPrice        float64 `json:"fuel_price"`
+	FuelUnit         string  `json:"fuel_unit"`
+	DistanceTraveled float64 `json:"distance_traveled"`
+	VolumeFilled     float64 `json:"volume_filled"`
+	Notes            *string `json:"notes"`
 }
 
 type UpdatePayload struct {
-	UserID      string          `json:"user_id"`
-	Gender      nullable.String `json:"gender"`
-	FirstName   *string         `json:"first_name"`
-	LastName    nullable.String `json:"last_name"`
-	DateOfBirth nullable.String `json:"date_of_birth"`
-	PictureURL  nullable.String `json:"profile_picture_url"`
+	ID               string          `json:"id"`
+	UserID           string          `json:"user_id"`
+	CarID            string          `json:"car_id"`
+	FuelType         *string         `json:"fuel_type"`
+	FuelBrand        *string         `json:"fuel_brand"`
+	FuelName         *string         `json:"fuel_name"`
+	FuelPrice        *float64        `json:"fuel_price"`
+	FuelUnit         *string         `json:"fuel_unit"`
+	DistanceTraveled *float64        `json:"distance_traveled"`
+	VolumeFilled     *float64        `json:"volume_filled"`
+	Notes            nullable.String `json:"notes"`
 }

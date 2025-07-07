@@ -1,4 +1,5 @@
-package fuelentriesconst
+// Package fuelentryconst handles const for fuel entry domain
+package fuelentryconst
 
 import "strings"
 

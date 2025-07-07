@@ -14,6 +14,7 @@ func Internal(v1Routes *mux.Router, app container.AppContainer) {
 	)
 
 	Auth(internalRoutes, app)
-	UserProfile(internalRoutes, app)
 	Car(internalRoutes, app)
+	FuelEntry(internalRoutes, app)
+	UserProfile(internalRoutes, app)
 }

@@ -1,4 +1,5 @@
-package fuelentriesrepository
+// Package fuelentryrepository handles db queries for fuel entry domain
+package fuelentryrepository
 
 import (
 	"context"
@@ -11,8 +12,10 @@ import (
 )
 
 type Interface interface {
-	Save(ctx context.Context, model internalmodel.UserProfile) error
-	FindByUserID(ctx context.Context, userID string) (*internalmodel.UserProfile, error)
+	Save(ctx context.Context, model internalmodel.FuelEntry) error
+	ListByCarID(ctx context.Context, carID string) ([]*internalmodel.FuelEntry, error)
+	FindByID(ctx context.Context, id string) (*internalmodel.FuelEntry, error)
+	Delete(ctx context.Context, id string) error
 }
 
 type repository struct{}
@@ -21,22 +24,42 @@ func Repository() Interface {
 	return &repository{}
 }
 
-func (r repository) Save(ctx context.Context, model internalmodel.UserProfile) error {
+func (r repository) Save(ctx context.Context, model internalmodel.FuelEntry) error {
 	db := database.Get(ctx)
 	db = db.Clauses(clause.OnConflict{
-		Columns: []clause.Column{{Name: "user_id"}},
+		Columns: []clause.Column{{Name: "id"}},
 		DoUpdates: clause.AssignmentColumns([]string{
-			"gender", "first_name", "last_name", "date_of_birth", "picture_url", "updated_at",
+			"fuel_type",
+			"fuel_brand",
+			"fuel_name",
+			"fuel_price",
+			"fuel_unit",
+			"distance_traveled",
+			"volume_filled",
+			"total_price",
+			"fuel_consumption_rate",
+			"notes",
+			"updated_at",
 		}),
 	})
-	db = db.Where("user_id = ?", model.UserID)
+	db = db.Where("car_id = ?", model.CarID)
 	return db.Create(&model).Error
 }
 
-func (r repository) FindByUserID(ctx context.Context, userID string) (*internalmodel.UserProfile, error) {
-	var model *internalmodel.UserProfile
+func (r repository) ListByCarID(ctx context.Context, carID string) ([]*internalmodel.FuelEntry, error) {
+	var models []*internalmodel.FuelEntry
 	db := database.Get(ctx)
-	db = database.EqualsTo(db, "user_id", userID)
+	db = database.EqualsTo(db, "car_id", carID)
+	if err := db.Find(&models).Error; err != nil {
+		return nil, err
+	}
+	return models, nil
+}
+
+func (r repository) FindByID(ctx context.Context, id string) (*internalmodel.FuelEntry, error) {
+	var model *internalmodel.FuelEntry
+	db := database.Get(ctx)
+	db = database.EqualsTo(db, "id", id)
 	err := db.First(&model).Error
 	if err != nil && errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, nil
@@ -45,4 +68,10 @@ func (r repository) FindByUserID(ctx context.Context, userID string) (*internalm
 	}
 
 	return model, nil
+}
+
+func (r repository) Delete(ctx context.Context, id string) error {
+	db := database.Get(ctx)
+	db = database.EqualsTo(db, "id", id)
+	return db.Delete(&internalmodel.FuelEntry{}).Error
 }

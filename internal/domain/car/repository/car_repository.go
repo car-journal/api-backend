@@ -47,13 +47,13 @@ func (r repository) Save(ctx context.Context, model internalmodel.Car) error {
 }
 
 func (r repository) List(ctx context.Context, userID string) ([]*internalmodel.Car, error) {
-	var cars []*internalmodel.Car
+	var models []*internalmodel.Car
 	db := database.Get(ctx)
 	db = database.EqualsTo(db, "user_id", userID)
-	if err := db.Find(&cars).Error; err != nil {
+	if err := db.Find(&models).Error; err != nil {
 		return nil, err
 	}
-	return cars, nil
+	return models, nil
 }
 
 func (r repository) FindByID(ctx context.Context, id string, userID string) (*internalmodel.Car, error) {
@@ -74,5 +74,5 @@ func (r repository) FindByID(ctx context.Context, id string, userID string) (*in
 func (r repository) Delete(ctx context.Context, id string) error {
 	db := database.Get(ctx)
 	db = database.EqualsTo(db, "id", id)
-	return db.Debug().Delete(&internalmodel.Car{}).Error
+	return db.Delete(&internalmodel.Car{}).Error
 }
