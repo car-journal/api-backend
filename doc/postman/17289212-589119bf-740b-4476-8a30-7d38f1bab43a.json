@@ -647,98 +647,6 @@
 									"body": "{\n    \"success\": true\n}"
 								}
 							]
-						}
-					],
-					"id": "17289212-d485b07c-940c-40b0-ae06-406d15f36c91"
-				},
-				{
-					"name": "Fuel Entry",
-					"item": [
-						{
-							"name": "Create",
-							"id": "17289212-3e51cb08-1426-4722-bf24-1935356f4afd",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{go_url}}/v1/internal/cars",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"cars"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "17289212-578a4eba-3af7-4ebe-ba22-707a56539803",
-									"name": "200",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars/",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars",
-												""
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 02 Jul 2025 05:18:27 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "17"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "{\n    \"success\": true\n}"
-								}
-							]
 						},
 						{
 							"name": "List by Car ID",
@@ -847,6 +755,98 @@
 									"cookie": [],
 									"responseTime": null,
 									"body": "[]"
+								}
+							]
+						}
+					],
+					"id": "17289212-d485b07c-940c-40b0-ae06-406d15f36c91"
+				},
+				{
+					"name": "Fuel Entry",
+					"item": [
+						{
+							"name": "Create",
+							"id": "17289212-3e51cb08-1426-4722-bf24-1935356f4afd",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{go_url}}/v1/internal/cars",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"internal",
+										"cars"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "17289212-578a4eba-3af7-4ebe-ba22-707a56539803",
+									"name": "200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/internal/cars/",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"internal",
+												"cars",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 02 Jul 2025 05:18:27 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "17"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": true\n}"
 								}
 							]
 						},
