@@ -1427,7 +1427,61 @@
 								"method": "GET",
 								"header": []
 							},
-							"response": []
+							"response": [
+								{
+									"id": "17289212-5d9d8def-a939-42d4-b6b1-2df23c2967b3",
+									"name": "200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"client_secret\": \"local_secret\",\n    \"email\": \"test@gmail.com\",\n    \"password\": \"password\",\n    \"confirm_password\": \"password\",\n    \"gender\": true,\n    \"first_name\": \"Rayendra\",\n    \"last_name\": \"Sabandar\",\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/external/auth/register",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"external",
+												"auth",
+												"register"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 08 Jul 2025 03:02:19 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "17"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": true\n}"
+								}
+							]
 						},
 						{
 							"name": "Login",
