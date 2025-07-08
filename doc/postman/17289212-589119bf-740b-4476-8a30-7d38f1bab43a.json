@@ -1536,7 +1536,7 @@
 								},
 								{
 									"id": "17289212-8be3ceae-ca0c-4f43-8965-80f844d2c2ec",
-									"name": "New Request",
+									"name": "400 (confirm password does not match)",
 									"originalRequest": {
 										"method": "POST",
 										"header": [],
