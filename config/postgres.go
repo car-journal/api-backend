@@ -13,12 +13,12 @@ var db *gorm.DB
 var dbOnce sync.Once
 
 const (
-	DBDialect  = "DBDialect"
-	DBHost     = "DBHost"
-	DBPort     = "DBPort"
-	DBName     = "DBName"
-	DBUser     = "DBUser"
-	DBPass     = "DBPass"
+	DBDialect  = "DB_DIALECT"
+	DBHost     = "DB_HOST"
+	DBPort     = "DB_PORT"
+	DBName     = "DB_NAME"
+	DBUser     = "DB_USER"
+	DBPass     = "DB_PASS"
 	Ascending  = "ASC"
 	Descending = "DESC"
 	Random     = "random"

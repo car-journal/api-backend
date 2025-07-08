@@ -1,3 +1,4 @@
+// Package authrepository handles db queries for auth domain
 package authrepository
 
 import (

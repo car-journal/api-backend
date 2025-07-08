@@ -1,3 +1,4 @@
+// Package userrepository handles db queries for user domain
 package userrepository
 
 import (

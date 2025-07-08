@@ -1,11 +1,9 @@
-// Package externalauthcontroller handles controller for auth domain
 package externalauthcontroller
 
 import (
 	"context"
 	"net/http"
 
-	authdto "github.com/car-journal/api-backend/internal/domain/auth/dto"
 	authpayload "github.com/car-journal/api-backend/internal/domain/auth/payload"
 	authservice "github.com/car-journal/api-backend/internal/domain/auth/service"
 	"github.com/car-journal/api-backend/lib/database"
@@ -13,22 +11,21 @@ import (
 	bodyparser "github.com/car-journal/api-backend/lib/parser/body"
 )
 
-func Login(authService authservice.Interface) http.HandlerFunc {
+func Register(authService authservice.Interface) http.HandlerFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
-		var body authpayload.Login
+		var body authpayload.RegisterPayload
 		if err := bodyparser.Parse(request, &body); nil != err {
 			parser.JSON(writer, nil, err)
 			return
 		}
 
-		var response *authdto.LoginResponse
 		if errTrans := database.Run(request.Context(), func(ctx context.Context) (err error) {
-			response, err = authService.Login(ctx, body)
+			err = authService.Register(ctx, body)
 			return err
 		}); nil != errTrans {
 			parser.JSON(writer, nil, errTrans)
 			return
 		}
-		parser.JSON(writer, response, nil)
+		parser.JSON(writer, nil, nil)
 	}
 }

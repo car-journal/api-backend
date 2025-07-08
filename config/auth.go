@@ -1,8 +1,8 @@
 package config
 
 const (
-	JwtPrivateKey = "JwtPrivateKey"
-	JwtPublicKey  = "JwtPublicKey"
+	JwtPrivateKey = "JWT_PRIVATE_KEY"
+	JwtPublicKey  = "JWT_PUBLIC_KEY"
 )
 
 var authConfig = map[string]string{

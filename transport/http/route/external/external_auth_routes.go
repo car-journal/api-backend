@@ -11,5 +11,6 @@ import (
 
 func Auth(externalRoute *mux.Router, app container.AppContainer) {
 	externalAuthRoutes := externalRoute.PathPrefix(routeconst.AuthPrefix).Subrouter()
+	externalAuthRoutes.HandleFunc("/register", externalauthcontroller.Register(app.Services.Auth)).Methods(http.MethodPost).Name("externalauthcontroller.Register")
 	externalAuthRoutes.HandleFunc("/login", externalauthcontroller.Login(app.Services.Auth)).Methods(http.MethodPost).Name("externalauthcontroller.Login")
 }

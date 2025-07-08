@@ -1,3 +1,4 @@
+// Package authservice handles services for auth domain
 package authservice
 
 import (
@@ -23,6 +24,7 @@ import (
 )
 
 type Interface interface {
+	Register(ctx context.Context, payload authpayload.RegisterPayload) error
 	FindActiveOauthAccessTokenByID(ctx context.Context, id string) (*internalmodel.OauthAccessToken, error)
 	Me(ctx context.Context) (authdto.Me, error)
 	Login(ctx context.Context, payload authpayload.Login) (*authdto.LoginResponse, error)
@@ -51,6 +53,51 @@ func Service(
 		userProfileRepository: userProfileRepository,
 		uuidLib:               uuidLib,
 	}
+}
+
+func (s service) Register(ctx context.Context, payload authpayload.RegisterPayload) error {
+	if payload.ClientSecret != config.Get(config.ClientSecret) {
+		return httperror.New(errortype.FORBIDDEN, fmt.Errorf("secret not validated"))
+	}
+
+	if isEmailExists := s.userRepository.IsEmailExists(ctx, payload.Email); isEmailExists {
+		return httperror.New(errortype.ALREADY_REGISTERED, fmt.Errorf("email already exists"))
+	}
+
+	id := s.uuidLib.GenerateNewUUID()
+	password, err := s.hashLib.Make(payload.Password)
+	if err != nil {
+		return err
+	}
+
+	if err := s.userRepository.Create(ctx, &internalmodel.User{
+		BaseModel: internalmodel.BaseModel{
+			ID: id,
+		},
+		Email:    payload.Email,
+		Password: password,
+	}); err != nil {
+		return err
+	}
+
+	// var dateOfBirth *time.Time
+	// if payload.DateOfBirth != nil {
+	// 	convertedTime, err := internaltime.ConvertStringToTime(internaltime.YearMonthDayHourMinuteSecondWithDashLayout, *payload.DateOfBirth)
+	// 	if err != nil {
+	// 		return err
+	// 	}
+
+	// 	dateOfBirth = &convertedTime
+
+	// }
+
+	return s.userProfileRepository.Save(ctx, internalmodel.UserProfile{
+		UserID:      id,
+		Gender:      payload.Gender,
+		FirstName:   payload.FirstName,
+		LastName:    payload.LastName,
+		DateOfBirth: payload.DateOfBirth,
+	})
 }
 
 func (s service) FindActiveOauthAccessTokenByID(ctx context.Context, id string) (*internalmodel.OauthAccessToken, error) {

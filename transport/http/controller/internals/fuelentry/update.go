@@ -2,7 +2,6 @@ package internalfuelentrycontroller
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 
 	fuelentrypayload "github.com/car-journal/api-backend/internal/domain/fuelentry/payload"
@@ -18,7 +17,6 @@ func Update(fuelEntryService fuelentryservice.Interface) http.HandlerFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
 		var body fuelentrypayload.UpdatePayload
 		if err := bodyparser.Parse(request, &body); nil != err {
-			fmt.Println("err:", err)
 			parser.JSON(writer, nil, err)
 			return
 		}

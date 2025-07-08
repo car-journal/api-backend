@@ -14,9 +14,9 @@ var httpInterfaceConfig = map[string]interface{}{
 }
 
 const (
-	HTTPPort      = "HTTPPort"
-	IReadTimeout  = "IReadTimeout"
-	IWriteTimeout = "IWriteTimeout"
-	IIdleTimeout  = "IIdleTimeout"
-	IWaitShutdown = "IWaitShutdown"
+	HTTPPort      = "HTTP_PORT"
+	IReadTimeout  = "I_READ_TIMEOUT"
+	IWriteTimeout = "I_WRITE_TIMEOUT"
+	IIdleTimeout  = "I_IDLE_TIMEOUT"
+	IWaitShutdown = "I_WAIT_SHUTDOWN"
 )

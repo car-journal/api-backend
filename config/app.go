@@ -6,9 +6,9 @@ var appInterfaceConfig = map[string]interface{}{}
 
 const (
 	ServiceName      = "ServiceName"
-	Env              = "Env"
-	EnvDir           = "EnvDir"
-	EncryptionSecret = "EncryptionSecret"
+	Env              = "ENV"
+	EnvDir           = "ENV_DIR"
+	EncryptionSecret = "ENCRYPTION_SECRET"
 	Locale           = "Locale"
 )
 
