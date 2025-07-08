@@ -1418,6 +1418,18 @@
 					"name": "Auth",
 					"item": [
 						{
+							"name": "Register",
+							"id": "17289212-736bf782-fbba-47b4-a21d-aae2e196d58f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
 							"name": "Login",
 							"event": [
 								{
