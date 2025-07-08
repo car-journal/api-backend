@@ -1428,7 +1428,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"client_secret\": \"local_secret\",\n    \"email\": \"test@gmail.com\",\n    \"password\": \"password\",\n    \"confirm_password\": \"password\",\n    \"gender\": true,\n    \"first_name\": \"Rayendra\",\n    \"last_name\": \"Sabandar\",\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601\n}",
+									"raw": "{\n    \"client_secret\": \"{{client_secret}}\",\n    \"email\": \"test@gmail.com\",\n    \"password\": \"password\",\n    \"confirm_password\": \"password\",\n    \"gender\": true, // true = male; false = female || nullable\n    \"first_name\": \"Rayendra\",\n    \"last_name\": \"Sabandar\", // nullable\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601 || nullable\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1702,7 +1702,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"client_secret\": \"local_secret\"\n}",
+									"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"client_secret\": \"{{client_secret}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
