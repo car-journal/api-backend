@@ -215,7 +215,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 2499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+									"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 2499,\n    \"vehicle_identity_number\": null, // nullable\n    \"engine_number\": null, // nullable\n    \"color\": null, // nullable\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null, // nullable\n    \"vehicle_ownership_document_number\": null // nullable\n}",
 									"options": {
 										"raw": {
 											"language": "json"
