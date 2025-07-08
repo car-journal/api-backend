@@ -1,22 +1,22 @@
 package config
 
 const (
-	OFF = "off"
-	ON  = "on"
+	Off = "off"
+	On  = "on"
 )
 
 const (
-	ENV_ROOT_DIR    = ".env"
-	ENV_DEVELOPMENT = "development"
-	ENV_STAGING     = "staging"
-	ENV_PRODUCTION  = "production"
-	ENV_TESTING     = "testing"
-	LOCALE_EN       = "en"
-	LOCALE_ID       = "id"
+	EnvRootDir     = ".env"
+	EnvDevelopment = "development"
+	EnvStaging     = "staging"
+	EnvProduction  = "production"
+	EnvTesting     = "testing"
+	LocaleEN       = "en"
+	LocaleID       = "id"
 )
 
 const (
-	AUTHORIZATION = "Authorization"
-	BEARER        = "Bearer "
-	JTI           = "jti"
+	Authorization = "Authorization"
+	Bearer        = "Bearer "
+	Jti           = "Jti"
 )

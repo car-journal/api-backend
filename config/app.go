@@ -5,12 +5,12 @@ import "time"
 var appInterfaceConfig = map[string]interface{}{}
 
 const (
-	SERVICE_NAME      = "SERVICE_NAME"
-	ENV               = "ENV"
-	ENV_DIR           = "ENV_DIR"
-	ENCRYPTION_SECRET = "ENCRYPTION_SECRET"
-	LOCALE            = "LOCALE"
+	ServiceName      = "ServiceName"
+	Env              = "Env"
+	EnvDir           = "EnvDir"
+	EncryptionSecret = "EncryptionSecret"
+	Locale           = "Locale"
 )
 
-var DEFAULT_START_DATE = time.Now().AddDate(0, -1, 0)
-var DEFAULT_LIMIT = 20
+var DefaultStartTime = time.Now().AddDate(0, -1, 0)
+var DefaultLimit = 20

@@ -70,7 +70,7 @@ func (s service) Me(ctx context.Context) (authdto.Me, error) {
 }
 
 func (s service) Login(ctx context.Context, payload authpayload.Login) (*authdto.LoginResponse, error) {
-	if payload.ClientSecret != config.Get(config.CLIENT_SECRET) {
+	if payload.ClientSecret != config.Get(config.ClientSecret) {
 		return nil, httperror.New(errortype.FORBIDDEN, fmt.Errorf("secret not validated"))
 	}
 	user, err := s.userRepository.FindByEmail(ctx, payload.Email)
@@ -117,7 +117,7 @@ func (s service) createJWTToken(ctx context.Context, userData internalmodel.User
 	tokenExp := time.Now().Add(time.Hour * 24 * 7)
 	tokenExpUnix := tokenExp.Unix()
 
-	jwtPrivateKey, err := base64.StdEncoding.DecodeString(config.Get(config.JWT_PRIVATE_KEY))
+	jwtPrivateKey, err := base64.StdEncoding.DecodeString(config.Get(config.JwtPrivateKey))
 	if err != nil {
 		return nil, err
 	}

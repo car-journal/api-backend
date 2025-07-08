@@ -29,17 +29,17 @@ func (hs *httpServer) Serve() {
 		AllowCredentials: true,
 	})
 	s := &http.Server{
-		Addr:         config.Get(config.HTTP_PORT),
-		ReadTimeout:  config.GetIfDuration(config.I_READ_TIMEOUT),
-		WriteTimeout: config.GetIfDuration(config.I_WRITE_TIMEOUT),
-		IdleTimeout:  config.GetIfDuration(config.I_IDLE_TIMEOUT),
+		Addr:         config.Get(config.HTTPPort),
+		ReadTimeout:  config.GetIfDuration(config.IReadTimeout),
+		WriteTimeout: config.GetIfDuration(config.IWriteTimeout),
+		IdleTimeout:  config.GetIfDuration(config.IIdleTimeout),
 		Handler:      c.Handler(route.Route(hs.app)),
 	}
 
 	serverErrCh := make(chan error)
 	go func() {
 		defer close(serverErrCh)
-		log.Printf("Server running at port %s", config.Get(config.HTTP_PORT))
+		log.Printf("Server running at port %s", config.Get(config.HTTPPort))
 		serverErrCh <- s.ListenAndServe()
 	}()
 
@@ -52,7 +52,7 @@ func (hs *httpServer) Serve() {
 		log.Println("Server returning error: ", err)
 	case sig := <-signalChan:
 		signal.Reset(signals...)
-		waitFor := config.GetIfDuration(config.I_WAIT_SHUTDOWN)
+		waitFor := config.GetIfDuration(config.IWaitShutdown)
 
 		log.Printf("Got '%s' signal, Stopping (Waiting for graceful shutdown: %s)\n", sig.String(), waitFor.String())
 

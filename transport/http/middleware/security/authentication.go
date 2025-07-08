@@ -25,15 +25,15 @@ func Authentication(authService authservice.Interface, userService userservice.I
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			ctx := r.Context()
 			// 1. Get token from header authorization
-			authorization := r.Header.Get(config.AUTHORIZATION)
-			bearer := strings.Replace(authorization, config.BEARER, "", -1)
+			authorization := r.Header.Get(config.Authorization)
+			bearer := strings.Replace(authorization, config.Bearer, "", -1)
 			if bearer == "" {
 				parser.JSON(w, nil, httperror.New(errortype.UNAUTHORIZED, fmt.Errorf("missing authorization")))
 				return
 			}
 
 			// 2. Parse token with rsa private key, rsa public key
-			jwtPublicKey, err := base64.StdEncoding.DecodeString(config.Get(config.JWT_PUBLIC_KEY))
+			jwtPublicKey, err := base64.StdEncoding.DecodeString(config.Get(config.JwtPublicKey))
 			if err != nil {
 				parser.JSON(w, nil, httperror.New(errortype.INTERNAL_SERVER, err))
 				return
@@ -56,7 +56,7 @@ func Authentication(authService authservice.Interface, userService userservice.I
 
 			var jti string
 			if claims, ok := token.Claims.(jwt.MapClaims); ok {
-				jti = claims[config.JTI].(string)
+				jti = claims[config.Jti].(string)
 			}
 
 			// 4. Get oauth access token by jwt id

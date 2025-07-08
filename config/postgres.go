@@ -13,25 +13,25 @@ var db *gorm.DB
 var dbOnce sync.Once
 
 const (
-	DB_DIALECT = "DB_DIALECT"
-	DB_HOST    = "DB_HOST"
-	DB_PORT    = "DB_PORT"
-	DB_NAME    = "DB_NAME"
-	DB_USER    = "DB_USER"
-	DB_PASS    = "DB_PASS"
-	ASCENDING  = "ASC"
-	DESCENDING = "DESC"
-	RANDOM     = "random"
-	NULLS_LAST = "NULLS LAST"
+	DBDialect  = "DBDialect"
+	DBHost     = "DBHost"
+	DBPort     = "DBPort"
+	DBName     = "DBName"
+	DBUser     = "DBUser"
+	DBPass     = "DBPass"
+	Ascending  = "ASC"
+	Descending = "DESC"
+	Random     = "random"
+	NullsLast  = "NULLS LAST"
 )
 
 var postgresConfig = map[string]string{
-	DB_DIALECT: "postgres",
-	DB_HOST:    "localhost",
-	DB_PORT:    "5432",
-	DB_NAME:    "volleyball_db",
-	DB_USER:    "postgres",
-	DB_PASS:    "postgres",
+	DBDialect: "postgres",
+	DBHost:    "localhost",
+	DBPort:    "5432",
+	DBName:    "volleyball_db",
+	DBUser:    "postgres",
+	DBPass:    "postgres",
 }
 
 func ConnectGormPostgres() *gorm.DB {
@@ -39,21 +39,21 @@ func ConnectGormPostgres() *gorm.DB {
 		var err error
 		conn := fmt.Sprintf(
 			"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-			Get(DB_HOST),
-			Get(DB_PORT),
-			Get(DB_USER),
-			Get(DB_PASS),
-			Get(DB_NAME),
+			Get(DBHost),
+			Get(DBPort),
+			Get(DBUser),
+			Get(DBPass),
+			Get(DBName),
 		)
 		db, err = gorm.Open(postgres.Open(conn), &gorm.Config{})
 		if nil != err {
 			panic(err)
 		}
 		log.Printf(`Connected to database postgres (%s) at %s:%s with user "%s"`,
-			Get(DB_NAME),
-			Get(DB_HOST),
-			Get(DB_PORT),
-			Get(DB_USER),
+			Get(DBName),
+			Get(DBHost),
+			Get(DBPort),
+			Get(DBUser),
 		)
 	})
 

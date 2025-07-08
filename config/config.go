@@ -2,17 +2,17 @@
 package config
 
 const (
-	DEFAULT_TIME_ZONE = "DEFAULT_TIME_ZONE"
-	DEFAULT_PASSWORD  = "DEFAULT_PASSWORD"
-	CLIENT_SECRET     = "CLIENT_SECRET"
+	DefaultTimeZone = "DefaultTimeZone"
+	DefaultPassword = "DefaultPassword"
+	ClientSecret    = "ClientSecret"
 )
 
 var basicConfig = map[string]string{
-	ENV:               ENV_DEVELOPMENT,
-	ENV_DIR:           ENV_ROOT_DIR,
-	DEFAULT_TIME_ZONE: "Asia/Jakarta",
-	DEFAULT_PASSWORD:  "password",
-	CLIENT_SECRET:     "local_secret",
+	Env:             EnvDevelopment,
+	EnvDir:          EnvRootDir,
+	DefaultTimeZone: "Asia/Jakarta",
+	DefaultPassword: "password",
+	ClientSecret:    "local_secret",
 }
 
 var base = mergeConfig(

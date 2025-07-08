@@ -20,7 +20,7 @@ func CreateClientContainer() ClientContainer {
 
 	clockLib := clock.New()
 	uuidLib := uuid.New()
-	cryptLib := crypt.NewCrypt(config.Get(config.ENCRYPTION_SECRET))
+	cryptLib := crypt.NewCrypt(config.Get(config.EncryptionSecret))
 	hashLib := hash.NewHash()
 	return ClientContainer{
 		Clock: clockLib,

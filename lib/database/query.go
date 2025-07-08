@@ -27,7 +27,7 @@ func GenerateOrderQuery(db *gorm.DB, keys []string, validSorts map[string]string
 
 		currKey, direction := strings.ToLower(keyParts[0]), strings.ToUpper(keyParts[1])
 		field, okField := validSorts[currKey]
-		if (!okField || (direction != config.ASCENDING && direction != config.DESCENDING)) && currKey != config.RANDOM {
+		if (!okField || (direction != config.Ascending && direction != config.Descending)) && currKey != config.Random {
 			continue
 		}
 
@@ -40,9 +40,9 @@ func GenerateOrderQuery(db *gorm.DB, keys []string, validSorts map[string]string
 		switch {
 		case direction == "": // no direction provided
 			orderQuery = field
-		case strings.Contains(field, config.NULLS_LAST): // sort withs nulls last
-			field = strings.TrimSpace(strings.ReplaceAll(field, config.NULLS_LAST, ""))
-			orderQuery = fmt.Sprintf("%s %s %s", field, direction, config.NULLS_LAST)
+		case strings.Contains(field, config.NullsLast): // sort withs nulls last
+			field = strings.TrimSpace(strings.ReplaceAll(field, config.NullsLast, ""))
+			orderQuery = fmt.Sprintf("%s %s %s", field, direction, config.NullsLast)
 
 		default: // typical sort query
 			orderQuery = fmt.Sprintf("%s %s", field, direction)
