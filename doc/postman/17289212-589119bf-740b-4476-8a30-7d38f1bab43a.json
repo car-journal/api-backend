@@ -1424,8 +1424,29 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
-								"header": []
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"client_secret\": \"local_secret\",\n    \"email\": \"test@gmail.com\",\n    \"password\": \"password\",\n    \"confirm_password\": \"password\",\n    \"gender\": true,\n    \"first_name\": \"Rayendra\",\n    \"last_name\": \"Sabandar\",\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{go_url}}/v1/external/auth/register",
+									"host": [
+										"{{go_url}}"
+									],
+									"path": [
+										"v1",
+										"external",
+										"auth",
+										"register"
+									]
+								}
 							},
 							"response": [
 								{
