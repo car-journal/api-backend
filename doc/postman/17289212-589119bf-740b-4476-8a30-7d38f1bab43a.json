@@ -929,7 +929,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"odometer_reading\": 27500,\n    \"reading_unit\": \"km\",\n    \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 46.5\n}",
+									"raw": "{\n    \"odometer_reading\": 27500,\n    \"reading_unit\": \"km\",\n    \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 46.5,\n    \"notes\": null // nullable\n}",
 									"options": {
 										"raw": {
 											"language": "json"
