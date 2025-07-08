@@ -1586,6 +1586,59 @@
 									"cookie": [],
 									"responseTime": null,
 									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"invalid_input\",\n        \"message\": \"please re-check your input; make sure the validations are met\",\n        \"raw\": [\n            \"confirm_password must be the same as password\"\n        ]\n    }\n}"
+								},
+								{
+									"id": "17289212-be50234f-6340-4c4d-bb53-9e9145ef7108",
+									"name": "New Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"client_secret\": \"local_secret\",\n    \"email\": \"test2@gmail.com\",\n    \"password\": \"asd\",\n    \"confirm_password\": \"passworda\",\n    \"gender\": true,\n    \"last_name\": \"Sabandar\",\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{go_url}}/v1/external/auth/register",
+											"host": [
+												"{{go_url}}"
+											],
+											"path": [
+												"v1",
+												"external",
+												"auth",
+												"register"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 08 Jul 2025 03:05:22 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "239"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"invalid_input\",\n        \"message\": \"please re-check your input; make sure the validations are met\",\n        \"raw\": [\n            \"password must be longer than 6\",\n            \"confirm_password must be the same as password\",\n            \"first_name is required\"\n        ]\n    }\n}"
 								}
 							]
 						},
