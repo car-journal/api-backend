@@ -2,12 +2,10 @@ package database
 
 import (
 	"context"
-
-	"github.com/car-journal/api-backend/config"
 )
 
 func Run(ctx context.Context, fn func(ctx context.Context) error) error {
-	db := config.ConnectGormPostgres()
+	db := Get(ctx)
 	tx := db.Begin()
 	defer func() {
 		if r := recover(); r != nil {

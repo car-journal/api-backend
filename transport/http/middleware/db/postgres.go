@@ -1,3 +1,4 @@
+// Package dbmiddleware handles db context creation
 package dbmiddleware
 
 import (

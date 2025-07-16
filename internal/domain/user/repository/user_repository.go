@@ -21,8 +21,7 @@ type Interface interface {
 	UpdatePassword(ctx context.Context, model *internalmodel.User) error
 }
 
-type repository struct {
-}
+type repository struct{}
 
 func Repository() Interface {
 	return &repository{}

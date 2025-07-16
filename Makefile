@@ -1,6 +1,9 @@
 dev:
 	nodemon --exec go run cmd/main.go --signal SIGTERM
 
+build:
+	go build -o car-journal cmd/main.go
+
 goose-create: # name=
 	goose create $(name) sql
 

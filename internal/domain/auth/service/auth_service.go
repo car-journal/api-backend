@@ -18,6 +18,7 @@ import (
 	"github.com/car-journal/api-backend/lib/hash"
 	"github.com/car-journal/api-backend/lib/httperror"
 	"github.com/car-journal/api-backend/lib/httperror/const/errortype"
+	"github.com/car-journal/api-backend/lib/logger"
 	"github.com/car-journal/api-backend/lib/uuid"
 
 	"github.com/golang-jwt/jwt/v4"
@@ -80,17 +81,6 @@ func (s service) Register(ctx context.Context, payload authpayload.RegisterPaylo
 		return err
 	}
 
-	// var dateOfBirth *time.Time
-	// if payload.DateOfBirth != nil {
-	// 	convertedTime, err := internaltime.ConvertStringToTime(internaltime.YearMonthDayHourMinuteSecondWithDashLayout, *payload.DateOfBirth)
-	// 	if err != nil {
-	// 		return err
-	// 	}
-
-	// 	dateOfBirth = &convertedTime
-
-	// }
-
 	return s.userProfileRepository.Save(ctx, internalmodel.UserProfile{
 		UserID:      id,
 		Gender:      payload.Gender,
@@ -122,13 +112,16 @@ func (s service) Login(ctx context.Context, payload authpayload.Login) (*authdto
 	}
 	user, err := s.userRepository.FindByEmail(ctx, payload.Email)
 	if nil != err {
+		logger.LoggerInterface.Log(err.Error())
 		return nil, err
 	}
 	if user == nil {
+		logger.LoggerInterface.Log("user does not exists")
 		return nil, httperror.New(errortype.UNAUTHORIZED, fmt.Errorf("invalid credential"))
 	}
 
 	if err := s.hashLib.Check(user.Password, payload.Password); nil != err {
+		logger.LoggerInterface.Log("invalid credential")
 		return nil, httperror.New(errortype.UNAUTHORIZED, fmt.Errorf("invalid credential"))
 	}
 

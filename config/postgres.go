@@ -5,6 +5,7 @@ import (
 	"log"
 	"sync"
 
+	"github.com/car-journal/api-backend/lib/logger"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -47,6 +48,7 @@ func ConnectGormPostgres() *gorm.DB {
 		)
 		db, err = gorm.Open(postgres.Open(conn), &gorm.Config{})
 		if nil != err {
+			logger.LoggerInterface.Log(err.Error())
 			panic(err)
 		}
 		log.Printf(`Connected to database postgres (%s) at %s:%s with user "%s"`,

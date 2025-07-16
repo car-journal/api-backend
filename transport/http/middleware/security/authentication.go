@@ -1,3 +1,4 @@
+// Package securitymiddleware handles authz context creation
 package securitymiddleware
 
 import (
@@ -14,6 +15,7 @@ import (
 	"github.com/car-journal/api-backend/lib/authz"
 	"github.com/car-journal/api-backend/lib/httperror"
 	"github.com/car-journal/api-backend/lib/httperror/const/errortype"
+	"github.com/car-journal/api-backend/lib/logger"
 	"github.com/car-journal/api-backend/lib/parser"
 	"github.com/golang-jwt/jwt"
 	"github.com/gorilla/mux"
@@ -28,6 +30,7 @@ func Authentication(authService authservice.Interface, userService userservice.I
 			authorization := r.Header.Get(config.Authorization)
 			bearer := strings.Replace(authorization, config.Bearer, "", -1)
 			if bearer == "" {
+				logger.LoggerInterface.Log("missing authorization")
 				parser.JSON(w, nil, httperror.New(errortype.UNAUTHORIZED, fmt.Errorf("missing authorization")))
 				return
 			}
@@ -35,12 +38,14 @@ func Authentication(authService authservice.Interface, userService userservice.I
 			// 2. Parse token with rsa private key, rsa public key
 			jwtPublicKey, err := base64.StdEncoding.DecodeString(config.Get(config.JwtPublicKey))
 			if err != nil {
+				logger.LoggerInterface.Log(err.Error())
 				parser.JSON(w, nil, httperror.New(errortype.INTERNAL_SERVER, err))
 				return
 			}
 
 			publicKey, err := jwt.ParseRSAPublicKeyFromPEM(jwtPublicKey)
 			if nil != err {
+				logger.LoggerInterface.Log(err.Error())
 				parser.JSON(w, nil, httperror.New(errortype.INTERNAL_SERVER, fmt.Errorf("missing pub key")))
 				return
 			}
@@ -50,6 +55,7 @@ func Authentication(authService authservice.Interface, userService userservice.I
 				return publicKey, nil
 			})
 			if err != nil {
+				logger.LoggerInterface.Log(err.Error())
 				parser.JSON(w, nil, httperror.New(errortype.UNAUTHORIZED, err))
 				return
 			}

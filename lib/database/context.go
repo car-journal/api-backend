@@ -1,3 +1,4 @@
+// Package database handles gorm
 package database
 
 import (
