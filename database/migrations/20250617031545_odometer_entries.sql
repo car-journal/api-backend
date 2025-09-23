@@ -7,8 +7,7 @@ CREATE TABLE IF NOT EXISTS odometer_entries (
     reading_unit VARCHAR(255) NOT NULL CHECK (reading_unit IN ('km', 'mi')),
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW(),
-    deleted_at TIMESTAMPTZ,
-    UNIQUE (car_id, odometer_reading)
+    deleted_at TIMESTAMPTZ
 );
 -- +goose StatementEnd
 
