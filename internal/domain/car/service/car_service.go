@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 
+	cardto "github.com/car-journal/api-backend/internal/domain/car/dto"
 	carpayload "github.com/car-journal/api-backend/internal/domain/car/payload"
 	carrepository "github.com/car-journal/api-backend/internal/domain/car/repository"
 	userrepository "github.com/car-journal/api-backend/internal/domain/user/repository"
@@ -16,7 +17,7 @@ import (
 
 type Interface interface {
 	Create(ctx context.Context, payload carpayload.CreatePayload) error
-	List(ctx context.Context, userID string) ([]*internalmodel.Car, error)
+	ListCarsWithAverageFuelConsumptionRate(ctx context.Context, userID string) ([]*cardto.CarWithAverageFuelConsumptionRate, error)
 	FindByID(ctx context.Context, ID string, userID string) (*internalmodel.Car, error)
 	Update(ctx context.Context, payload carpayload.UpdatePayload) error
 	Delete(ctx context.Context, id string) error
@@ -68,8 +69,8 @@ func (s service) Create(ctx context.Context, payload carpayload.CreatePayload) e
 	})
 }
 
-func (s service) List(ctx context.Context, userID string) ([]*internalmodel.Car, error) {
-	return s.carRepository.List(ctx, userID)
+func (s service) ListCarsWithAverageFuelConsumptionRate(ctx context.Context, userID string) ([]*cardto.CarWithAverageFuelConsumptionRate, error) {
+	return s.carRepository.ListCarsWithAverageFuelConsumptionRate(ctx, userID)
 }
 
 func (s service) FindByID(ctx context.Context, id string, userID string) (*internalmodel.Car, error) {

@@ -5,6 +5,12 @@ import (
 	gofrsUUID "github.com/gofrs/uuid"
 )
 
+func FromString(uuidStr string) UUID {
+	return UUID{
+		UUID: gofrsUUID.Must(gofrsUUID.FromString(uuidStr)),
+	}
+}
+
 func MustStringToUUID(s string) UUID {
 	res, err := StringToUUID(s)
 	return UUID{

@@ -14,7 +14,7 @@ import (
 func Car(internalRoute *mux.Router, app container.AppContainer) {
 	internalCarRoutes := internalRoute.PathPrefix(routeconst.CarPrefix).Subrouter()
 	internalCarRoutes.HandleFunc("", internalcarcontroller.Create(app.Services.Car)).Methods(http.MethodPost).Name("internalcarcontroller.Create")
-	internalCarRoutes.HandleFunc("", internalcarcontroller.List(app.Services.Car)).Methods(http.MethodGet).Name("internalcarcontroller.List")
+	internalCarRoutes.HandleFunc("", internalcarcontroller.ListCarsWithAverageFuelConsumptionRate(app.Services.Car)).Methods(http.MethodGet).Name("internalcarcontroller.List")
 	internalCarRoutes.HandleFunc("/{car_id}", internalcarcontroller.FindByID(app.Services.Car)).Methods(http.MethodGet).Name("internalcarcontroller.FindByID")
 	internalCarRoutes.HandleFunc("/{car_id}/fuel-entries", internalfuelentrycontroller.FuelEntryListByCarID(app.Services.FuelEntry)).Methods(http.MethodGet).Name("internalfuelentrycontroller.FuelEntryListByCarID")
 	internalCarRoutes.HandleFunc("/{car_id}/odometer-entries", internalodometerentrycontroller.FuelEntryListByCarID(app.Services.OdometerEntry)).Methods(http.MethodGet).Name("internalfuelentrycontroller.FuelEntryListByCarID")

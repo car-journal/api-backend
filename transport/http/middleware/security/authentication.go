@@ -55,7 +55,7 @@ func Authentication(authService authservice.Interface, userService userservice.I
 				return publicKey, nil
 			})
 			if err != nil {
-				logger.LoggerInterface.Log(err.Error())
+				logger.LoggerInterface.Log("err ParseWithClaims" + err.Error())
 				parser.JSON(w, nil, httperror.New(errortype.UNAUTHORIZED, err))
 				return
 			}

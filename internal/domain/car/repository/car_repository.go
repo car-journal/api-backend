@@ -3,10 +3,14 @@ package carrepository
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
+	"fmt"
 
+	cardto "github.com/car-journal/api-backend/internal/domain/car/dto"
 	internalmodel "github.com/car-journal/api-backend/internal/model"
 	"github.com/car-journal/api-backend/lib/database"
+	"github.com/car-journal/api-backend/lib/logger"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
@@ -14,6 +18,7 @@ import (
 type Interface interface {
 	Save(ctx context.Context, model internalmodel.Car) error
 	List(ctx context.Context, userID string) ([]*internalmodel.Car, error)
+	ListCarsWithAverageFuelConsumptionRate(ctx context.Context, userID string) ([]*cardto.CarWithAverageFuelConsumptionRate, error)
 	FindByID(ctx context.Context, id string, userID string) (*internalmodel.Car, error)
 	Delete(ctx context.Context, id string) error
 }
@@ -53,6 +58,36 @@ func (r repository) List(ctx context.Context, userID string) ([]*internalmodel.C
 	if err := db.Find(&models).Error; err != nil {
 		return nil, err
 	}
+	return models, nil
+}
+
+func (r repository) ListCarsWithAverageFuelConsumptionRate(ctx context.Context, userID string) ([]*cardto.CarWithAverageFuelConsumptionRate, error) {
+	var models []*cardto.CarWithAverageFuelConsumptionRate
+	db := database.Get(ctx)
+	sql := fmt.Sprintf(`
+		SELECT
+			c.id,
+			c.brand,
+			c.model,
+			AVG(f.fuel_consumption_rate) AS average_fuel_consumption_rate,
+			COUNT (*) OVER() AS affected_records,
+			c.created_at,
+			c.updated_at,
+			c.deleted_at
+		FROM
+			cars c
+		LEFT JOIN fuel_entries f ON f.car_id = c.id
+		WHERE c.user_id = '%s'
+		GROUP BY c.id
+	`, userID)
+	logger.LoggerInterface.Log("ListCarsWithAverageFuelConsumptionRate query:" + sql)
+	if err := db.Raw(sql).Scan(&models).Error; err != nil {
+		logger.LoggerInterface.Log(err.Error())
+		return nil, err
+	}
+	modesBt, _ := json.Marshal(models)
+	logger.LoggerInterface.Log(string(modesBt))
+
 	return models, nil
 }
 

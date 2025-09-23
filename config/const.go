@@ -18,5 +18,5 @@ const (
 const (
 	Authorization = "Authorization"
 	Bearer        = "Bearer "
-	Jti           = "Jti"
+	Jti           = "jti"
 )
