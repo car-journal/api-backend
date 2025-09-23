@@ -58,11 +58,11 @@ func Service(
 
 func (s service) Register(ctx context.Context, payload authpayload.RegisterPayload) error {
 	if payload.ClientSecret != config.Get(config.ClientSecret) {
-		return httperror.New(errortype.FORBIDDEN, fmt.Errorf("secret not validated"))
+		return httperror.New(errortype.Forbidden, fmt.Errorf("secret not validated"))
 	}
 
 	if isEmailExists := s.userRepository.IsEmailExists(ctx, payload.Email); isEmailExists {
-		return httperror.New(errortype.ALREADY_REGISTERED, fmt.Errorf("email already exists"))
+		return httperror.New(errortype.AlreadyRegistered, fmt.Errorf("email already exists"))
 	}
 
 	id := s.uuidLib.GenerateNewUUID()
@@ -108,7 +108,7 @@ func (s service) Me(ctx context.Context) (authdto.Me, error) {
 
 func (s service) Login(ctx context.Context, payload authpayload.Login) (*authdto.LoginResponse, error) {
 	if payload.ClientSecret != config.Get(config.ClientSecret) {
-		return nil, httperror.New(errortype.FORBIDDEN, fmt.Errorf("secret not validated"))
+		return nil, httperror.New(errortype.Forbidden, fmt.Errorf("secret not validated"))
 	}
 	user, err := s.userRepository.FindByEmail(ctx, payload.Email)
 	if nil != err {
@@ -117,12 +117,12 @@ func (s service) Login(ctx context.Context, payload authpayload.Login) (*authdto
 	}
 	if user == nil {
 		logger.LoggerInterface.Log("user does not exists")
-		return nil, httperror.New(errortype.UNAUTHORIZED, fmt.Errorf("invalid credential"))
+		return nil, httperror.New(errortype.Unauthorized, fmt.Errorf("invalid credential"))
 	}
 
 	if err := s.hashLib.Check(user.Password, payload.Password); nil != err {
 		logger.LoggerInterface.Log("invalid credential")
-		return nil, httperror.New(errortype.UNAUTHORIZED, fmt.Errorf("invalid credential"))
+		return nil, httperror.New(errortype.Unauthorized, fmt.Errorf("invalid credential"))
 	}
 
 	return s.createJWTToken(ctx, *user)
@@ -135,7 +135,7 @@ func (s service) UpdatePassword(ctx context.Context, payload authpayload.UpdateP
 	}
 
 	if err := s.hashLib.Check(user.Password, payload.OldPassword); nil != err {
-		return httperror.New(errortype.UNAUTHORIZED, fmt.Errorf("invalid credential"))
+		return httperror.New(errortype.Unauthorized, fmt.Errorf("invalid credential"))
 	}
 
 	password, err := s.hashLib.Make(payload.NewPassword)

@@ -51,7 +51,7 @@ func Service(
 
 func (s service) Create(ctx context.Context, payload fuelentrypayload.CreatePayload) error {
 	if isExist := s.userRepository.IsIDExists(ctx, payload.UserID); !isExist {
-		return httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("id %s doesn't exists", payload.UserID))
+		return httperror.New(errortype.RecordNotFound, fmt.Errorf("id %s doesn't exists", payload.UserID))
 	}
 
 	fuelEntryID := s.uuidLib.GenerateNewUUID()
@@ -111,7 +111,7 @@ func (s service) FindByID(ctx context.Context, id string) (*internalmodel.FuelEn
 	}
 
 	if fuelEntry == nil {
-		return nil, httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("fuel entry id %s doesn't exists", id))
+		return nil, httperror.New(errortype.RecordNotFound, fmt.Errorf("fuel entry id %s doesn't exists", id))
 	}
 
 	return fuelEntry, nil
@@ -129,7 +129,7 @@ func (s service) Update(ctx context.Context, payload fuelentrypayload.UpdatePayl
 	}
 
 	if fuelEntry == nil {
-		return httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("fuel entry id %s doesn't exists", payload.ID))
+		return httperror.New(errortype.RecordNotFound, fmt.Errorf("fuel entry id %s doesn't exists", payload.ID))
 	}
 
 	odometerEntry, err := s.odometerEntryRepository.FindByID(ctx, fuelEntry.OdometerEntryID.String())
@@ -138,7 +138,7 @@ func (s service) Update(ctx context.Context, payload fuelentrypayload.UpdatePayl
 	}
 
 	if odometerEntry == nil {
-		return httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("odometer entry id %s doesn't exists", fuelEntry.OdometerEntryID))
+		return httperror.New(errortype.RecordNotFound, fmt.Errorf("odometer entry id %s doesn't exists", fuelEntry.OdometerEntryID))
 	}
 
 	if payload.OdometerReading != nil {
@@ -210,7 +210,7 @@ func (s service) findCarByID(ctx context.Context, carID string, userID string) (
 	}
 
 	if car == nil {
-		return nil, httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("car id %s doesn't exists", carID))
+		return nil, httperror.New(errortype.RecordNotFound, fmt.Errorf("car id %s doesn't exists", carID))
 	}
 
 	return car, nil

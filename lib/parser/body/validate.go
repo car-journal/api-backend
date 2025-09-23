@@ -40,7 +40,7 @@ func Validate(i interface{}, binding string) error {
 		list = append(list, ValidationErrorToText(val, reflected, binding))
 	}
 
-	return httperror.New(errortype.INVALID_INPUT, list)
+	return httperror.New(errortype.InvalidInput, list)
 }
 
 func ValidationErrorToText(e validator.FieldError, reflectValue reflect.Value, b string) string {
@@ -55,23 +55,23 @@ func ValidationErrorToText(e validator.FieldError, reflectValue reflect.Value, b
 		param = strings.ToLower(e.Param())
 	}
 	switch e.Tag() {
-	case REQUIRED:
+	case Required:
 		return fmt.Sprintf("%s is required", name)
-	case REQUIRED_WITHOUT:
+	case RequiredWithout:
 		return fmt.Sprintf("the %s field is required when %s is not present", name, param)
-	case REQUIRED_WITH:
+	case RequiredWith:
 		return fmt.Sprintf("the %s field is required when %s is present", name, param)
-	case REQUIRED_IF:
+	case RequiredIf:
 		return fmt.Sprintf("the %s field is required when %s", name, param)
-	case MAX:
+	case Max:
 		return fmt.Sprintf("%s cannot be longer than %s", name, param)
-	case MIN:
+	case Min:
 		return fmt.Sprintf("%s must be longer than %s", name, param)
-	case EQ_FIELD:
+	case EqField:
 		return fmt.Sprintf("%s must be the same as %s", name, param)
-	case EMAIL:
+	case Email:
 		return "invalid email format"
-	case LEN:
+	case Len:
 		return fmt.Sprintf("%s must be %s characters long", name, param)
 	}
 	return fmt.Sprintf("%s is not valid", name)

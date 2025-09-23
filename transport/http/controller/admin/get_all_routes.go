@@ -1,3 +1,4 @@
+// Package admincontroller handles controller for admin domain
 package admincontroller
 
 import (

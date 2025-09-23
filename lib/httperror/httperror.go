@@ -1,3 +1,4 @@
+// Package httperror handles error interface
 package httperror
 
 import (
@@ -76,9 +77,9 @@ func GetInstance(err error) Interface {
 		return result
 	}
 
-	errorType := errortype.INTERNAL_SERVER
+	errorType := errortype.InternalServer
 	if errors.Is(err, gorm.ErrRecordNotFound) {
-		errorType = errortype.RECORD_NOT_FOUND
+		errorType = errortype.RecordNotFound
 	}
 	codeMessage := IssueCodeMessage(errorType)
 
@@ -98,42 +99,42 @@ type CodeMessage struct {
 
 func IssueCodeMessage(errorType errortype.ErrorType) (res CodeMessage) {
 	res.Code = http.StatusBadRequest
-	res.Message = message.DEFAULT
+	res.Message = message.Default
 	switch errorType {
-	case errortype.FORBIDDEN:
+	case errortype.Forbidden:
 		res.Code = http.StatusForbidden
-		res.Message = message.FORBIDDEN
-	case errortype.INTERNAL_SERVER:
+		res.Message = message.Forbidden
+	case errortype.InternalServer:
 		res.Code = http.StatusInternalServerError
-		res.Message = message.INTERNAL_SERVER
-	case errortype.INVALID_INPUT:
-		res.Message = message.INVALID_INPUT
-	case errortype.RECORD_NOT_FOUND:
+		res.Message = message.InternalServer
+	case errortype.InvalidInput:
+		res.Message = message.InvalidInput
+	case errortype.RecordNotFound:
 		res.Code = http.StatusNotFound
-		res.Message = message.RECORD_NOT_FOUND
-	case errortype.INPUT_RECORD_NOT_FOUND:
-		res.Message = message.INPUT_RECORD_NOT_FOUND
-	case errortype.NOT_ACCEPTABLE:
+		res.Message = message.RecordNotFound
+	case errortype.InputRecordNotFound:
+		res.Message = message.InputRecordNotFound
+	case errortype.NotAcceptable:
 		res.Code = http.StatusNotAcceptable
-		res.Message = message.NOT_ACCEPTABLE
-	case errortype.ALREADY_REGISTERED:
+		res.Message = message.NotAcceptable
+	case errortype.AlreadyRegistered:
 		res.Code = http.StatusConflict
-		res.Message = message.ALREADY_REGISTERED
-	case errortype.UNAUTHENTICATED:
+		res.Message = message.AlreadyRegistered
+	case errortype.Unauthenticated:
 		res.Code = http.StatusUnauthorized
-		res.Message = message.UNAUTHENTICATED
-	case errortype.UNAUTHORIZED:
+		res.Message = message.Unauthenticated
+	case errortype.Unauthorized:
 		res.Code = http.StatusUnauthorized
-		res.Message = message.UNAUTHORIZED
-	case errortype.PAYMENT_REQUIRED:
+		res.Message = message.Unauthorized
+	case errortype.PaymentRequired:
 		res.Code = http.StatusPaymentRequired
-		res.Message = message.PAYMENT_REQUIRED
-	case errortype.MISSING_HEADER:
-		res.Message = message.MISSING_HEADER
-	case errortype.INVALID_HEADER:
-		res.Message = message.INVALID_HEADER
+		res.Message = message.PaymentRequired
+	case errortype.MissingHeader:
+		res.Message = message.MissingHeader
+	case errortype.InvalidHeader:
+		res.Message = message.InvalidHeader
 	default:
-		res.Message = message.DEFAULT
+		res.Message = message.Default
 	}
 
 	return res

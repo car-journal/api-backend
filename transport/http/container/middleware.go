@@ -1,3 +1,4 @@
+// Package container handles all application containers
 package container
 
 import (

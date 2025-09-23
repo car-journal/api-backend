@@ -31,7 +31,7 @@ func Authentication(authService authservice.Interface, userService userservice.I
 			bearer := strings.Replace(authorization, config.Bearer, "", -1)
 			if bearer == "" {
 				logger.LoggerInterface.Log("missing authorization")
-				parser.JSON(w, nil, httperror.New(errortype.UNAUTHORIZED, fmt.Errorf("missing authorization")))
+				parser.JSON(w, nil, httperror.New(errortype.Unauthorized, fmt.Errorf("missing authorization")))
 				return
 			}
 
@@ -39,14 +39,14 @@ func Authentication(authService authservice.Interface, userService userservice.I
 			jwtPublicKey, err := base64.StdEncoding.DecodeString(config.Get(config.JwtPublicKey))
 			if err != nil {
 				logger.LoggerInterface.Log(err.Error())
-				parser.JSON(w, nil, httperror.New(errortype.INTERNAL_SERVER, err))
+				parser.JSON(w, nil, httperror.New(errortype.InternalServer, err))
 				return
 			}
 
 			publicKey, err := jwt.ParseRSAPublicKeyFromPEM(jwtPublicKey)
 			if nil != err {
 				logger.LoggerInterface.Log(err.Error())
-				parser.JSON(w, nil, httperror.New(errortype.INTERNAL_SERVER, fmt.Errorf("missing pub key")))
+				parser.JSON(w, nil, httperror.New(errortype.InternalServer, fmt.Errorf("missing pub key")))
 				return
 			}
 
@@ -56,7 +56,7 @@ func Authentication(authService authservice.Interface, userService userservice.I
 			})
 			if err != nil {
 				logger.LoggerInterface.Log("err ParseWithClaims" + err.Error())
-				parser.JSON(w, nil, httperror.New(errortype.UNAUTHORIZED, err))
+				parser.JSON(w, nil, httperror.New(errortype.Unauthorized, err))
 				return
 			}
 
@@ -68,13 +68,13 @@ func Authentication(authService authservice.Interface, userService userservice.I
 			// 4. Get oauth access token by jwt id
 			oauthAccessToken, err := authService.FindActiveOauthAccessTokenByID(ctx, jti)
 			if err != nil && errors.Is(err, gorm.ErrRecordNotFound) {
-				parser.JSON(w, nil, httperror.New(errortype.UNAUTHORIZED, fmt.Errorf("oauth access token not found")))
+				parser.JSON(w, nil, httperror.New(errortype.Unauthorized, fmt.Errorf("oauth access token not found")))
 				return
 			} else if err != nil {
-				parser.JSON(w, nil, httperror.New(errortype.INTERNAL_SERVER, err))
+				parser.JSON(w, nil, httperror.New(errortype.InternalServer, err))
 				return
 			} else if oauthAccessToken == nil {
-				parser.JSON(w, nil, httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("user id not found")))
+				parser.JSON(w, nil, httperror.New(errortype.RecordNotFound, fmt.Errorf("user id not found")))
 				return
 			}
 			userID := oauthAccessToken.UserID

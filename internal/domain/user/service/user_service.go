@@ -1,3 +1,4 @@
+// Package userservice handles user
 package userservice
 
 import (
@@ -46,7 +47,7 @@ func Service(
 
 func (s service) Create(ctx context.Context, userPayload userpayload.CreatePayload, userProfilePayload userprofilepayload.CreatePayload) error {
 	if isExist := s.isExists(ctx, userPayload.Email); isExist {
-		return httperror.New(errortype.ALREADY_REGISTERED, fmt.Errorf("email %s already exists", userPayload.Email))
+		return httperror.New(errortype.AlreadyRegistered, fmt.Errorf("email %s already exists", userPayload.Email))
 	}
 	id := s.uuidLib.GenerateNewUUID()
 
@@ -86,7 +87,7 @@ func (s service) findByID(ctx context.Context, id string, preloads ...string) (*
 	}
 
 	if user == nil {
-		return nil, httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("user not found"))
+		return nil, httperror.New(errortype.RecordNotFound, fmt.Errorf("user not found"))
 	}
 
 	return user, nil

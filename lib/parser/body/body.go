@@ -1,3 +1,4 @@
+// Package bodyparser handles request body parsing
 package bodyparser
 
 import (
@@ -16,7 +17,7 @@ func ParseForm(r *http.Request, i interface{}) error {
 	return form.NewDecoder().Decode(i, r.Form)
 }
 
-func ParseJson(r *http.Request, i interface{}) error {
+func ParseJSON(r *http.Request, i interface{}) error {
 	defer r.Body.Close()
 	return json.NewDecoder(r.Body).Decode(i)
 }
@@ -25,7 +26,7 @@ func Parse(r *http.Request, i interface{}) (err error) {
 	b := Default(r.Method, r.Header.Get("Content-type"))
 	switch b {
 	case JSON:
-		err = ParseJson(r, i)
+		err = ParseJSON(r, i)
 	default:
 		err = ParseForm(r, i)
 	}

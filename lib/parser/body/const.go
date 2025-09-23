@@ -21,13 +21,13 @@ const (
 )
 
 const (
-	REQUIRED         = "required"
-	REQUIRED_WITHOUT = "required_without"
-	REQUIRED_WITH    = "required_with"
-	REQUIRED_IF      = "required_if"
-	MAX              = "max"
-	MIN              = "min"
-	EQ_FIELD         = "eqfield"
-	EMAIL            = "email"
-	LEN              = "len"
+	Required        = "required"
+	RequiredWithout = "required_without"
+	RequiredWith    = "required_with"
+	RequiredIf      = "required_if"
+	Max             = "max"
+	Min             = "min"
+	EqField         = "eqfield"
+	Email           = "email"
+	Len             = "len"
 )

@@ -1,3 +1,4 @@
+// Package pagination handles pagination data
 package pagination
 
 import (
@@ -100,7 +101,7 @@ func CreateMetadata(ctx context.Context, page Page, s reflect.Value, length int)
 
 		// Handle error when extracting AffectedRecords
 		if !affectedRecordsString.IsValid() {
-			return metaResponse, httperror.New(errortype.INTERNAL_SERVER, fmt.Errorf("affectedrecords is not in the result struct"))
+			return metaResponse, httperror.New(errortype.InternalServer, fmt.Errorf("affectedrecords is not in the result struct"))
 		}
 
 		// set affectedRecords as integer and assign to metaResponse.AffectedRecords

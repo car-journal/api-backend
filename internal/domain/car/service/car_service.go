@@ -43,7 +43,7 @@ func Service(
 
 func (s service) Create(ctx context.Context, payload carpayload.CreatePayload) error {
 	if isExist := s.userRepository.IsIDExists(ctx, payload.UserID); !isExist {
-		return httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("id %s doesn't exists", payload.UserID))
+		return httperror.New(errortype.RecordNotFound, fmt.Errorf("id %s doesn't exists", payload.UserID))
 	}
 
 	id := s.uuidLib.GenerateNewUUID()
@@ -80,7 +80,7 @@ func (s service) FindByID(ctx context.Context, id string, userID string) (*inter
 	}
 
 	if car == nil {
-		return nil, httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("car id %s doesn't exists", id))
+		return nil, httperror.New(errortype.RecordNotFound, fmt.Errorf("car id %s doesn't exists", id))
 	}
 
 	return car, nil
@@ -93,7 +93,7 @@ func (s service) Update(ctx context.Context, payload carpayload.UpdatePayload) e
 	}
 
 	if car == nil {
-		return httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("car id %s doesn't exists", payload.ID))
+		return httperror.New(errortype.RecordNotFound, fmt.Errorf("car id %s doesn't exists", payload.ID))
 	}
 
 	if payload.Brand != nil {

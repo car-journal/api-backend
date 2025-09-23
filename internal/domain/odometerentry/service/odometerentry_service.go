@@ -1,4 +1,4 @@
-// Package odometerentryservice handles user authentication and profile management.
+// Package odometerentryservice handles user odometer entries.
 package odometerentryservice
 
 import (
@@ -91,7 +91,7 @@ func (s service) FindByID(ctx context.Context, id string) (*internalmodel.Odomet
 	}
 
 	if odometerEntry == nil {
-		return nil, httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("odometer entry id %s doesn't exists", id))
+		return nil, httperror.New(errortype.RecordNotFound, fmt.Errorf("odometer entry id %s doesn't exists", id))
 	}
 
 	return odometerEntry, nil
@@ -108,7 +108,7 @@ func (s service) findCarByID(ctx context.Context, carID string, userID string) (
 	}
 
 	if car == nil {
-		return nil, httperror.New(errortype.RECORD_NOT_FOUND, fmt.Errorf("car id %s doesn't exists", carID))
+		return nil, httperror.New(errortype.RecordNotFound, fmt.Errorf("car id %s doesn't exists", carID))
 	}
 
 	return car, nil
