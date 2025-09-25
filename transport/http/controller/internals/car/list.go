@@ -27,11 +27,7 @@ func ListCarsWithAverageFuelConsumptionRate(carService carservice.Interface) htt
 			}
 
 			pageResponse, err = filter.BuildPageResponse(ctx, pageParams, cars)
-			if err != nil {
-				return err
-			}
-
-			return nil
+			return err
 		}); nil != errTrans {
 			parser.JSON(writer, nil, errTrans)
 			return
