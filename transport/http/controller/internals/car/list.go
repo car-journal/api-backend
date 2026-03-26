@@ -21,7 +21,7 @@ func ListCarsWithAverageFuelConsumptionRate(carService carservice.Interface) htt
 
 		if errTrans := database.Run(request.Context(), func(ctx context.Context) (err error) {
 			me := authz.GetAuthUser(ctx)
-			cars, err = carService.ListCarsWithAverageFuelConsumptionRate(ctx, me.ID)
+			cars, err = carService.ListCarsWithAverageFuelConsumptionRate(ctx, me.ID, pageParams)
 			if err != nil {
 				return err
 			}

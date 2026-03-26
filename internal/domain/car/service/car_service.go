@@ -10,6 +10,7 @@ import (
 	carrepository "github.com/car-journal/api-backend/internal/domain/car/repository"
 	userrepository "github.com/car-journal/api-backend/internal/domain/user/repository"
 	internalmodel "github.com/car-journal/api-backend/internal/model"
+	"github.com/car-journal/api-backend/lib/filter"
 	"github.com/car-journal/api-backend/lib/httperror"
 	"github.com/car-journal/api-backend/lib/httperror/const/errortype"
 	"github.com/car-journal/api-backend/lib/uuid"
@@ -17,7 +18,7 @@ import (
 
 type Interface interface {
 	Create(ctx context.Context, payload carpayload.CreatePayload) error
-	ListCarsWithAverageFuelConsumptionRate(ctx context.Context, userID string) ([]*cardto.CarWithAverageFuelConsumptionRate, error)
+	ListCarsWithAverageFuelConsumptionRate(ctx context.Context, userID string, pageParams *filter.Page) ([]*cardto.CarWithAverageFuelConsumptionRate, error)
 	FindByID(ctx context.Context, ID string, userID string) (*internalmodel.Car, error)
 	Update(ctx context.Context, payload carpayload.UpdatePayload) error
 	Delete(ctx context.Context, id string) error
@@ -69,8 +70,8 @@ func (s service) Create(ctx context.Context, payload carpayload.CreatePayload) e
 	})
 }
 
-func (s service) ListCarsWithAverageFuelConsumptionRate(ctx context.Context, userID string) ([]*cardto.CarWithAverageFuelConsumptionRate, error) {
-	return s.carRepository.ListCarsWithAverageFuelConsumptionRate(ctx, userID)
+func (s service) ListCarsWithAverageFuelConsumptionRate(ctx context.Context, userID string, pageParams *filter.Page) ([]*cardto.CarWithAverageFuelConsumptionRate, error) {
+	return s.carRepository.ListCarsWithAverageFuelConsumptionRate(ctx, userID, pageParams)
 }
 
 func (s service) FindByID(ctx context.Context, id string, userID string) (*internalmodel.Car, error) {
