@@ -1,1872 +1,1929 @@
 {
-	"info": {
-		"_postman_id": "589119bf-740b-4476-8a30-7d38f1bab43a",
-		"name": "Car Journal",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "17289212"
-	},
-	"item": [
-		{
-			"name": "Admin",
-			"item": [
-				{
-					"name": "Get All Routes",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{go_url}}/v1/admin/get-all-routes",
-							"host": [
-								"{{go_url}}"
-							],
-							"path": [
-								"v1",
-								"admin",
-								"get-all-routes"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "{{access_token}}",
-						"type": "string"
-					}
-				]
-			},
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"packages": {},
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"packages": {},
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
-			"name": "Internal",
-			"item": [
-				{
-					"name": "User Profile",
-					"item": [
-						{
-							"name": "Update",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"gender\": \"male\", // male || female\n    \"first_name\": \"Rayendra\", // required\n    \"last_name\": \"Sabandar\", // nullable\n    \"date_of_birth\": null, // nullable\n    \"picture_url\": \"test\" // nullable\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{go_url}}/v1/internal/user-profiles",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"user-profiles"
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "PATCH",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"gender\": \"male\", // male || female\n    \"first_name\": \"Rayendra\", // required\n    \"last_name\": \"Sabandar\", // nullable\n    \"date_of_birth\": null, // nullable\n    \"picture_url\": \"test\" // nullable\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/internal/user-profiles",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"user-profiles"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Thu, 19 Oct 2023 19:15:18 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "17"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": true\n}"
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "Auth",
-					"item": [
-						{
-							"name": "Update Password",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"old_password\": \"password\", // required\n    \"new_password\": \"new_password\", // required, min=6,max=25\n    \"new_password_confirmation\": \"new_password\" // required, must be same as new_password\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{go_url}}/v1/internal/auth/update-password",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"auth",
-										"update-password"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Car",
-					"item": [
-						{
-							"name": "Create",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 2499,\n    \"vehicle_identity_number\": null, // nullable\n    \"engine_number\": null, // nullable\n    \"color\": null, // nullable\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null, // nullable\n    \"vehicle_ownership_document_number\": null // nullable\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{go_url}}/v1/internal/cars",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"cars"
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars/",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars",
-												""
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 02 Jul 2025 05:18:27 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "17"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": true\n}"
-								}
-							]
-						},
-						{
-							"name": "List",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{go_url}}/v1/internal/cars",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"cars"
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Tue, 23 Sep 2025 10:59:47 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "323"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"data\": [\n        {\n            \"id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n            \"created_at\": \"2025-07-07T22:12:45.26736+07:00\",\n            \"updated_at\": \"2025-07-07T22:12:45.26736+07:00\",\n            \"deleted_at\": null,\n            \"brand\": \"Ford\",\n            \"model\": \"Everest\",\n            \"average_fuel_consumption_rate\": 7.778947368421052\n        }\n    ],\n    \"meta\": {\n        \"affected_records\": 1,\n        \"last_page\": 1,\n        \"count\": 1,\n        \"has_next\": false\n    }\n}"
-								},
-								{
-									"name": "200 ( no data)",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Tue, 23 Sep 2025 11:02:07 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "83"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"data\": [],\n    \"meta\": {\n        \"affected_records\": 0,\n        \"last_page\": 0,\n        \"count\": 0,\n        \"has_next\": false\n    }\n}"
-								}
-							]
-						},
-						{
-							"name": "Find By ID",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{go_url}}/v1/internal/cars/:car_id",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"cars",
-										":car_id"
-									],
-									"variable": [
-										{
-											"key": "car_id",
-											"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
-										}
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars/:car_id",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars",
-												":car_id"
-											],
-											"variable": [
-												{
-													"key": "car_id",
-													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
-												}
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 02 Jul 2025 13:58:11 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "440"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"id\": \"3a673c5d-3dbc-4828-86f2-4cc0d5649392\",\n    \"created_at\": \"2025-07-02T12:18:27.75466+07:00\",\n    \"updated_at\": \"2025-07-02T12:18:27.75466+07:00\",\n    \"deleted_at\": null,\n    \"user_id\": \"48f43073-0016-44ee-acd4-549ec499fc1b\",\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}"
-								},
-								{
-									"name": "404",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars/:car_id",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars",
-												":car_id"
-											],
-											"variable": [
-												{
-													"key": "car_id",
-													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649391"
-												}
-											]
-										}
-									},
-									"status": "Not Found",
-									"code": 404,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 02 Jul 2025 14:02:35 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "186"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"record_not_found\",\n        \"message\": \"enter another param or recheck the param you've sent\",\n        \"raw\": \"car id 3a673c5d-3dbc-4828-86f2-4cc0d5649391 doesn't exists\"\n    }\n}"
-								}
-							]
-						},
-						{
-							"name": "List of Fuel Entries",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{go_url}}/v1/internal/cars/:car_id/fuel-entries",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"cars",
-										":car_id",
-										"fuel-entries"
-									],
-									"variable": [
-										{
-											"key": "car_id",
-											"value": "d06116d4-dd8e-4eef-b65e-7c55a935e02f"
-										}
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 02 Jul 2025 05:18:38 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "442"
-										}
-									],
-									"cookie": [],
-									"body": "[\n    {\n        \"id\": \"3a673c5d-3dbc-4828-86f2-4cc0d5649392\",\n        \"created_at\": \"2025-07-02T12:18:27.75466+07:00\",\n        \"updated_at\": \"2025-07-02T12:18:27.75466+07:00\",\n        \"deleted_at\": null,\n        \"user_id\": \"48f43073-0016-44ee-acd4-549ec499fc1b\",\n        \"brand\": \"Ford\",\n        \"model\": \"Everest\",\n        \"manufacture_year\": 2012,\n        \"cylinder_capacity\": 1499,\n        \"vehicle_identity_number\": null,\n        \"engine_number\": null,\n        \"color\": null,\n        \"fuel_type\": \"solar\",\n        \"registration_year\": null,\n        \"vehicle_ownership_document_number\": null\n    }\n]"
-								},
-								{
-									"name": "200 (no data)",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 02 Jul 2025 14:49:43 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "3"
-										}
-									],
-									"cookie": [],
-									"body": "[]"
-								}
-							]
-						},
-						{
-							"name": "List of Odometer Entries",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{go_url}}/v1/internal/cars/:car_id/odometer-entries",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"cars",
-										":car_id",
-										"odometer-entries"
-									],
-									"variable": [
-										{
-											"key": "car_id",
-											"value": "d06116d4-dd8e-4eef-b65e-7c55a935e02f"
-										}
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars/:car_id/odometer-entries",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars",
-												":car_id",
-												"odometer-entries"
-											],
-											"variable": [
-												{
-													"key": "car_id",
-													"value": "d06116d4-dd8e-4eef-b65e-7c55a935e02f"
-												}
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Mon, 07 Jul 2025 17:43:29 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "465"
-										}
-									],
-									"cookie": [],
-									"body": "[\n    {\n        \"id\": \"6e32aad9-ed87-4e60-b9af-6169198709df\",\n        \"created_at\": \"2025-07-07T22:13:56.601005+07:00\",\n        \"updated_at\": \"2025-07-07T22:13:56.601005+07:00\",\n        \"deleted_at\": null,\n        \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n        \"odometer_reading\": 260000,\n        \"reading_unit\": \"km\",\n        \"fuel_entries\": {\n            \"id\": \"9c00ba1f-b7f2-44e6-a3a3-04c5f3b2422f\",\n            \"fuel_type\": \"pertamina\",\n            \"fuel_name\": \"solar\",\n            \"fuel_unit\": \"liter\",\n            \"volume_filled\": 47.5,\n            \"total_price\": 323000,\n            \"fuel_consumption_rate\": 7.778947368421052\n        }\n    }\n]"
-								}
-							]
-						},
-						{
-							"name": "Update",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 2499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{go_url}}/v1/internal/cars/:car_id",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"cars",
-										":car_id"
-									],
-									"variable": [
-										{
-											"key": "car_id",
-											"value": "aeb0e399-a394-471c-a6ae-ad03d500c56a"
-										}
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "PATCH",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars/:car_id",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars",
-												":car_id"
-											],
-											"variable": [
-												{
-													"key": "car_id",
-													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
-												}
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 02 Jul 2025 14:04:17 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "17"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": true\n}"
-								}
-							]
-						},
-						{
-							"name": "Delete",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{go_url}}/v1/internal/cars/:car_id",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"cars",
-										":car_id"
-									],
-									"variable": [
-										{
-											"key": "car_id",
-											"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
-										}
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "DELETE",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars/:car_id",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars",
-												":car_id"
-											],
-											"variable": [
-												{
-													"key": "car_id",
-													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649391"
-												}
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 02 Jul 2025 14:40:01 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "17"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": true\n}"
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "Fuel Entry",
-					"item": [
-						{
-							"name": "Create",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"odometer_reading\": 27500,\n    \"reading_unit\": \"km\",\n    \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 46.5,\n    \"notes\": null // nullable\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{go_url}}/v1/internal/fuel-entries",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"fuel-entries"
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"odometer_reading\": 27500,\n    \"reading_unit\": \"km\",\n    \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 46.5\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/internal/fuel-entries",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"fuel-entries"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Mon, 07 Jul 2025 15:13:56 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "17"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": true\n}"
-								}
-							]
-						},
-						{
-							"name": "Find By ID",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"fuel-entries",
-										":fuel_entry_id"
-									],
-									"variable": [
-										{
-											"key": "fuel_entry_id",
-											"value": "e84f2628-8b32-414c-902c-93bb08bdbca4"
-										}
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"fuel-entries",
-												":fuel_entry_id"
-											],
-											"variable": [
-												{
-													"key": "fuel_entry_id",
-													"value": "e84f2628-8b32-414c-902c-93bb08bdbca4"
-												}
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Mon, 07 Jul 2025 03:25:56 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "430"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"id\": \"e84f2628-8b32-414c-902c-93bb08bdbca4\",\n    \"created_at\": \"2025-07-07T09:47:53.163762+07:00\",\n    \"updated_at\": \"2025-07-07T09:47:53.163762+07:00\",\n    \"deleted_at\": null,\n    \"car_id\": \"aeb0e399-a394-471c-a6ae-ad03d500c56a\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 47.5,\n    \"total_price\": 323000,\n    \"fuel_consumption\": 7.778947368421052,\n    \"notes\": null\n}"
-								},
-								{
-									"name": "404",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"fuel-entries",
-												":fuel_entry_id"
-											],
-											"variable": [
-												{
-													"key": "fuel_entry_id",
-													"value": "e84f2628-8b32-414c-902c-93bb08bdbca5"
-												}
-											]
-										}
-									},
-									"status": "Not Found",
-									"code": 404,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Mon, 07 Jul 2025 03:26:11 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "193"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"record_not_found\",\n        \"message\": \"enter another param or recheck the param you've sent\",\n        \"raw\": \"fuel entry id e84f2628-8b32-414c-902c-93bb08bdbca5 doesn't exists\"\n    }\n}"
-								}
-							]
-						},
-						{
-							"name": "Update",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"odometer_reading\": 260000,\n    \"reading_unit\": \"km\",\n    \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 47.5,\n    \"notes\": null // nullable\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"fuel-entries",
-										":fuel_entry_id"
-									],
-									"variable": [
-										{
-											"key": "fuel_entry_id",
-											"value": "9c00ba1f-b7f2-44e6-a3a3-04c5f3b2422f"
-										}
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "PATCH",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"car_id\": \"aeb0e399-a394-471c-a6ae-ad03d500c56a\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 47.5\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars/:car_id",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars",
-												":car_id"
-											],
-											"variable": [
-												{
-													"key": "car_id",
-													"value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
-												}
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 02 Jul 2025 14:04:17 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "17"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": true\n}"
-								},
-								{
-									"name": "400 (reading_unit not sent)",
-									"originalRequest": {
-										"method": "PATCH",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"odometer_reading\": 260000,\n    \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 47.5\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"fuel-entries",
-												":fuel_entry_id"
-											],
-											"variable": [
-												{
-													"key": "fuel_entry_id",
-													"value": "9c00ba1f-b7f2-44e6-a3a3-04c5f3b2422f"
-												}
-											]
-										}
-									},
-									"status": "Bad Request",
-									"code": 400,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Mon, 07 Jul 2025 15:24:16 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "203"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"invalid_input\",\n        \"message\": \"please re-check your input; make sure the validations are met\",\n        \"raw\": [\n            \"the reading_unit field is required when odometer_reading is present\"\n        ]\n    }\n}"
-								}
-							]
-						},
-						{
-							"name": "Delete",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"internal",
-										"fuel-entries",
-										":fuel_entry_id"
-									],
-									"variable": [
-										{
-											"key": "fuel_entry_id",
-											"value": "baffb5a4-9d60-4dff-8822-1d910e646cf5"
-										}
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "DELETE",
-										"header": [],
-										"url": {
-											"raw": "{{go_url}}/v1/internal/cars/:car_id",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"internal",
-												"cars",
-												":car_id"
-											],
-											"variable": [
-												{
-													"key": "car_id",
-													"value": "baffb5a4-9d60-4dff-8822-1d910e646cf5"
-												}
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 02 Jul 2025 14:40:01 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "17"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": true\n}"
-								}
-							]
-						}
-					]
-				}
-			],
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "{{access_token}}",
-						"type": "string"
-					}
-				]
-			},
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
-			"name": "External",
-			"item": [
-				{
-					"name": "Auth",
-					"item": [
-						{
-							"name": "Register",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"client_secret\": \"{{client_secret}}\",\n    \"email\": \"test@gmail.com\",\n    \"password\": \"password\",\n    \"confirm_password\": \"password\",\n    \"gender\": true, // true = male; false = female || nullable\n    \"first_name\": \"Rayendra\",\n    \"last_name\": \"Sabandar\", // nullable\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601 || nullable\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{go_url}}/v1/external/auth/register",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"external",
-										"auth",
-										"register"
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"client_secret\": \"local_secret\",\n    \"email\": \"test@gmail.com\",\n    \"password\": \"password\",\n    \"confirm_password\": \"password\",\n    \"gender\": true,\n    \"first_name\": \"Rayendra\",\n    \"last_name\": \"Sabandar\",\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/external/auth/register",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"external",
-												"auth",
-												"register"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Tue, 08 Jul 2025 03:02:19 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "17"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": true\n}"
-								},
-								{
-									"name": "400 (already exists)",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"client_secret\": \"local_secret\",\n    \"email\": \"test@gmail.com\",\n    \"password\": \"password\",\n    \"confirm_password\": \"password\",\n    \"gender\": true,\n    \"first_name\": \"Rayendra\",\n    \"last_name\": \"Sabandar\",\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/external/auth/register",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"external",
-												"auth",
-												"register"
-											]
-										}
-									},
-									"status": "Conflict",
-									"code": 409,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Tue, 08 Jul 2025 03:03:27 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "145"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"already_registered\",\n        \"message\": \"this credential already exists; try another one\",\n        \"raw\": \"email already exists\"\n    }\n}"
-								},
-								{
-									"name": "400 (invalid request body)",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"client_secret\": \"local_secret\",\n    \"email\": \"test2@gmail.com\",\n    \"password\": \"asd\",\n    \"confirm_password\": \"passworda\",\n    \"gender\": true,\n    \"last_name\": \"Sabandar\",\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/external/auth/register",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"external",
-												"auth",
-												"register"
-											]
-										}
-									},
-									"status": "Bad Request",
-									"code": 400,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Tue, 08 Jul 2025 03:05:22 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "239"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"invalid_input\",\n        \"message\": \"please re-check your input; make sure the validations are met\",\n        \"raw\": [\n            \"password must be longer than 6\",\n            \"confirm_password must be the same as password\",\n            \"first_name is required\"\n        ]\n    }\n}"
-								},
-								{
-									"name": "403 (secret not validated)",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"client_secret\": \"local_secreasdft\",\n    \"email\": \"test2@gmail.com\",\n    \"password\": \"password\",\n    \"confirm_password\": \"password\",\n    \"gender\": false,\n    \"first_name\": \"Rayendra\",\n    \"last_name\": \"Sabandar\",\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/external/auth/register",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"external",
-												"auth",
-												"register"
-											]
-										}
-									},
-									"status": "Forbidden",
-									"code": 403,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Tue, 08 Jul 2025 03:08:47 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "98"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"forbidden\",\n        \"message\": \"forbidden\",\n        \"raw\": \"secret not validated\"\n    }\n}"
-								}
-							]
-						},
-						{
-							"name": "Login",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"var resBody = pm.response.text();",
-											"",
-											"if (resBody !== \"\") {",
-											"    try {",
-											"        var res = JSON.parse(resBody);",
-											"        if (res.access_token) {",
-											"            pm.environment.set(\"access_token\", res.access_token);",
-											"        } else {",
-											"            console.log(\"access_token not found in response\");",
-											"        }",
-											"    } catch (e) {",
-											"        console.log(\"Failed to parse JSON:\", e);",
-											"    }",
-											"} else {",
-											"    console.log(\"Response body is empty\");",
-											"}"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"client_secret\": \"{{client_secret}}\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{go_url}}/v1/external/auth/login",
-									"host": [
-										"{{go_url}}"
-									],
-									"path": [
-										"v1",
-										"external",
-										"auth",
-										"login"
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "200",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"client_secret\": \"HTZI0XiFdkIeMwhWNPL28Ivq3sw3L39KA1PCZ8JS\"\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/external/auth/login",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"external",
-												"auth",
-												"login"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Thu, 19 Oct 2023 11:57:26 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "871"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"access_token\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTgzMjE0NDYsImp0aSI6IjRhZDU5ZGUzLTRhYzAtNDljYy04YzM3LWIwMTI1ZDdmNjg0NiJ9.dvrgLjqILedZAr3BDdZyLQpXDrzu6-HILyYS3MWub4s0c6j2_jplUCPyBV4sq32t62-J2nj2bkD_GwQ7Fcdiu4x5EMCM1nRxPoQ5Gjutv91ocTygDssU1W9gHOc9C2hsaNunAXz1A58HUo-SnIEj0HsjlW-rpdRvurqdGizyXuWYAHbDxoMLclMHYKfpPJUHHoW3wX0if4P3hLQ0S9aRq-PNyvT5QgF_-rhBsoE36Jh-DpxP94LHGqIY7MxY2Ec3PcTsxMf6Tgr8LOGS0-SKiYcGvkzWOXW7vZisUSxz-Ao-NBQKovJ302Nvdn3LAR-Srxb7C7Gxez-I9BpYcKhj1to15hOTjh0yJwV4vUlOePi7HB7cYGS5b7BjOTra7D0CVLdHr0AYlz_GFpqXZm5yG1UImhdX9acLA-y-IZTAbndtzSd9rSrbYfz213ncHIoBWNCVLLBTsYrxaIpYAyU5zHCP8jV1NCezsLFsGClgNQDbxZcu_6EjCP580Ma4hHyKHliSD7Ehl6YTOQP6BPUbx7S6kWiygTyruVr80I8R721A1evjHLaaWz0bsBNBXSYGgflagLiRrlmXfW9piRHqsg0bSYFYsxes-62tSmPgsb7a3bgq10JZPg7nd4eSfBdTfV4eDS3OL7yyTSBoHYlAPwkT3wWUjqbxT-QefKTnJO8\",\n    \"expires_in\": 1698321446,\n    \"token_type\": \"Bearer\"\n}"
-								},
-								{
-									"name": "403 (password not created)",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"grant_type\": \"password\",\n    \"client_id\": 2,\n    \"client_secret\": \"HTZI0XiFdkIeMwhWNPL28Ivq3sw3L39KA1PCZ8JS\",\n    \"scope\": \"*\"\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/external/auth/login",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"external",
-												"auth",
-												"login"
-											]
-										}
-									},
-									"status": "Forbidden",
-									"code": 403,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Tue, 17 Oct 2023 11:08:50 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "107"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"forbidden\",\n        \"message\": \"forbidden\",\n        \"raw\": \"you have to create a password\"\n    }\n}"
-								},
-								{
-									"name": "400 (no password)",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\"\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/external/auth/login",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"external",
-												"auth",
-												"login"
-											]
-										}
-									},
-									"status": "Bad Request",
-									"code": 400,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Thu, 19 Oct 2023 12:00:10 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "184"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"invalid_input\",\n        \"message\": \"please re-check your input; make sure the validations are met\",\n        \"raw\": [\n            \"client_secret is required\",\n            \"password is required\"\n        ]\n    }\n}"
-								},
-								{
-									"name": "400 (password_confirmation not equals password)",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\"\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/external/auth/login",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"external",
-												"auth",
-												"login"
-											]
-										}
-									},
-									"status": "Bad Request",
-									"code": 400,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Thu, 19 Oct 2023 12:00:27 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "214"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"invalid_input\",\n        \"message\": \"please re-check your input; make sure the validations are met\",\n        \"raw\": [\n            \"client_secret is required\",\n            \"password_confirmation must be the same as password\"\n        ]\n    }\n}"
-								},
-								{
-									"name": "403 (secret not validate)",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"client_secret\": \"{{client_secret}}\"\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{go_url}}/v1/external/auth/login",
-											"host": [
-												"{{go_url}}"
-											],
-											"path": [
-												"v1",
-												"external",
-												"auth",
-												"login"
-											]
-										}
-									},
-									"status": "Forbidden",
-									"code": 403,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Date",
-											"value": "Thu, 19 Oct 2023 12:06:20 GMT"
-										},
-										{
-											"key": "Content-Length",
-											"value": "98"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"forbidden\",\n        \"message\": \"forbidden\",\n        \"raw\": \"secret not validated\"\n    }\n}"
-								}
-							]
-						}
-					]
-				}
-			]
-		}
-	]
+  "info": {
+    "_postman_id": "589119bf-740b-4476-8a30-7d38f1bab43a",
+    "name": "Car Journal",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17289212"
+  },
+  "item": [
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get All Routes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{go_url}}/v1/admin/get-all-routes",
+              "host": [
+                "{{go_url}}"
+              ],
+              "path": [
+                "v1",
+                "admin",
+                "get-all-routes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{access_token}}",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Internal",
+      "item": [
+        {
+          "name": "User Profile",
+          "item": [
+            {
+              "name": "Update",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"gender\": \"male\", // male || female\n    \"first_name\": \"Rayendra\", // required\n    \"last_name\": \"Sabandar\", // nullable\n    \"date_of_birth\": null, // nullable\n    \"picture_url\": \"test\" // nullable\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{go_url}}/v1/internal/user-profiles",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "internal",
+                    "user-profiles"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"gender\": \"male\", // male || female\n    \"first_name\": \"Rayendra\", // required\n    \"last_name\": \"Sabandar\", // nullable\n    \"date_of_birth\": null, // nullable\n    \"picture_url\": \"test\" // nullable\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/user-profiles",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "user-profiles"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 19 Oct 2023 19:15:18 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "17"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Auth",
+          "item": [
+            {
+              "name": "Update Password",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"old_password\": \"password\", // required\n    \"new_password\": \"new_password\", // required, min=6,max=25\n    \"new_password_confirmation\": \"new_password\" // required, must be same as new_password\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{go_url}}/v1/internal/auth/update-password",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "internal",
+                    "auth",
+                    "update-password"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Car",
+          "item": [
+            {
+              "name": "Create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 2499,\n    \"vehicle_identity_number\": null, // nullable\n    \"engine_number\": null, // nullable\n    \"color\": null, // nullable\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null, // nullable\n    \"vehicle_ownership_document_number\": null // nullable\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{go_url}}/v1/internal/cars",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "internal",
+                    "cars"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/cars/",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "cars",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 02 Jul 2025 05:18:27 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "17"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true\n}"
+                }
+              ]
+            },
+            {
+              "name": "List",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{go_url}}/v1/internal/cars",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "internal",
+                    "cars"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/cars",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "cars"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 25 Mar 2026 09:07:14 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "410"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"data\": [\n        {\n            \"id\": \"28b1faad-74e1-44b0-9bf3-44867ad18c6e\",\n            \"created_at\": \"2025-09-25T09:16:03.126377+07:00\",\n            \"updated_at\": \"2025-09-25T09:16:03.126377+07:00\",\n            \"deleted_at\": null,\n            \"brand\": \"Ford\",\n            \"model\": \"Everest\",\n            \"manufacture_year\": 2012,\n            \"cylinder_capacity\": 2499,\n            \"color\": \"black\",\n            \"fuel_type\": \"solar\",\n            \"average_fuel_consumption_rate\": 7.946236559139785\n        }\n    ],\n    \"meta\": {\n        \"affected_records\": 1,\n        \"last_page\": 1,\n        \"count\": 1,\n        \"has_next\": false\n    }\n}"
+                },
+                {
+                  "name": "200 ( no data)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/cars",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "cars"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Tue, 23 Sep 2025 11:02:07 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "83"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"data\": [],\n    \"meta\": {\n        \"affected_records\": 0,\n        \"last_page\": 0,\n        \"count\": 0,\n        \"has_next\": false\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Find By ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{go_url}}/v1/internal/cars/:car_id",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "internal",
+                    "cars",
+                    ":car_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "car_id",
+                      "value": "28b1faad-74e1-44b0-9bf3-44867ad18c6e"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/cars/:car_id",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "cars",
+                        ":car_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "car_id",
+                          "value": "28b1faad-74e1-44b0-9bf3-44867ad18c6e"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Fri, 27 Mar 2026 11:08:19 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "1497"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"id\": \"28b1faad-74e1-44b0-9bf3-44867ad18c6e\",\n    \"created_at\": \"2025-09-25T09:16:03.126377+07:00\",\n    \"updated_at\": \"2025-09-25T09:16:03.126377+07:00\",\n    \"deleted_at\": null,\n    \"user_id\": \"48f43073-0016-44ee-acd4-549ec499fc1b\",\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 2499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": \"black\",\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null,\n    \"average_fuel_consumption_rate\": 7.946236559139785,\n    \"recent_fuel_entries\": [\n        {\n            \"id\": \"4d4efb86-2e4d-4f7e-a198-ea6e1b62072f\",\n            \"created_at\": \"2025-09-25T09:16:27.525724+07:00\",\n            \"updated_at\": \"2025-09-25T09:16:27.525724+07:00\",\n            \"deleted_at\": null,\n            \"car_id\": \"28b1faad-74e1-44b0-9bf3-44867ad18c6e\",\n            \"odometer_entry_id\": \"1e7aa12b-1483-443e-a564-61d6804cf1f3\",\n            \"fuel_type\": \"diesel\",\n            \"fuel_brand\": \"pertamina\",\n            \"fuel_name\": \"solar\",\n            \"fuel_price\": 6800,\n            \"fuel_unit\": \"liter\",\n            \"distance_traveled\": 369.5,\n            \"volume_filled\": 46.5,\n            \"total_price\": 316200,\n            \"fuel_consumption\": 7.946236559139785,\n            \"notes\": null\n        },\n        {\n            \"id\": \"cccad38f-01bc-41a5-9df4-4be15aa06257\",\n            \"created_at\": \"2025-09-25T09:16:33.580016+07:00\",\n            \"updated_at\": \"2025-09-25T09:16:33.580016+07:00\",\n            \"deleted_at\": null,\n            \"car_id\": \"28b1faad-74e1-44b0-9bf3-44867ad18c6e\",\n            \"odometer_entry_id\": \"019a6c1c-efbf-495c-b228-4eb7e0f93f62\",\n            \"fuel_type\": \"diesel\",\n            \"fuel_brand\": \"pertamina\",\n            \"fuel_name\": \"solar\",\n            \"fuel_price\": 6800,\n            \"fuel_unit\": \"liter\",\n            \"distance_traveled\": 369.5,\n            \"volume_filled\": 46.5,\n            \"total_price\": 316200,\n            \"fuel_consumption\": 7.946236559139785,\n            \"notes\": null\n        }\n    ]\n}"
+                },
+                {
+                  "name": "404",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/cars/:car_id",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "cars",
+                        ":car_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "car_id",
+                          "value": "3a673c5d-3dbc-4828-86f2-4cc0d5649391"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 02 Jul 2025 14:02:35 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "186"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"record_not_found\",\n        \"message\": \"enter another param or recheck the param you've sent\",\n        \"raw\": \"car id 3a673c5d-3dbc-4828-86f2-4cc0d5649391 doesn't exists\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "List of Fuel Entries",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{go_url}}/v1/internal/cars/:car_id/fuel-entries",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "internal",
+                    "cars",
+                    ":car_id",
+                    "fuel-entries"
+                  ],
+                  "variable": [
+                    {
+                      "key": "car_id",
+                      "value": "28b1faad-74e1-44b0-9bf3-44867ad18c6e"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/cars/:car_id/fuel-entries",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "cars",
+                        ":car_id",
+                        "fuel-entries"
+                      ],
+                      "variable": [
+                        {
+                          "key": "car_id",
+                          "value": "28b1faad-74e1-44b0-9bf3-44867ad18c6e"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 25 Sep 2025 02:19:45 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "1060"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"data\": [\n        {\n            \"id\": \"4d4efb86-2e4d-4f7e-a198-ea6e1b62072f\",\n            \"created_at\": \"2025-09-25T09:16:27.525724+07:00\",\n            \"updated_at\": \"2025-09-25T09:16:27.525724+07:00\",\n            \"deleted_at\": null,\n            \"car_id\": \"28b1faad-74e1-44b0-9bf3-44867ad18c6e\",\n            \"odometer_entry_id\": \"1e7aa12b-1483-443e-a564-61d6804cf1f3\",\n            \"fuel_type\": \"diesel\",\n            \"fuel_brand\": \"pertamina\",\n            \"fuel_name\": \"solar\",\n            \"fuel_price\": 6800,\n            \"fuel_unit\": \"liter\",\n            \"distance_traveled\": 369.5,\n            \"volume_filled\": 46.5,\n            \"total_price\": 316200,\n            \"fuel_consumption\": 7.946236559139785,\n            \"notes\": null\n        },\n        {\n            \"id\": \"cccad38f-01bc-41a5-9df4-4be15aa06257\",\n            \"created_at\": \"2025-09-25T09:16:33.580016+07:00\",\n            \"updated_at\": \"2025-09-25T09:16:33.580016+07:00\",\n            \"deleted_at\": null,\n            \"car_id\": \"28b1faad-74e1-44b0-9bf3-44867ad18c6e\",\n            \"odometer_entry_id\": \"019a6c1c-efbf-495c-b228-4eb7e0f93f62\",\n            \"fuel_type\": \"diesel\",\n            \"fuel_brand\": \"pertamina\",\n            \"fuel_name\": \"solar\",\n            \"fuel_price\": 6800,\n            \"fuel_unit\": \"liter\",\n            \"distance_traveled\": 369.5,\n            \"volume_filled\": 46.5,\n            \"total_price\": 316200,\n            \"fuel_consumption\": 7.946236559139785,\n            \"notes\": null\n        }\n    ],\n    \"meta\": {\n        \"affected_records\": 0,\n        \"last_page\": 0,\n        \"count\": 2,\n        \"has_next\": false\n    }\n}"
+                },
+                {
+                  "name": "200 (no data)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/cars",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "cars"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 02 Jul 2025 14:49:43 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "3"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"data\": [],\n    \"meta\": {\n        \"affected_records\": 0,\n        \"last_page\": 0,\n        \"count\": 0,\n        \"has_next\": false\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "List of Odometer Entries",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{go_url}}/v1/internal/cars/:car_id/odometer-entries",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "internal",
+                    "cars",
+                    ":car_id",
+                    "odometer-entries"
+                  ],
+                  "variable": [
+                    {
+                      "key": "car_id",
+                      "value": "28b1faad-74e1-44b0-9bf3-44867ad18c6e"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/cars/:car_id/odometer-entries",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "cars",
+                        ":car_id",
+                        "odometer-entries"
+                      ],
+                      "variable": [
+                        {
+                          "key": "car_id",
+                          "value": "28b1faad-74e1-44b0-9bf3-44867ad18c6e"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 25 Sep 2025 02:20:27 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "1004"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"data\": [\n        {\n            \"id\": \"019a6c1c-efbf-495c-b228-4eb7e0f93f62\",\n            \"created_at\": \"2025-09-25T09:16:33.57953+07:00\",\n            \"updated_at\": \"2025-09-25T09:16:33.57953+07:00\",\n            \"deleted_at\": null,\n            \"car_id\": \"28b1faad-74e1-44b0-9bf3-44867ad18c6e\",\n            \"odometer_reading\": 28000,\n            \"reading_unit\": \"km\",\n            \"fuel_entries\": {\n                \"id\": \"cccad38f-01bc-41a5-9df4-4be15aa06257\",\n                \"fuel_type\": \"pertamina\",\n                \"fuel_name\": \"solar\",\n                \"fuel_unit\": \"liter\",\n                \"volume_filled\": 46.5,\n                \"total_price\": 316200,\n                \"fuel_consumption_rate\": 7.946236559139785\n            }\n        },\n        {\n            \"id\": \"1e7aa12b-1483-443e-a564-61d6804cf1f3\",\n            \"created_at\": \"2025-09-25T09:16:27.520689+07:00\",\n            \"updated_at\": \"2025-09-25T09:16:27.520689+07:00\",\n            \"deleted_at\": null,\n            \"car_id\": \"28b1faad-74e1-44b0-9bf3-44867ad18c6e\",\n            \"odometer_reading\": 27500,\n            \"reading_unit\": \"km\",\n            \"fuel_entries\": {\n                \"id\": \"4d4efb86-2e4d-4f7e-a198-ea6e1b62072f\",\n                \"fuel_type\": \"pertamina\",\n                \"fuel_name\": \"solar\",\n                \"fuel_unit\": \"liter\",\n                \"volume_filled\": 46.5,\n                \"total_price\": 316200,\n                \"fuel_consumption_rate\": 7.946236559139785\n            }\n        }\n    ],\n    \"meta\": {\n        \"affected_records\": 0,\n        \"last_page\": 0,\n        \"count\": 2,\n        \"has_next\": false\n    }\n}"
+                },
+                {
+                  "name": "200 (no data)",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/cars/:car_id/odometer-entries",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "cars",
+                        ":car_id",
+                        "odometer-entries"
+                      ],
+                      "variable": [
+                        {
+                          "key": "car_id",
+                          "value": "d06116d4-dd8e-4eef-b65e-7c55a935e02f"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Mon, 07 Jul 2025 17:43:29 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "465"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"data\": [],\n    \"meta\": {\n        \"affected_records\": 0,\n        \"last_page\": 0,\n        \"count\": 0,\n        \"has_next\": false\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Update",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 2499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{go_url}}/v1/internal/cars/:car_id",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "internal",
+                    "cars",
+                    ":car_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "car_id",
+                      "value": "aeb0e399-a394-471c-a6ae-ad03d500c56a"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"brand\": \"Ford\",\n    \"model\": \"Everest\",\n    \"manufacture_year\": 2012,\n    \"cylinder_capacity\": 1499,\n    \"vehicle_identity_number\": null,\n    \"engine_number\": null,\n    \"color\": null,\n    \"fuel_type\": \"solar\",\n    \"registration_year\": null,\n    \"vehicle_ownership_document_number\": null\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/cars/:car_id",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "cars",
+                        ":car_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "car_id",
+                          "value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 02 Jul 2025 14:04:17 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "17"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true\n}"
+                }
+              ]
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{go_url}}/v1/internal/cars/:car_id",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "internal",
+                    "cars",
+                    ":car_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "car_id",
+                      "value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/cars/:car_id",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "cars",
+                        ":car_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "car_id",
+                          "value": "3a673c5d-3dbc-4828-86f2-4cc0d5649391"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 02 Jul 2025 14:40:01 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "17"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Fuel Entry",
+          "item": [
+            {
+              "name": "Create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"odometer_reading\": 28000,\n    \"reading_unit\": \"km\",\n    \"car_id\": \"28b1faad-74e1-44b0-9bf3-44867ad18c6e\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 46.5,\n    \"notes\": null // nullable\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{go_url}}/v1/internal/fuel-entries",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "internal",
+                    "fuel-entries"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"odometer_reading\": 27500,\n    \"reading_unit\": \"km\",\n    \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 46.5\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/fuel-entries",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "fuel-entries"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Mon, 07 Jul 2025 15:13:56 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "17"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true\n}"
+                }
+              ]
+            },
+            {
+              "name": "Find By ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "internal",
+                    "fuel-entries",
+                    ":fuel_entry_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "fuel_entry_id",
+                      "value": "e84f2628-8b32-414c-902c-93bb08bdbca4"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "fuel-entries",
+                        ":fuel_entry_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "fuel_entry_id",
+                          "value": "e84f2628-8b32-414c-902c-93bb08bdbca4"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Mon, 07 Jul 2025 03:25:56 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "430"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"id\": \"e84f2628-8b32-414c-902c-93bb08bdbca4\",\n    \"created_at\": \"2025-07-07T09:47:53.163762+07:00\",\n    \"updated_at\": \"2025-07-07T09:47:53.163762+07:00\",\n    \"deleted_at\": null,\n    \"car_id\": \"aeb0e399-a394-471c-a6ae-ad03d500c56a\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 47.5,\n    \"total_price\": 323000,\n    \"fuel_consumption\": 7.778947368421052,\n    \"notes\": null\n}"
+                },
+                {
+                  "name": "404",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "fuel-entries",
+                        ":fuel_entry_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "fuel_entry_id",
+                          "value": "e84f2628-8b32-414c-902c-93bb08bdbca5"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Mon, 07 Jul 2025 03:26:11 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "193"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"record_not_found\",\n        \"message\": \"enter another param or recheck the param you've sent\",\n        \"raw\": \"fuel entry id e84f2628-8b32-414c-902c-93bb08bdbca5 doesn't exists\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Update",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"odometer_reading\": 260000,\n    \"reading_unit\": \"km\",\n    \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 47.5,\n    \"notes\": null // nullable\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "internal",
+                    "fuel-entries",
+                    ":fuel_entry_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "fuel_entry_id",
+                      "value": "9c00ba1f-b7f2-44e6-a3a3-04c5f3b2422f"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"car_id\": \"aeb0e399-a394-471c-a6ae-ad03d500c56a\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 47.5\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/cars/:car_id",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "cars",
+                        ":car_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "car_id",
+                          "value": "3a673c5d-3dbc-4828-86f2-4cc0d5649392"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 02 Jul 2025 14:04:17 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "17"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true\n}"
+                },
+                {
+                  "name": "400 (reading_unit not sent)",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"odometer_reading\": 260000,\n    \"car_id\": \"d06116d4-dd8e-4eef-b65e-7c55a935e02f\",\n    \"fuel_type\": \"diesel\",\n    \"fuel_brand\": \"pertamina\",\n    \"fuel_name\": \"solar\",\n    \"fuel_price\": 6800,\n    \"fuel_unit\": \"liter\",\n    \"distance_traveled\": 369.5,\n    \"volume_filled\": 47.5\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "fuel-entries",
+                        ":fuel_entry_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "fuel_entry_id",
+                          "value": "9c00ba1f-b7f2-44e6-a3a3-04c5f3b2422f"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Mon, 07 Jul 2025 15:24:16 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "203"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"invalid_input\",\n        \"message\": \"please re-check your input; make sure the validations are met\",\n        \"raw\": [\n            \"the reading_unit field is required when odometer_reading is present\"\n        ]\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{go_url}}/v1/internal/fuel-entries/:fuel_entry_id",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "internal",
+                    "fuel-entries",
+                    ":fuel_entry_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "fuel_entry_id",
+                      "value": "baffb5a4-9d60-4dff-8822-1d910e646cf5"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{go_url}}/v1/internal/cars/:car_id",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "internal",
+                        "cars",
+                        ":car_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "car_id",
+                          "value": "baffb5a4-9d60-4dff-8822-1d910e646cf5"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 02 Jul 2025 14:40:01 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "17"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{access_token}}",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "External",
+      "item": [
+        {
+          "name": "Auth",
+          "item": [
+            {
+              "name": "Register",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"client_secret\": \"{{client_secret}}\",\n    \"email\": \"test@gmail.com\",\n    \"password\": \"password\",\n    \"confirm_password\": \"password\",\n    \"gender\": true, // true = male; false = female || nullable\n    \"first_name\": \"Rayendra\",\n    \"last_name\": \"Sabandar\", // nullable\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601 || nullable\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{go_url}}/v1/external/auth/register",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "external",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"client_secret\": \"local_secret\",\n    \"email\": \"test@gmail.com\",\n    \"password\": \"password\",\n    \"confirm_password\": \"password\",\n    \"gender\": true,\n    \"first_name\": \"Rayendra\",\n    \"last_name\": \"Sabandar\",\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/external/auth/register",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "external",
+                        "auth",
+                        "register"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Tue, 08 Jul 2025 03:02:19 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "17"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true\n}"
+                },
+                {
+                  "name": "400 (already exists)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"client_secret\": \"local_secret\",\n    \"email\": \"test@gmail.com\",\n    \"password\": \"password\",\n    \"confirm_password\": \"password\",\n    \"gender\": true,\n    \"first_name\": \"Rayendra\",\n    \"last_name\": \"Sabandar\",\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/external/auth/register",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "external",
+                        "auth",
+                        "register"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Tue, 08 Jul 2025 03:03:27 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "145"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"already_registered\",\n        \"message\": \"this credential already exists; try another one\",\n        \"raw\": \"email already exists\"\n    }\n}"
+                },
+                {
+                  "name": "400 (invalid request body)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"client_secret\": \"local_secret\",\n    \"email\": \"test2@gmail.com\",\n    \"password\": \"asd\",\n    \"confirm_password\": \"passworda\",\n    \"gender\": true,\n    \"last_name\": \"Sabandar\",\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/external/auth/register",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "external",
+                        "auth",
+                        "register"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Tue, 08 Jul 2025 03:05:22 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "239"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"invalid_input\",\n        \"message\": \"please re-check your input; make sure the validations are met\",\n        \"raw\": [\n            \"password must be longer than 6\",\n            \"confirm_password must be the same as password\",\n            \"first_name is required\"\n        ]\n    }\n}"
+                },
+                {
+                  "name": "403 (secret not validated)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"client_secret\": \"local_secreasdft\",\n    \"email\": \"test2@gmail.com\",\n    \"password\": \"password\",\n    \"confirm_password\": \"password\",\n    \"gender\": false,\n    \"first_name\": \"Rayendra\",\n    \"last_name\": \"Sabandar\",\n    \"date_of_birth\": \"2025-07-08T02:52:05.275Z\" // ISO 8601\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/external/auth/register",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "external",
+                        "auth",
+                        "register"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Tue, 08 Jul 2025 03:08:47 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "98"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"forbidden\",\n        \"message\": \"forbidden\",\n        \"raw\": \"secret not validated\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Login",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "var resBody = pm.response.text();",
+                      "",
+                      "if (resBody !== \"\") {",
+                      "    try {",
+                      "        var res = JSON.parse(resBody);",
+                      "        if (res.access_token) {",
+                      "            pm.environment.set(\"access_token\", res.access_token);",
+                      "        } else {",
+                      "            console.log(\"access_token not found in response\");",
+                      "        }",
+                      "    } catch (e) {",
+                      "        console.log(\"Failed to parse JSON:\", e);",
+                      "    }",
+                      "} else {",
+                      "    console.log(\"Response body is empty\");",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"client_secret\": \"{{client_secret}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{go_url}}/v1/external/auth/login",
+                  "host": [
+                    "{{go_url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "external",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"client_secret\": \"HTZI0XiFdkIeMwhWNPL28Ivq3sw3L39KA1PCZ8JS\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/external/auth/login",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "external",
+                        "auth",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 19 Oct 2023 11:57:26 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "871"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"access_token\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTgzMjE0NDYsImp0aSI6IjRhZDU5ZGUzLTRhYzAtNDljYy04YzM3LWIwMTI1ZDdmNjg0NiJ9.dvrgLjqILedZAr3BDdZyLQpXDrzu6-HILyYS3MWub4s0c6j2_jplUCPyBV4sq32t62-J2nj2bkD_GwQ7Fcdiu4x5EMCM1nRxPoQ5Gjutv91ocTygDssU1W9gHOc9C2hsaNunAXz1A58HUo-SnIEj0HsjlW-rpdRvurqdGizyXuWYAHbDxoMLclMHYKfpPJUHHoW3wX0if4P3hLQ0S9aRq-PNyvT5QgF_-rhBsoE36Jh-DpxP94LHGqIY7MxY2Ec3PcTsxMf6Tgr8LOGS0-SKiYcGvkzWOXW7vZisUSxz-Ao-NBQKovJ302Nvdn3LAR-Srxb7C7Gxez-I9BpYcKhj1to15hOTjh0yJwV4vUlOePi7HB7cYGS5b7BjOTra7D0CVLdHr0AYlz_GFpqXZm5yG1UImhdX9acLA-y-IZTAbndtzSd9rSrbYfz213ncHIoBWNCVLLBTsYrxaIpYAyU5zHCP8jV1NCezsLFsGClgNQDbxZcu_6EjCP580Ma4hHyKHliSD7Ehl6YTOQP6BPUbx7S6kWiygTyruVr80I8R721A1evjHLaaWz0bsBNBXSYGgflagLiRrlmXfW9piRHqsg0bSYFYsxes-62tSmPgsb7a3bgq10JZPg7nd4eSfBdTfV4eDS3OL7yyTSBoHYlAPwkT3wWUjqbxT-QefKTnJO8\",\n    \"expires_in\": 1698321446,\n    \"token_type\": \"Bearer\"\n}"
+                },
+                {
+                  "name": "403 (password not created)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"grant_type\": \"password\",\n    \"client_id\": 2,\n    \"client_secret\": \"HTZI0XiFdkIeMwhWNPL28Ivq3sw3L39KA1PCZ8JS\",\n    \"scope\": \"*\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/external/auth/login",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "external",
+                        "auth",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Tue, 17 Oct 2023 11:08:50 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "107"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"forbidden\",\n        \"message\": \"forbidden\",\n        \"raw\": \"you have to create a password\"\n    }\n}"
+                },
+                {
+                  "name": "400 (no password)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"email\": \"rayendratimotius@gmail.com\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/external/auth/login",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "external",
+                        "auth",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 19 Oct 2023 12:00:10 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "184"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"invalid_input\",\n        \"message\": \"please re-check your input; make sure the validations are met\",\n        \"raw\": [\n            \"client_secret is required\",\n            \"password is required\"\n        ]\n    }\n}"
+                },
+                {
+                  "name": "400 (password_confirmation not equals password)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/external/auth/login",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "external",
+                        "auth",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 19 Oct 2023 12:00:27 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "214"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"invalid_input\",\n        \"message\": \"please re-check your input; make sure the validations are met\",\n        \"raw\": [\n            \"client_secret is required\",\n            \"password_confirmation must be the same as password\"\n        ]\n    }\n}"
+                },
+                {
+                  "name": "403 (secret not validate)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"email\": \"rayendratimotius@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"client_secret\": \"{{client_secret}}\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{go_url}}/v1/external/auth/login",
+                      "host": [
+                        "{{go_url}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "external",
+                        "auth",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Vary",
+                      "value": "Origin"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 19 Oct 2023 12:06:20 GMT"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "98"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": false,\n    \"error\": {\n        \"type\": \"forbidden\",\n        \"message\": \"forbidden\",\n        \"raw\": \"secret not validated\"\n    }\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

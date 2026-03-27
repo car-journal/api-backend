@@ -8,6 +8,7 @@ import (
 	cardto "github.com/car-journal/api-backend/internal/domain/car/dto"
 	carpayload "github.com/car-journal/api-backend/internal/domain/car/payload"
 	carrepository "github.com/car-journal/api-backend/internal/domain/car/repository"
+	fuelentryrepository "github.com/car-journal/api-backend/internal/domain/fuelentry/repository"
 	userrepository "github.com/car-journal/api-backend/internal/domain/user/repository"
 	internalmodel "github.com/car-journal/api-backend/internal/model"
 	"github.com/car-journal/api-backend/lib/filter"
@@ -19,26 +20,30 @@ import (
 type Interface interface {
 	Create(ctx context.Context, payload carpayload.CreatePayload) error
 	ListCarsWithAverageFuelConsumptionRate(ctx context.Context, userID string, pageParams *filter.Page) ([]*cardto.CarWithAverageFuelConsumptionRate, error)
+	FindByIDWithFuelSummary(ctx context.Context, id string, userID string) (*cardto.CarWithFuelSummary, error)
 	FindByID(ctx context.Context, ID string, userID string) (*internalmodel.Car, error)
 	Update(ctx context.Context, payload carpayload.UpdatePayload) error
 	Delete(ctx context.Context, id string) error
 }
 
 type service struct {
-	carRepository  carrepository.Interface
-	userRepository userrepository.Interface
-	uuidLib        uuid.UUIDInterface
+	carRepository       carrepository.Interface
+	fuelEntryRepository fuelentryrepository.Interface
+	userRepository      userrepository.Interface
+	uuidLib             uuid.UUIDInterface
 }
 
 func Service(
 	carRepository carrepository.Interface,
+	fuelEntryRepository fuelentryrepository.Interface,
 	userRepository userrepository.Interface,
 	uuidLib uuid.UUIDInterface,
 ) Interface {
 	return &service{
-		carRepository:  carRepository,
-		userRepository: userRepository,
-		uuidLib:        uuidLib,
+		carRepository:       carRepository,
+		fuelEntryRepository: fuelEntryRepository,
+		userRepository:      userRepository,
+		uuidLib:             uuidLib,
 	}
 }
 
@@ -72,6 +77,37 @@ func (s service) Create(ctx context.Context, payload carpayload.CreatePayload) e
 
 func (s service) ListCarsWithAverageFuelConsumptionRate(ctx context.Context, userID string, pageParams *filter.Page) ([]*cardto.CarWithAverageFuelConsumptionRate, error) {
 	return s.carRepository.ListCarsWithAverageFuelConsumptionRate(ctx, userID, pageParams)
+}
+
+func (s service) FindByIDWithFuelSummary(ctx context.Context, id string, userID string) (*cardto.CarWithFuelSummary, error) {
+	car, err := s.FindByID(ctx, id, userID)
+	if err != nil {
+		return nil, err
+	}
+
+	fuelEntries, err := s.fuelEntryRepository.ListByCarID(ctx, car.ID.String(), &filter.Page{
+		Limit:  5,
+		Offset: 0,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	var totalFuelConsumptionRate float64
+	for _, val := range fuelEntries {
+		totalFuelConsumptionRate += val.FuelConsumptionRate
+	}
+
+	var averageFuelConsumptionRate float64
+	if len(fuelEntries) > 0 {
+		averageFuelConsumptionRate = totalFuelConsumptionRate / float64(len(fuelEntries))
+	}
+
+	return &cardto.CarWithFuelSummary{
+		Car:                        car,
+		AverageFuelConsumptionRate: averageFuelConsumptionRate,
+		RecentFuelEntries:          fuelEntries,
+	}, nil
 }
 
 func (s service) FindByID(ctx context.Context, id string, userID string) (*internalmodel.Car, error) {

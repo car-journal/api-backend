@@ -49,7 +49,7 @@ func (s service) ListByCarID(ctx context.Context, carID string, userID string) (
 		return nil, err
 	}
 
-	fuelEntries, err := s.fuelEntryRepository.ListByCarID(ctx, car.ID.String())
+	fuelEntries, err := s.fuelEntryRepository.ListByCarID(ctx, car.ID.String(), nil)
 	if err != nil {
 		return nil, err
 	}

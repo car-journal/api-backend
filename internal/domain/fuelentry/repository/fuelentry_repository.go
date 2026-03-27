@@ -7,6 +7,7 @@ import (
 
 	internalmodel "github.com/car-journal/api-backend/internal/model"
 	"github.com/car-journal/api-backend/lib/database"
+	"github.com/car-journal/api-backend/lib/filter"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
@@ -14,7 +15,7 @@ import (
 type Interface interface {
 	Save(ctx context.Context, model internalmodel.FuelEntry) error
 	ListByIDs(ctx context.Context, ids []string) ([]*internalmodel.FuelEntry, error)
-	ListByCarID(ctx context.Context, carID string) ([]*internalmodel.FuelEntry, error)
+	ListByCarID(ctx context.Context, carID string, pageParams *filter.Page) ([]*internalmodel.FuelEntry, error)
 	FindByID(ctx context.Context, id string) (*internalmodel.FuelEntry, error)
 	Delete(ctx context.Context, id string) error
 }
@@ -58,9 +59,12 @@ func (r repository) ListByIDs(ctx context.Context, ids []string) ([]*internalmod
 
 }
 
-func (r repository) ListByCarID(ctx context.Context, carID string) ([]*internalmodel.FuelEntry, error) {
+func (r repository) ListByCarID(ctx context.Context, carID string, pageParams *filter.Page) ([]*internalmodel.FuelEntry, error) {
 	var models []*internalmodel.FuelEntry
 	db := database.Get(ctx)
+	if pageParams != nil {
+		db = database.GeneratePaginationQuery(db, pageParams.Limit, pageParams.Offset)
+	}
 	db = database.EqualsTo(db, "car_id", carID)
 	if err := db.Find(&models).Error; err != nil {
 		return nil, err

@@ -24,7 +24,7 @@ func CreateServiceContainer(repoContainer RepositoryContainer, clientContainer C
 	// application service
 	return ServiceContainer{
 		Auth:          authservice.Service(repoContainer.Auth, clientContainer.Hash, repoContainer.User, repoContainer.UserProfile, clientContainer.UUID),
-		Car:           carservice.Service(repoContainer.Car, repoContainer.User, clientContainer.UUID),
+		Car:           carservice.Service(repoContainer.Car, repoContainer.FuelEntry, repoContainer.User, clientContainer.UUID),
 		OdometerEntry: odometerentryservice.Service(repoContainer.Car, repoContainer.FuelEntry, repoContainer.OdometerEntry, clientContainer.UUID),
 		FuelEntry:     fuelentryservice.Service(repoContainer.Car, repoContainer.FuelEntry, repoContainer.OdometerEntry, repoContainer.User, clientContainer.UUID),
 		User:          userservice.Service(clientContainer.Hash, repoContainer.User, repoContainer.UserProfile, clientContainer.UUID),

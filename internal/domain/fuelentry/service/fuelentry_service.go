@@ -101,7 +101,7 @@ func (s service) ListByCarID(ctx context.Context, carID string, userID string) (
 		return nil, err
 	}
 
-	return s.fuelEntryRepository.ListByCarID(ctx, car.ID.String())
+	return s.fuelEntryRepository.ListByCarID(ctx, car.ID.String(), nil)
 }
 
 func (s service) FindByID(ctx context.Context, id string) (*internalmodel.FuelEntry, error) {
