@@ -62,10 +62,13 @@ func (r repository) ListByIDs(ctx context.Context, ids []string) ([]*internalmod
 func (r repository) ListByCarID(ctx context.Context, carID string, pageParams *filter.Page) ([]*internalmodel.FuelEntry, error) {
 	var models []*internalmodel.FuelEntry
 	db := database.Get(ctx)
+	db = database.GenerateJoinQuery(db, "INNER", "odometer_entries", "oe", "id", "fuel_entries", "odometer_entry_id")
+	db = database.CountAffectedRecords(db, "fuel_entries")
 	if pageParams != nil {
 		db = database.GeneratePaginationQuery(db, pageParams.Limit, pageParams.Offset)
 	}
-	db = database.EqualsTo(db, "car_id", carID)
+	db = db.Order("oe.odometer_reading DESC")
+	db = database.EqualsTo(db, "fuel_entries.car_id", carID)
 	if err := db.Find(&models).Error; err != nil {
 		return nil, err
 	}

@@ -84,6 +84,7 @@ func (r repository) ListCarsWithAverageFuelConsumptionRate(ctx context.Context, 
 		LEFT JOIN fuel_entries f ON f.car_id = c.id
 		WHERE c.user_id = '%s'
 		GROUP BY c.id
+		ORDER BY c.brand ASC
 		LIMIT %d
 		OFFSET %d
 	`, userID, pageParams.Limit, pageParams.Offset)
