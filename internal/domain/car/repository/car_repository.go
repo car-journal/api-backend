@@ -92,8 +92,8 @@ func (r repository) ListCarsWithAverageFuelConsumptionRate(ctx context.Context, 
 		logger.LoggerInterface.Log(err.Error())
 		return nil, err
 	}
-	modesBt, _ := json.Marshal(models)
-	logger.LoggerInterface.Log(string(modesBt))
+	modeslBt, _ := json.Marshal(models)
+	logger.LoggerInterface.Log("ListCarsWithAverageFuelConsumptionRate result" + string(modeslBt))
 
 	return models, nil
 }
@@ -109,6 +109,8 @@ func (r repository) FindByID(ctx context.Context, id string, userID string) (*in
 	} else if err != nil {
 		return nil, err
 	}
+	modelBt, _ := json.Marshal(model)
+	logger.LoggerInterface.Log("FindByID Car " + string(modelBt))
 
 	return model, nil
 }
