@@ -1,3 +1,4 @@
+// Package internalusercontroller handles controller for user domain
 package internalusercontroller
 
 import (

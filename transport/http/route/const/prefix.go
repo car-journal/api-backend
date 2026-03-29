@@ -11,6 +11,7 @@ const (
 	AuthPrefix        = "/auth"
 	CarPrefix         = "/cars"
 	FuelEntryPrefix   = "/fuel-entries"
+	FuelPrefix        = "/fuels"
 	UserProfilePrefix = "/user-profiles"
 	UserPrefix        = "/users"
 )
