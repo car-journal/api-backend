@@ -6,10 +6,11 @@ import (
 
 	fuelrepository "github.com/car-journal/api-backend/internal/domain/fuel/repository"
 	internalmodel "github.com/car-journal/api-backend/internal/model"
+	"github.com/car-journal/api-backend/lib/filter"
 )
 
 type Interface interface {
-	List(ctx context.Context, name string) ([]*internalmodel.Fuel, error)
+	List(ctx context.Context, name string, pageParams *filter.Page) ([]*internalmodel.Fuel, error)
 }
 
 type service struct {
@@ -22,6 +23,6 @@ func Service(fuelRepository fuelrepository.Interface) Interface {
 	}
 }
 
-func (s *service) List(ctx context.Context, name string) ([]*internalmodel.Fuel, error) {
-	return s.fuelRepository.List(ctx, name)
+func (s *service) List(ctx context.Context, name string, pageParams *filter.Page) ([]*internalmodel.Fuel, error) {
+	return s.fuelRepository.List(ctx, name, pageParams)
 }

@@ -21,7 +21,7 @@ func List(fuelService fuelservice.Interface) http.HandlerFunc {
 		pageParams := filter.ParsePage(request.URL.Query(), config.DefaultLimit)
 
 		if errTrans := database.Run(request.Context(), func(ctx context.Context) (err error) {
-			fuels, err = fuelService.List(ctx, name)
+			fuels, err = fuelService.List(ctx, name, pageParams)
 			if err != nil {
 				return err
 			}
