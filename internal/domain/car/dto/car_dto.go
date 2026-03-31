@@ -18,6 +18,11 @@ type CarWithAverageFuelConsumptionRate struct {
 type CarWithFuelSummary struct {
 	*internalmodel.Car
 
+	FuelSummary `json:"fuel_summary"`
+}
+
+type FuelSummary struct {
 	AverageFuelConsumptionRate float64                    `json:"average_fuel_consumption_rate"`
+	FuelConsumptionRateTrend   float64                    `json:"fuel_consumption_rate_trend,omitempty"`
 	RecentFuelEntries          []*internalmodel.FuelEntry `json:"recent_fuel_entries"`
 }

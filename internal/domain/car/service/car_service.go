@@ -93,20 +93,36 @@ func (s service) FindByIDWithFuelSummary(ctx context.Context, id string, userID 
 		return nil, err
 	}
 
-	var totalFuelConsumptionRate float64
-	for _, val := range fuelEntries {
-		totalFuelConsumptionRate += val.FuelConsumptionRate
+	var currentFuelConsumptionRate float64
+	var previousFuelConsumptionRate float64
+	for i, val := range fuelEntries {
+		currentFuelConsumptionRate += val.FuelConsumptionRate
+
+		if i > 0 {
+			previousFuelConsumptionRate += val.FuelConsumptionRate
+		}
 	}
 
-	var averageFuelConsumptionRate float64
+	var currentAverageFuelConsumptionRate float64
+	var previousAverageFuelConsumptionRate float64
 	if len(fuelEntries) > 0 {
-		averageFuelConsumptionRate = totalFuelConsumptionRate / float64(len(fuelEntries))
+		currentAverageFuelConsumptionRate = currentFuelConsumptionRate / float64(len(fuelEntries))
 	}
+
+	if len(fuelEntries) > 1 {
+		previousAverageFuelConsumptionRate = previousFuelConsumptionRate / float64(len(fuelEntries)-1)
+	}
+
+	delta := currentAverageFuelConsumptionRate - previousAverageFuelConsumptionRate
+	trend := delta * previousAverageFuelConsumptionRate / 100
 
 	return &cardto.CarWithFuelSummary{
-		Car:                        car,
-		AverageFuelConsumptionRate: averageFuelConsumptionRate,
-		RecentFuelEntries:          fuelEntries,
+		Car: car,
+		FuelSummary: cardto.FuelSummary{
+			AverageFuelConsumptionRate: currentAverageFuelConsumptionRate,
+			FuelConsumptionRateTrend:   trend,
+			RecentFuelEntries:          fuelEntries,
+		},
 	}, nil
 }
 
