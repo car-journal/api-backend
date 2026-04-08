@@ -89,6 +89,7 @@ func (s service) Create(ctx context.Context, payload fuelentrypayload.CreatePayl
 		FuelUnit:            payload.FuelUnit,
 		DistanceTraveled:    payload.DistanceTraveled,
 		VolumeFilled:        payload.VolumeFilled,
+		FilledAt:            payload.FilledAt,
 		TotalPrice:          totalPrice,
 		FuelConsumptionRate: fuelConsumptionRate,
 		Notes:               payload.Notes,
@@ -182,6 +183,10 @@ func (s service) Update(ctx context.Context, payload fuelentrypayload.UpdatePayl
 	if payload.VolumeFilled != nil {
 		fuelEntry.VolumeFilled = *payload.VolumeFilled
 		volumeFilled = payload.VolumeFilled
+	}
+
+	if payload.FilledAt.Valid {
+		fuelEntry.FilledAt = *payload.FilledAt.Value
 	}
 
 	if distanceTraveled != nil && volumeFilled != nil {

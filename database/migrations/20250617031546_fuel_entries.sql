@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS fuel_entries (
     fuel_unit VARCHAR(255) NOT NULL,
     distance_traveled FLOAT NOT NULL,
     volume_filled FLOAT NOT NULL,
+    filled_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     total_price FLOAT NOT NULL,
     fuel_consumption_rate FLOAT NOT NULL,
     notes VARCHAR(255),

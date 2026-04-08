@@ -38,6 +38,7 @@ func (r repository) Save(ctx context.Context, model internalmodel.FuelEntry) err
 			"fuel_unit",
 			"distance_traveled",
 			"volume_filled",
+			"filled_at",
 			"total_price",
 			"fuel_consumption_rate",
 			"notes",
