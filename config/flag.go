@@ -7,7 +7,7 @@ const (
 )
 
 var flagConfig = map[string]string{
-	FeatureLog: flag.FeatureOn,
+	FeatureLog: flag.FeatureOff,
 }
 
 func GetFlagConfig() map[string]string {
