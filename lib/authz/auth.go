@@ -16,6 +16,7 @@ type Authz struct {
 	UpdatedAt          *time.Time `json:"updated_at"`
 	FirstName          string     `json:"first_name"`
 	LastName           *string    `json:"last_name"`
+	PictureURL         *string    `json:"picture_url"`
 	OauthAccessTokenID string     `json:"-"`
 }
 

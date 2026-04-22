@@ -8,10 +8,12 @@ const (
 )
 
 const (
-	AuthPrefix        = "/auth"
-	CarPrefix         = "/cars"
-	FuelEntryPrefix   = "/fuel-entries"
-	FuelPrefix        = "/fuels"
-	UserProfilePrefix = "/user-profiles"
-	UserPrefix        = "/users"
+	AuthPrefix                = "/auth"
+	CarPrefix                 = "/cars"
+	MaintenanceCategoryPrefix = "/maintenance-categories"
+	MaintenanceEntryPrefix    = "/maintenance-entries"
+	FuelEntryPrefix           = "/fuel-entries"
+	FuelPrefix                = "/fuels"
+	UserProfilePrefix         = "/user-profiles"
+	UserPrefix                = "/users"
 )

@@ -15,14 +15,21 @@ type CarWithAverageFuelConsumptionRate struct {
 	AverageFuelConsumptionRate float64 `json:"average_fuel_consumption_rate"`
 }
 
-type CarWithFuelSummary struct {
+type CarWithFuelAndMaintenanceSummary struct {
 	*internalmodel.Car
 
-	FuelSummary `json:"fuel_summary"`
+	FuelSummary        `json:"fuel_summary"`
+	MaintenanceSummary `json:"maintenance_summary"`
 }
 
 type FuelSummary struct {
 	AverageFuelConsumptionRate float64                    `json:"average_fuel_consumption_rate"`
 	FuelConsumptionRateTrend   float64                    `json:"fuel_consumption_rate_trend,omitempty"`
+	TotalFuelCost              float64                    `json:"total_fuel_cost"`
 	RecentFuelEntries          []*internalmodel.FuelEntry `json:"recent_fuel_entries"`
+}
+
+type MaintenanceSummary struct {
+	TotalMaintenanceCost     float64                           `json:"total_maintenance_cost"`
+	RecentMaintenanceEntries []*internalmodel.MaintenanceEntry `json:"recent_maintenance_entries"`
 }

@@ -14,12 +14,12 @@ import (
 
 func FindByIDWithFuelSummary(carService carservice.Interface) http.HandlerFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
-		var cars *cardto.CarWithFuelSummary
+		var cars *cardto.CarWithFuelAndMaintenanceSummary
 		carID := mux.Vars(request)["car_id"]
 
 		if errTrans := database.Run(request.Context(), func(ctx context.Context) (err error) {
 			me := authz.GetAuthUser(ctx)
-			cars, err = carService.FindByIDWithFuelSummary(ctx, carID, me.ID)
+			cars, err = carService.FindByIDWithFuelAndMaintenanceSummary(ctx, carID, me.ID)
 			return err
 		}); nil != errTrans {
 			parser.JSON(writer, nil, errTrans)

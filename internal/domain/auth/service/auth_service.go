@@ -97,12 +97,13 @@ func (s service) FindActiveOauthAccessTokenByID(ctx context.Context, id string) 
 func (s service) Me(ctx context.Context) (authdto.Me, error) {
 	me := authz.GetAuthUser(ctx)
 	return authdto.Me{
-		ID:        me.ID,
-		Email:     me.Email,
-		CreatedAt: me.CreatedAt,
-		UpdatedAt: me.UpdatedAt,
-		FirstName: me.FirstName,
-		LastName:  me.LastName,
+		ID:         me.ID,
+		Email:      me.Email,
+		CreatedAt:  me.CreatedAt,
+		UpdatedAt:  me.UpdatedAt,
+		FirstName:  me.FirstName,
+		LastName:   me.LastName,
+		PictureURL: me.PictureURL,
 	}, nil
 }
 

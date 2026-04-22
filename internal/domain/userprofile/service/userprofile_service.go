@@ -12,6 +12,7 @@ import (
 )
 
 type Interface interface {
+	FindByUserID(ctx context.Context, userID string) (*internalmodel.UserProfile, error)
 	Update(ctx context.Context, payload userprofilepayload.UpdatePayload) error
 }
 
@@ -28,6 +29,10 @@ func Service(
 		userProfileRepository: userProfileRepository,
 		uuidLib:               uuidLib,
 	}
+}
+
+func (s service) FindByUserID(ctx context.Context, userID string) (*internalmodel.UserProfile, error) {
+	return s.userProfileRepository.FindByUserID(ctx, userID)
 }
 
 func (s service) Update(ctx context.Context, payload userprofilepayload.UpdatePayload) error {

@@ -89,9 +89,11 @@ func Authentication(authService authservice.Interface, userService userservice.I
 			// 8. Set me
 			var firstName string
 			var lastName *string
+			var pictureURL *string
 			if userData.UserProfile != nil {
 				firstName = userData.UserProfile.FirstName
 				lastName = userData.UserProfile.LastName
+				pictureURL = userData.UserProfile.PictureURL
 			}
 			me := authz.Authz{
 				ID:                 userData.ID.String(),
@@ -100,6 +102,7 @@ func Authentication(authService authservice.Interface, userService userservice.I
 				UpdatedAt:          &userData.UpdatedAt,
 				FirstName:          firstName,
 				LastName:           lastName,
+				PictureURL:         pictureURL,
 				OauthAccessTokenID: oauthAccessToken.ID.String(),
 			}
 

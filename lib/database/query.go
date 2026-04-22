@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/car-journal/api-backend/config"
-	cardvaultstrings "github.com/car-journal/api-backend/lib/strings"
+	carjournalstrings "github.com/car-journal/api-backend/lib/strings"
 	"gorm.io/gorm"
 )
 
@@ -20,7 +20,7 @@ func GeneratePaginationQuery(db *gorm.DB, limit int, offset int) *gorm.DB {
 func GenerateOrderQuery(db *gorm.DB, keys []string, validSorts map[string]string) *gorm.DB {
 	uniqueFields := make(map[string]bool)
 	for _, key := range keys {
-		keyParts := cardvaultstrings.Split(key, ":")
+		keyParts := carjournalstrings.Split(key, ":")
 		if len(keyParts) != 2 {
 			continue
 		}

@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	cardvaultstrings "github.com/car-journal/api-backend/lib/strings"
+	carjournalstrings "github.com/car-journal/api-backend/lib/strings"
 	"github.com/go-playground/form/v4"
 )
 
@@ -42,7 +42,7 @@ func Default(method, contentType string) string {
 		return FORM
 	}
 
-	array := cardvaultstrings.Split(contentType, ";")
+	array := carjournalstrings.Split(contentType, ";")
 	if len(array) <= 0 {
 		return FORM
 	}

@@ -1,4 +1,4 @@
-package cardvaultstrings
+package carjournalstrings
 
 import "strings"
 

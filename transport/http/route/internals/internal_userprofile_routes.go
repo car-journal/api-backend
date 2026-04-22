@@ -12,4 +12,5 @@ import (
 func UserProfile(internalRoute *mux.Router, app container.AppContainer) {
 	internalUserProfileRoutes := internalRoute.PathPrefix(routeconst.UserProfilePrefix).Subrouter()
 	internalUserProfileRoutes.HandleFunc("", internalusercontroller.Update(app.Services.UserProfile)).Methods(http.MethodPatch).Name("internalusercontroller.Update")
+	internalUserProfileRoutes.HandleFunc("/{user_id}", internalusercontroller.FindByUserID(app.Services.UserProfile)).Methods(http.MethodGet).Name("internalusercontroller.FindByUserID")
 }

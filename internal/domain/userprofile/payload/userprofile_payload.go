@@ -34,5 +34,5 @@ type UpdatePayload struct {
 	FirstName   *string         `json:"first_name"`
 	LastName    nullable.String `json:"last_name"`
 	DateOfBirth nullable.String `json:"date_of_birth"`
-	PictureURL  nullable.String `json:"profile_picture_url"`
+	PictureURL  nullable.String `json:"picture_url"`
 }

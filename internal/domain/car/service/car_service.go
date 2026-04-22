@@ -5,10 +5,14 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/car-journal/api-backend/config"
 	cardto "github.com/car-journal/api-backend/internal/domain/car/dto"
 	carpayload "github.com/car-journal/api-backend/internal/domain/car/payload"
 	carrepository "github.com/car-journal/api-backend/internal/domain/car/repository"
 	fuelentryrepository "github.com/car-journal/api-backend/internal/domain/fuelentry/repository"
+	maintenanceentryconst "github.com/car-journal/api-backend/internal/domain/maintenanceentry/const"
+	maintenanceentrypayload "github.com/car-journal/api-backend/internal/domain/maintenanceentry/payload"
+	maintenanceentryrepository "github.com/car-journal/api-backend/internal/domain/maintenanceentry/repository"
 	userrepository "github.com/car-journal/api-backend/internal/domain/user/repository"
 	internalmodel "github.com/car-journal/api-backend/internal/model"
 	"github.com/car-journal/api-backend/lib/filter"
@@ -20,30 +24,33 @@ import (
 type Interface interface {
 	Create(ctx context.Context, payload carpayload.CreatePayload) error
 	ListCarsWithAverageFuelConsumptionRate(ctx context.Context, userID string, pageParams *filter.Page) ([]*cardto.CarWithAverageFuelConsumptionRate, error)
-	FindByIDWithFuelSummary(ctx context.Context, id string, userID string) (*cardto.CarWithFuelSummary, error)
+	FindByIDWithFuelAndMaintenanceSummary(ctx context.Context, id string, userID string) (*cardto.CarWithFuelAndMaintenanceSummary, error)
 	FindByID(ctx context.Context, ID string, userID string) (*internalmodel.Car, error)
 	Update(ctx context.Context, payload carpayload.UpdatePayload) error
 	Delete(ctx context.Context, id string) error
 }
 
 type service struct {
-	carRepository       carrepository.Interface
-	fuelEntryRepository fuelentryrepository.Interface
-	userRepository      userrepository.Interface
-	uuidLib             uuid.UUIDInterface
+	carRepository              carrepository.Interface
+	fuelEntryRepository        fuelentryrepository.Interface
+	maintenanceEntryRepository maintenanceentryrepository.Interface
+	userRepository             userrepository.Interface
+	uuidLib                    uuid.UUIDInterface
 }
 
 func Service(
 	carRepository carrepository.Interface,
 	fuelEntryRepository fuelentryrepository.Interface,
+	maintenanceEntryRepository maintenanceentryrepository.Interface,
 	userRepository userrepository.Interface,
 	uuidLib uuid.UUIDInterface,
 ) Interface {
 	return &service{
-		carRepository:       carRepository,
-		fuelEntryRepository: fuelEntryRepository,
-		userRepository:      userRepository,
-		uuidLib:             uuidLib,
+		carRepository:              carRepository,
+		fuelEntryRepository:        fuelEntryRepository,
+		maintenanceEntryRepository: maintenanceEntryRepository,
+		userRepository:             userRepository,
+		uuidLib:                    uuidLib,
 	}
 }
 
@@ -79,23 +86,27 @@ func (s service) ListCarsWithAverageFuelConsumptionRate(ctx context.Context, use
 	return s.carRepository.ListCarsWithAverageFuelConsumptionRate(ctx, userID, pageParams)
 }
 
-func (s service) FindByIDWithFuelSummary(ctx context.Context, id string, userID string) (*cardto.CarWithFuelSummary, error) {
+func (s service) FindByIDWithFuelAndMaintenanceSummary(ctx context.Context, id string, userID string) (*cardto.CarWithFuelAndMaintenanceSummary, error) {
 	car, err := s.FindByID(ctx, id, userID)
 	if err != nil {
 		return nil, err
 	}
 
-	fuelEntries, err := s.fuelEntryRepository.ListByCarID(ctx, car.ID.String(), &filter.Page{
+	pageParams := &filter.Page{
 		Limit:  5,
 		Offset: 0,
-	})
+	}
+
+	fuelEntries, err := s.fuelEntryRepository.ListByCarID(ctx, car.ID.String(), pageParams)
 	if err != nil {
 		return nil, err
 	}
 
 	var currentFuelConsumptionRate float64
 	var previousFuelConsumptionRate float64
+	var totalFuelCost float64
 	for i, val := range fuelEntries {
+		totalFuelCost += val.TotalPrice
 		currentFuelConsumptionRate += val.FuelConsumptionRate
 
 		if i > 0 {
@@ -116,12 +127,33 @@ func (s service) FindByIDWithFuelSummary(ctx context.Context, id string, userID 
 	delta := currentAverageFuelConsumptionRate - previousAverageFuelConsumptionRate
 	trend := delta * previousAverageFuelConsumptionRate / 100
 
-	return &cardto.CarWithFuelSummary{
+	maintenanceEntries, err := s.maintenanceEntryRepository.List(ctx, maintenanceentrypayload.ListPayload{
+		CarID: id,
+		Sorts: []string{
+			fmt.Sprintf("%s:%s", maintenanceentryconst.PerformedAt, config.Descending),
+		},
+		PageParams: pageParams,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	var totalMaintenanceCost float64
+	for _, val := range maintenanceEntries {
+		totalMaintenanceCost += val.Price
+	}
+
+	return &cardto.CarWithFuelAndMaintenanceSummary{
 		Car: car,
 		FuelSummary: cardto.FuelSummary{
 			AverageFuelConsumptionRate: currentAverageFuelConsumptionRate,
 			FuelConsumptionRateTrend:   trend,
+			TotalFuelCost:              totalFuelCost,
 			RecentFuelEntries:          fuelEntries,
+		},
+		MaintenanceSummary: cardto.MaintenanceSummary{
+			TotalMaintenanceCost:     totalMaintenanceCost,
+			RecentMaintenanceEntries: maintenanceEntries,
 		},
 	}, nil
 }

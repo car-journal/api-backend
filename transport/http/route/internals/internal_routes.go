@@ -18,4 +18,6 @@ func Internal(v1Routes *mux.Router, app container.AppContainer) {
 	Fuel(internalRoutes, app)
 	FuelEntry(internalRoutes, app)
 	UserProfile(internalRoutes, app)
+	MaintenanceCategory(internalRoutes, app)
+	MaintenanceEntry(internalRoutes, app)
 }
