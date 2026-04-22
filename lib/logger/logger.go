@@ -33,6 +33,10 @@ func (l Logger) Log(logMessage string) {
 	fileName := fmt.Sprintf("%s.log", now.Format("2006-01-02"))
 	fileDirectory := fmt.Sprintf("logs/%s", fileName)
 
+	if err := os.MkdirAll("logs", 0755); err != nil {
+		log.Fatalf("Error creating log directory: %v", err)
+	}
+
 	logFile, err := os.OpenFile(fileDirectory, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatalf("Error opening log file: %v", err)
