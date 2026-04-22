@@ -1,8 +1,9 @@
 services:
   app:
     build: .
-    ports:
-      - "8080:8080"
+    expose:
+      - "8080"
+    container_name: car-journal
     environment:
       - DB_DIALECT=
       - DB_HOST=
@@ -17,3 +18,9 @@ services:
       - JWT_PUBLIC_KEY=
       - DEFAULT_PASSWORD=
       - CLIENT_SECRET=
+    networks:
+      - shared-network
+
+networks:
+  shared-network:
+    external: true
