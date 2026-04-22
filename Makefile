@@ -2,7 +2,7 @@ dev:
 	nodemon --exec go run cmd/main.go --signal SIGTERM
 
 build:
-	go build -o car-journal cmd/main.go
+	docker compose up --build -d
 
 goose-create: # name=
 	goose create $(name) sql

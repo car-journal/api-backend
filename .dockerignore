@@ -1,0 +1,21 @@
+# Version control
+.git
+.gitignore
+
+# Kiro / editor metadata
+.kiro
+
+# Local env files (never bake secrets into the image)
+.env
+*.env
+
+# Build output
+car-journal
+
+# Documentation and tooling that don't belong in the image
+doc/
+Makefile
+README.md
+
+# Test files
+*_test.go
