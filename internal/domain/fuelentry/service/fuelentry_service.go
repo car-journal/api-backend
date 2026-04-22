@@ -6,11 +6,14 @@ import (
 	"fmt"
 
 	carrepository "github.com/car-journal/api-backend/internal/domain/car/repository"
+	fuelentrydto "github.com/car-journal/api-backend/internal/domain/fuelentry/dto"
 	fuelentrypayload "github.com/car-journal/api-backend/internal/domain/fuelentry/payload"
 	fuelentryrepository "github.com/car-journal/api-backend/internal/domain/fuelentry/repository"
+	odometerentryconst "github.com/car-journal/api-backend/internal/domain/odometerentry/const"
 	odometerentryrepository "github.com/car-journal/api-backend/internal/domain/odometerentry/repository"
 	userrepository "github.com/car-journal/api-backend/internal/domain/user/repository"
 	internalmodel "github.com/car-journal/api-backend/internal/model"
+	"github.com/car-journal/api-backend/lib/filter"
 	"github.com/car-journal/api-backend/lib/fuel"
 	"github.com/car-journal/api-backend/lib/httperror"
 	"github.com/car-journal/api-backend/lib/httperror/const/errortype"
@@ -19,8 +22,8 @@ import (
 
 type Interface interface {
 	Create(ctx context.Context, payload fuelentrypayload.CreatePayload) error
-	ListByCarID(ctx context.Context, carID string, userID string) ([]*internalmodel.FuelEntry, error)
-	FindByID(ctx context.Context, id string) (*internalmodel.FuelEntry, error)
+	ListByCarID(ctx context.Context, carID string, userID string, pageParams *filter.Page) ([]*internalmodel.FuelEntry, error)
+	FindByID(ctx context.Context, id string) (*fuelentrydto.FuelEntryWithOdomoeterReading, error)
 	Update(ctx context.Context, payload fuelentrypayload.UpdatePayload) error
 	Delete(ctx context.Context, id string) error
 }
@@ -96,16 +99,16 @@ func (s service) Create(ctx context.Context, payload fuelentrypayload.CreatePayl
 	})
 }
 
-func (s service) ListByCarID(ctx context.Context, carID string, userID string) ([]*internalmodel.FuelEntry, error) {
+func (s service) ListByCarID(ctx context.Context, carID string, userID string, pageParams *filter.Page) ([]*internalmodel.FuelEntry, error) {
 	car, err := s.findCarByID(ctx, carID, userID)
 	if err != nil {
 		return nil, err
 	}
 
-	return s.fuelEntryRepository.ListByCarID(ctx, car.ID.String(), nil)
+	return s.fuelEntryRepository.ListByCarID(ctx, car.ID.String(), pageParams)
 }
 
-func (s service) FindByID(ctx context.Context, id string) (*internalmodel.FuelEntry, error) {
+func (s service) FindByID(ctx context.Context, id string) (*fuelentrydto.FuelEntryWithOdomoeterReading, error) {
 	fuelEntry, err := s.fuelEntryRepository.FindByID(ctx, id)
 	if err != nil {
 		return nil, err
@@ -115,7 +118,15 @@ func (s service) FindByID(ctx context.Context, id string) (*internalmodel.FuelEn
 		return nil, httperror.New(errortype.RecordNotFound, fmt.Errorf("fuel entry id %s doesn't exists", id))
 	}
 
-	return fuelEntry, nil
+	odometerEntry, err := s.odometerEntryRepository.FindByID(ctx, fuelEntry.OdometerEntryID.String())
+	if err != nil {
+		return nil, err
+	}
+
+	return &fuelentrydto.FuelEntryWithOdomoeterReading{
+		FuelEntry:       fuelEntry,
+		OdometerReading: odometerEntry.OdometerReading,
+	}, nil
 }
 
 func (s service) Update(ctx context.Context, payload fuelentrypayload.UpdatePayload) error {
@@ -133,22 +144,26 @@ func (s service) Update(ctx context.Context, payload fuelentrypayload.UpdatePayl
 		return httperror.New(errortype.RecordNotFound, fmt.Errorf("fuel entry id %s doesn't exists", payload.ID))
 	}
 
-	odometerEntry, err := s.odometerEntryRepository.FindByID(ctx, fuelEntry.OdometerEntryID.String())
-	if err != nil {
-		return err
-	}
-
-	if odometerEntry == nil {
-		return httperror.New(errortype.RecordNotFound, fmt.Errorf("odometer entry id %s doesn't exists", fuelEntry.OdometerEntryID))
-	}
-
 	if payload.OdometerReading != nil {
-		odometerEntry.OdometerReading = *payload.OdometerReading
-		odometerEntry.ReadingUnit = *payload.ReadingUnit
-	}
+		odometerEntry, err := s.odometerEntryRepository.FindByReading(ctx, *payload.OdometerReading)
+		if err != nil {
+			return err
+		}
 
-	if err := s.odometerEntryRepository.Save(ctx, *odometerEntry); err != nil {
-		return err
+		if odometerEntry == nil {
+			newOdometerEntryID := s.uuidLib.GenerateNewUUID()
+			if err := s.odometerEntryRepository.Save(ctx, internalmodel.OdometerEntry{
+				BaseModel: internalmodel.BaseModel{
+					ID: newOdometerEntryID,
+				},
+				CarID:           fuelEntry.CarID,
+				OdometerReading: *payload.OdometerReading,
+				ReadingUnit:     odometerentryconst.KilometerReadingUnit,
+			}); err != nil {
+				return err
+			}
+			fuelEntry.OdometerEntryID = newOdometerEntryID
+		}
 	}
 
 	if payload.FuelType != nil {

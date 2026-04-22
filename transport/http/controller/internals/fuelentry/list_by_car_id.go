@@ -23,7 +23,7 @@ func FuelEntryListByCarID(fuelEntryService fuelentryservice.Interface) http.Hand
 
 		if errTrans := database.Run(request.Context(), func(ctx context.Context) (err error) {
 			me := authz.GetAuthUser(ctx)
-			fuelEntries, err = fuelEntryService.ListByCarID(ctx, carID, me.ID)
+			fuelEntries, err = fuelEntryService.ListByCarID(ctx, carID, me.ID, pageParams)
 			if err != nil {
 				return err
 			}

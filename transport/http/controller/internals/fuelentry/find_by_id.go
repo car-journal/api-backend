@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/http"
 
+	fuelentrydto "github.com/car-journal/api-backend/internal/domain/fuelentry/dto"
 	fuelentryservice "github.com/car-journal/api-backend/internal/domain/fuelentry/service"
-	internalmodel "github.com/car-journal/api-backend/internal/model"
 	"github.com/car-journal/api-backend/lib/database"
 	"github.com/car-journal/api-backend/lib/parser"
 	"github.com/gorilla/mux"
@@ -13,7 +13,7 @@ import (
 
 func FindByID(fuelEntryService fuelentryservice.Interface) http.HandlerFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
-		var fuelEntries *internalmodel.FuelEntry
+		var fuelEntries *fuelentrydto.FuelEntryWithOdomoeterReading
 		id := mux.Vars(request)["fuel_entry_id"]
 
 		if errTrans := database.Run(request.Context(), func(ctx context.Context) (err error) {

@@ -15,6 +15,7 @@ type Interface interface {
 	Save(ctx context.Context, model internalmodel.OdometerEntry) error
 	ListByCarID(ctx context.Context, carID string) ([]*internalmodel.OdometerEntry, error)
 	FindByID(ctx context.Context, id string) (*internalmodel.OdometerEntry, error)
+	FindByReading(ctx context.Context, reading float64) (*internalmodel.OdometerEntry, error)
 	Delete(ctx context.Context, id string) error
 }
 
@@ -54,6 +55,20 @@ func (r repository) FindByID(ctx context.Context, id string) (*internalmodel.Odo
 	var model *internalmodel.OdometerEntry
 	db := database.Get(ctx)
 	db = database.EqualsTo(db, "id", id)
+	err := db.First(&model).Error
+	if err != nil && errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, nil
+	} else if err != nil {
+		return nil, err
+	}
+
+	return model, nil
+}
+
+func (r repository) FindByReading(ctx context.Context, reading float64) (*internalmodel.OdometerEntry, error) {
+	var model *internalmodel.OdometerEntry
+	db := database.Get(ctx)
+	db = database.EqualsTo(db, "odometer_reading", reading)
 	err := db.First(&model).Error
 	if err != nil && errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, nil
