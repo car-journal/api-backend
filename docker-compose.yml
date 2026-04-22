@@ -3,21 +3,10 @@ services:
     build: .
     expose:
       - "8080"
+    restart: unless-stopped
     container_name: car-journal
-    environment:
-      - DB_DIALECT=
-      - DB_HOST=
-      - DB_PORT=
-      - DB_NAME=
-      - DB_USER=
-      - DB_PASS=
-      - DB_SSL_MODE=
-      - FEATURE_LOG=
-      - HTTP_PORT=
-      - JWT_PRIVATE_KEY=
-      - JWT_PUBLIC_KEY=
-      - DEFAULT_PASSWORD=
-      - CLIENT_SECRET=
+    env_file:
+      - .env
     networks:
       - shared-network
 
