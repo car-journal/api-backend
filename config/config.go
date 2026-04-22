@@ -4,7 +4,7 @@ package config
 const (
 	DefaultTimeZone = "DefaultTimeZone"
 	DefaultPassword = "DefaultPassword"
-	ClientSecret    = "ClientSecret"
+	ClientSecret    = "CLIENT_SECRET"
 )
 
 var basicConfig = map[string]string{
