@@ -131,7 +131,7 @@ func (s service) FindByIDWithFuelAndMaintenanceSummary(ctx context.Context, id s
 	return &cardto.CarWithFuelAndMaintenanceSummary{
 		Car: car,
 		FuelSummary: cardto.FuelSummary{
-			AverageFuelConsumptionRate:  stats.CurrentRate,
+			AverageFuelConsumptionRate:  stats.AllTimeAvgRate,
 			FuelConsumptionRateTrend:    trend,
 			FuelConsumptionRateIncrease: stats.AllTimeAvgRate - stats.PreviousAvgRate,
 			TotalFuelCost:               stats.TotalFuelCost,
