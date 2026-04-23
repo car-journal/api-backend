@@ -3,19 +3,14 @@ services:
     build: .
     image: car-journal-backend
     ports:
-      - "8000:8080"
+      - "8080:8080"
     restart: unless-stopped
     container_name: car-journal
     env_file:
       - .env
     networks:
-      - app-network
+      - shared-network
 
 networks:
-  app-network:
-    driver: bridge
-    enable_ipv6: true
-    ipam:
-      config:
-        - subnet: "172.29.0.0/16"
-        - subnet: "fd00:dead:beef:1::/48"
+  shared-network:
+    external: true
