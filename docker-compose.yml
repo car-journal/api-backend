@@ -1,6 +1,7 @@
 services:
   app:
     build: .
+    image: car-journal-backend
     expose:
       - "8080"
     restart: unless-stopped
