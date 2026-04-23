@@ -7,9 +7,4 @@ services:
     container_name: car-journal
     env_file:
       - .env
-    networks:
-      - shared-network
-
-networks:
-  shared-network:
-    external: true
+    network_mode: "host"
