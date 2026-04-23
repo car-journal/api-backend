@@ -1,6 +1,5 @@
 -- +goose Up
 -- +goose StatementBegin
-SELECT 'up SQL query';
 CREATE TABLE IF NOT EXISTS fuels (
     id UUID PRIMARY KEY NOT NULL UNIQUE,
     brand VARCHAR(255) NOT NULL,
