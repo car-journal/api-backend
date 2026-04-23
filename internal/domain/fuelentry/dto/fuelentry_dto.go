@@ -20,3 +20,10 @@ type FuelEntryWithOdomoeterReading struct {
 	*internalmodel.FuelEntry
 	OdometerReading float64 `json:"odometer_reading"`
 }
+
+type ConsumptionRateStats struct {
+	TotalFuelCost   float64 `gorm:"column:total_fuel_cost"       json:"total_fuel_cost"`
+	AllTimeAvgRate  float64 `gorm:"column:all_time_avg_rate"     json:"all_time_avg_rate"`
+	CurrentRate     float64 `gorm:"column:current_rate"          json:"current_rate"`
+	PreviousAvgRate float64 `gorm:"column:previous_avg_rate"     json:"previous_avg_rate"`
+}

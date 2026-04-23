@@ -5,6 +5,7 @@ import (
 	"context"
 	"errors"
 
+	fuelentrydto "github.com/car-journal/api-backend/internal/domain/fuelentry/dto"
 	internalmodel "github.com/car-journal/api-backend/internal/model"
 	"github.com/car-journal/api-backend/lib/database"
 	"github.com/car-journal/api-backend/lib/filter"
@@ -17,6 +18,8 @@ type Interface interface {
 	ListByIDs(ctx context.Context, ids []string) ([]*internalmodel.FuelEntry, error)
 	ListByCarID(ctx context.Context, carID string, pageParams *filter.Page) ([]*internalmodel.FuelEntry, error)
 	FindByID(ctx context.Context, id string) (*internalmodel.FuelEntry, error)
+	CountTotalFuelCostByCarID(ctx context.Context, carID string) (float64, error)
+	CountLatestAndAverageFuelConsumptionRateByCarID(ctx context.Context, carID string) (*fuelentrydto.ConsumptionRateStats, error)
 	Delete(ctx context.Context, id string) error
 }
 
@@ -74,6 +77,46 @@ func (r repository) ListByCarID(ctx context.Context, carID string, pageParams *f
 		return nil, err
 	}
 	return models, nil
+}
+
+func (r repository) CountTotalFuelCostByCarID(ctx context.Context, carID string) (float64, error) {
+	var totalCost float64
+	db := database.Get(ctx)
+	db = database.EqualsTo(db, "car_id", carID)
+	err := db.Model(&internalmodel.FuelEntry{}).Select("SUM(total_price)").Scan(&totalCost).Error
+	if err != nil {
+		return 0, err
+	}
+	return totalCost, nil
+}
+
+func (r repository) CountLatestAndAverageFuelConsumptionRateByCarID(ctx context.Context, carID string) (*fuelentrydto.ConsumptionRateStats, error) {
+	var stats fuelentrydto.ConsumptionRateStats
+	db := database.Get(ctx)
+	err := db.Raw(`
+		WITH ranked AS (
+			SELECT
+				fuel_consumption_rate,
+				total_price,
+				ROW_NUMBER() OVER (ORDER BY filled_at DESC) AS rn,
+				SUM(total_price) OVER () AS total_fuel_cost,
+				AVG(fuel_consumption_rate) OVER () AS all_time_avg_rate,
+				FIRST_VALUE(fuel_consumption_rate) OVER (ORDER BY filled_at DESC) AS current_rate,
+				AVG(fuel_consumption_rate) OVER (
+					ORDER BY filled_at DESC
+					ROWS BETWEEN 1 FOLLOWING AND UNBOUNDED FOLLOWING
+				) AS previous_avg_rate
+			FROM fuel_entries
+			WHERE car_id = ?
+		)
+		SELECT total_fuel_cost, all_time_avg_rate, current_rate, previous_avg_rate
+		FROM ranked
+		WHERE rn = 1
+	`, carID).Scan(&stats).Error
+	if err != nil {
+		return nil, err
+	}
+	return &stats, nil
 }
 
 func (r repository) FindByID(ctx context.Context, id string) (*internalmodel.FuelEntry, error) {

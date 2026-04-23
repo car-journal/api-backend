@@ -102,31 +102,16 @@ func (s service) FindByIDWithFuelAndMaintenanceSummary(ctx context.Context, id s
 		return nil, err
 	}
 
-	var currentFuelConsumptionRate float64
-	var previousFuelConsumptionRate float64
-	var totalFuelCost float64
-	for i, val := range fuelEntries {
-		totalFuelCost += val.TotalPrice
-		currentFuelConsumptionRate += val.FuelConsumptionRate
-
-		if i > 0 {
-			previousFuelConsumptionRate += val.FuelConsumptionRate
-		}
+	stats, err := s.fuelEntryRepository.CountLatestAndAverageFuelConsumptionRateByCarID(ctx, car.ID.String())
+	if err != nil {
+		return nil, err
 	}
 
-	var currentAverageFuelConsumptionRate float64
-	var previousAverageFuelConsumptionRate float64
-	if len(fuelEntries) > 0 {
-		currentAverageFuelConsumptionRate = currentFuelConsumptionRate / float64(len(fuelEntries))
+	var trend float64
+	if stats != nil && stats.PreviousAvgRate > 0 {
+		delta := stats.CurrentRate - stats.PreviousAvgRate
+		trend = (delta / stats.PreviousAvgRate) * 100
 	}
-
-	if len(fuelEntries) > 1 {
-		previousAverageFuelConsumptionRate = previousFuelConsumptionRate / float64(len(fuelEntries)-1)
-	}
-
-	delta := currentAverageFuelConsumptionRate - previousAverageFuelConsumptionRate
-	trend := delta * previousAverageFuelConsumptionRate / 100
-
 	maintenanceEntries, err := s.maintenanceEntryRepository.List(ctx, maintenanceentrypayload.ListPayload{
 		CarID: id,
 		Sorts: []string{
@@ -138,18 +123,19 @@ func (s service) FindByIDWithFuelAndMaintenanceSummary(ctx context.Context, id s
 		return nil, err
 	}
 
-	var totalMaintenanceCost float64
-	for _, val := range maintenanceEntries {
-		totalMaintenanceCost += val.Price
+	totalMaintenanceCost, err := s.maintenanceEntryRepository.CountTotalMaintenanceCostByCarID(ctx, id)
+	if err != nil {
+		return nil, err
 	}
 
 	return &cardto.CarWithFuelAndMaintenanceSummary{
 		Car: car,
 		FuelSummary: cardto.FuelSummary{
-			AverageFuelConsumptionRate: currentAverageFuelConsumptionRate,
-			FuelConsumptionRateTrend:   trend,
-			TotalFuelCost:              totalFuelCost,
-			RecentFuelEntries:          fuelEntries,
+			AverageFuelConsumptionRate:  stats.CurrentRate,
+			FuelConsumptionRateTrend:    trend,
+			FuelConsumptionRateIncrease: stats.AllTimeAvgRate - stats.PreviousAvgRate,
+			TotalFuelCost:               stats.TotalFuelCost,
+			RecentFuelEntries:           fuelEntries,
 		},
 		MaintenanceSummary: cardto.MaintenanceSummary{
 			TotalMaintenanceCost:     totalMaintenanceCost,

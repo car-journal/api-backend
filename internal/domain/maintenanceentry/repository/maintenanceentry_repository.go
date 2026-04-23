@@ -17,6 +17,7 @@ type Interface interface {
 	Save(ctx context.Context, model internalmodel.MaintenanceEntry) error
 	List(ctx context.Context, payload maintenanceentrypayload.ListPayload) ([]*internalmodel.MaintenanceEntry, error)
 	FindByID(ctx context.Context, id string) (*internalmodel.MaintenanceEntry, error)
+	CountTotalMaintenanceCostByCarID(ctx context.Context, carID string) (float64, error)
 	Delete(ctx context.Context, id string) error
 }
 
@@ -85,6 +86,17 @@ func (r repository) FindByID(ctx context.Context, id string) (*internalmodel.Mai
 		return nil, err
 	}
 	return model, nil
+}
+
+func (r repository) CountTotalMaintenanceCostByCarID(ctx context.Context, carID string) (float64, error) {
+	var totalCost float64
+	db := database.Get(ctx)
+	db = database.EqualsTo(db, "car_id", carID)
+	err := db.Model(&internalmodel.MaintenanceEntry{}).Select("SUM(price)").Scan(&totalCost).Error
+	if err != nil {
+		return 0, err
+	}
+	return totalCost, nil
 }
 
 func (r repository) Delete(ctx context.Context, id string) error {
