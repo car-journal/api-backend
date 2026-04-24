@@ -1,3 +1,5 @@
+name: car-journal-backend
+
 services:
   app:
     build: .
