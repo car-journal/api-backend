@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	maintenancecategoryrepository "github.com/car-journal/api-backend/internal/domain/maintenancecategory/repository"
+	maintenanceentrydto "github.com/car-journal/api-backend/internal/domain/maintenanceentry/dto"
 	maintenanceentrypayload "github.com/car-journal/api-backend/internal/domain/maintenanceentry/payload"
 	maintenanceentryrepository "github.com/car-journal/api-backend/internal/domain/maintenanceentry/repository"
 	odometerentryrepository "github.com/car-journal/api-backend/internal/domain/odometerentry/repository"
@@ -18,7 +19,7 @@ import (
 type Interface interface {
 	Create(ctx context.Context, payload maintenanceentrypayload.CreatePayload) error
 	List(ctx context.Context, payload maintenanceentrypayload.ListPayload) ([]*internalmodel.MaintenanceEntry, error)
-	FindByID(ctx context.Context, id string) (*internalmodel.MaintenanceEntry, error)
+	FindByID(ctx context.Context, id string) (*maintenanceentrydto.MaintenanceEntryWithOdometerReading, error)
 	Update(ctx context.Context, payload maintenanceentrypayload.UpdatePayload) error
 	Delete(ctx context.Context, id string) error
 }
@@ -90,7 +91,7 @@ func (s service) List(ctx context.Context, payload maintenanceentrypayload.ListP
 	return s.maintenanceEntryRepository.List(ctx, payload)
 }
 
-func (s service) FindByID(ctx context.Context, id string) (*internalmodel.MaintenanceEntry, error) {
+func (s service) FindByID(ctx context.Context, id string) (*maintenanceentrydto.MaintenanceEntryWithOdometerReading, error) {
 	entry, err := s.maintenanceEntryRepository.FindByID(ctx, id)
 	if err != nil {
 		return nil, err
@@ -100,7 +101,15 @@ func (s service) FindByID(ctx context.Context, id string) (*internalmodel.Mainte
 		return nil, httperror.New(errortype.RecordNotFound, fmt.Errorf("maintenance entry id %s doesn't exists", id))
 	}
 
-	return entry, nil
+	odometerEntry, err := s.odometerEntryRepository.FindByID(ctx, entry.OdometerEntryID.String())
+	if err != nil {
+		return nil, err
+	}
+
+	return &maintenanceentrydto.MaintenanceEntryWithOdometerReading{
+		MaintenanceEntry: entry,
+		OdometerReading:  odometerEntry.OdometerReading,
+	}, nil
 }
 
 func (s service) Update(ctx context.Context, payload maintenanceentrypayload.UpdatePayload) error {

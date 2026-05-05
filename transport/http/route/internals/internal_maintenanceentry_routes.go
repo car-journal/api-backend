@@ -12,7 +12,7 @@ import (
 func MaintenanceEntry(internalRoute *mux.Router, app container.AppContainer) {
 	maintenanceEntryRoutes := internalRoute.PathPrefix(routeconst.MaintenanceEntryPrefix).Subrouter()
 	maintenanceEntryRoutes.HandleFunc("/{car_id}", internalmaintenanceentrycontroller.Create(app.Services.MaintenanceEntry)).Methods(http.MethodPost).Name("internalmaintenanceentrycontroller.Create")
-	maintenanceEntryRoutes.HandleFunc("/{car_id}", internalmaintenanceentrycontroller.List(app.Services.MaintenanceEntry)).Methods(http.MethodGet).Name("internalmaintenanceentrycontroller.List")
+	maintenanceEntryRoutes.HandleFunc("/by-car/{car_id}", internalmaintenanceentrycontroller.List(app.Services.MaintenanceEntry)).Methods(http.MethodGet).Name("internalmaintenanceentrycontroller.List")
 	maintenanceEntryRoutes.HandleFunc("/{id}", internalmaintenanceentrycontroller.FindByID(app.Services.MaintenanceEntry)).Methods(http.MethodGet).Name("internalmaintenanceentrycontroller.FindByID")
 	maintenanceEntryRoutes.HandleFunc("/{id}", internalmaintenanceentrycontroller.Update(app.Services.MaintenanceEntry)).Methods(http.MethodPatch).Name("internalmaintenanceentrycontroller.Update")
 	maintenanceEntryRoutes.HandleFunc("/{id}", internalmaintenanceentrycontroller.Delete(app.Services.MaintenanceEntry)).Methods(http.MethodDelete).Name("internalmaintenanceentrycontroller.Delete")
